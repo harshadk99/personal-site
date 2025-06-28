@@ -1,108 +1,118 @@
 # Harshad Sadashiv Kadam - Personal Website
 
-A clean, responsive personal website built with HTML and Tailwind CSS.
+A cybersecurity-themed personal website showcasing my professional experience, skills, projects, and blog posts.
 
-## Overview
+![Website Screenshot](assets/website-screenshot.png)
 
-This personal website showcases Harshad Sadashiv Kadam's professional profile, including sections for:
-- About Me
-- Resume/Experience
-- Projects
-- Blog
-- Contact Information
+## 🔐 Features
 
-## Technologies Used
+- Responsive design that works on all devices
+- Cyberpunk/hacker aesthetic with matrix animation
+- Terminal-style interface with typing effects
+- Dark mode with neon green accents
+- Sections for professional experience, skills, projects, and blog posts
 
-- **HTML5** - For structure and content
-- **Tailwind CSS** - For styling and responsive design
-- **JavaScript** - For interactive elements and mobile menu
-- **Font Awesome** - For icons
-- **CDN Delivery** - For fast loading of external libraries
+## 🛠️ Technologies Used
 
-## Project Structure
+- HTML5 with semantic markup
+- CSS3 with modern features (Grid, Flexbox, CSS Variables)
+- Vanilla JavaScript (no frameworks)
+- Font Awesome for icons
+- Fira Code monospace font
+
+## 🔧 Setup and Deployment
+
+### Local Development
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/harshadk99/personal-site.git
+   cd personal-site
+   ```
+
+2. Open `index.html` in your browser or use a local server:
+   ```bash
+   # Using Python
+   python -m http.server
+   
+   # Using Node.js
+   npx serve
+   ```
+
+### Deployment
+
+The site is deployed on Cloudflare Pages at:
+- https://personal-site-ek2.pages.dev/
+- https://harshadsadashivkadam.com
+
+## 📂 Project Structure
 
 ```
 personal-site/
-├── assets/           # Images, resume PDF, and other static assets
-├── blog/             # Blog posts and blog index
-│   ├── index.html    # Blog listing page
-│   └── post1.html    # Sample blog post
-├── css/              # Custom CSS styles
-│   └── styles.css    # Additional styles beyond Tailwind
-├── js/               # JavaScript files
-│   └── main.js       # Main JavaScript functionality
-├── index.html        # Main homepage
-└── README.md         # Project documentation
+├── assets/                # Images and other static assets
+│   └── profile-image.png  # Profile photo
+├── css/
+│   └── style.css          # Main stylesheet
+├── js/
+│   └── scripts.js         # JavaScript functionality
+├── index.html             # Main HTML file
+└── README.md              # This documentation
 ```
 
-## Features
+## 🔍 Key Components
+
+### Matrix Background Animation
+
+The background features a Matrix-style rain animation created with HTML5 Canvas. The animation is optimized for performance with:
+
+- RequestAnimationFrame for smooth rendering
+- Visibility detection to pause when tab is not active
+- Debounced resize handling
+
+### Terminal Effects
+
+The site includes several terminal-inspired UI elements:
+
+- Command prompt typing animation
+- Terminal windows with macOS-style buttons
+- Blinking cursors
+- ASCII art header
 
 ### Responsive Design
+
+The website is fully responsive with:
+
 - Mobile-first approach
-- Responsive navigation with hamburger menu for small screens
-- Flexible grid layouts that adapt to different screen sizes
+- Hamburger menu for smaller screens
+- Flexible grid layouts
+- Optimized typography for all screen sizes
 
-### Interactive Elements
-- Mobile menu toggle
-- Smooth scrolling to page sections
-- Active navigation highlighting based on scroll position
-- Simple form validation for the contact form
+## 🖋️ Customization
 
-### Sections
-1. **Header** - Navigation and branding
-2. **About** - Personal introduction and call-to-action buttons
-3. **Resume** - Professional experience, education, and skills
-4. **Projects** - Portfolio of work with links to GitHub and live demos
-5. **Blog** - Articles with full post pages
-6. **Contact** - Contact form and social media links
-7. **Footer** - Additional links and copyright information
+To customize the site:
 
-## Customization
+1. **Colors**: Edit the CSS variables in `:root` in `style.css`
+2. **Content**: Update the information in `index.html`
+3. **Profile Image**: Replace `assets/profile-image.png` with your own image
+4. **Projects & Blog Posts**: Edit the corresponding sections in `index.html`
 
-### Replacing Placeholder Content
-- Replace placeholder text with your actual information
-- Add your own project details and screenshots
-- Update social media links with your profiles
-- Add your actual resume PDF in the assets folder
-- Replace placeholder images with your own photos
+## 🔒 Best Practices Implemented
 
-### Styling Changes
-- The website uses Tailwind CSS via CDN for styling
-- Custom styles are in `css/styles.css` for additional customization
-- Color scheme can be adjusted by modifying Tailwind classes (primarily using indigo-600 as accent color)
+- Semantic HTML for better accessibility and SEO
+- Responsive design for all devices
+- Performance optimizations for animations
+- Accessibility features (focus styles, semantic markup)
+- Print stylesheet for better printing
+- Error handling in JavaScript
+- Cross-browser compatibility
+- Proper meta tags for SEO
 
-## Browser Compatibility
+## 📄 License
 
-The website is compatible with modern browsers including:
-- Chrome
-- Firefox
-- Safari
-- Edge
+All rights reserved © 2023 Harshad Sadashiv Kadam
 
-## Local Development
+## 📞 Contact
 
-To run this website locally:
-
-1. Clone the repository
-2. Open `index.html` in your browser
-
-No build process is required as the site uses Tailwind CSS via CDN.
-
-## Deployment
-
-This site can be deployed to any static web hosting service such as:
-- GitHub Pages
-- Netlify
-- Vercel
-- AWS S3
-- Any standard web hosting service
-
-## Future Enhancements
-
-Potential improvements for future versions:
-- Dark mode toggle
-- More interactive project showcases
-- Blog comment system
-- Contact form backend integration
-- Image gallery for visual work
-- Performance optimizations for images and CSS
+- Email: harshad.surfer@gmail.com
+- LinkedIn: [linkedin.com/in/harshad99](https://www.linkedin.com/in/harshad99/)
+- GitHub: [github.com/harshadk99](https://github.com/harshadk99)

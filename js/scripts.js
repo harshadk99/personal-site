@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (navLinks.classList.contains('active') && 
+            !event.target.closest('.navbar') && 
+            !event.target.closest('.nav-links')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    });
+    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -69,41 +79,54 @@ document.addEventListener('DOMContentLoaded', function() {
     if (header) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0, 255, 140, 0.1)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 255, 0, 0.1)';
             } else {
                 header.style.boxShadow = 'none';
             }
         });
     }
 
-    // Matrix rain animation
+    // Matrix rain animation with performance optimizations
     const canvas = document.getElementById('matrix-bg');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         
         // Set canvas dimensions
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const setCanvasDimensions = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        
+        setCanvasDimensions();
         
         // Characters to display
         const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
         const fontSize = 14;
-        const columns = canvas.width / fontSize;
+        let columns = Math.floor(canvas.width / fontSize);
         
         // Array to track the y position of each column
-        const drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
+        let drops = [];
         
-        // Function to draw the matrix rain
+        const initDrops = () => {
+            drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -20); // Start some above the screen
+            }
+        };
+        
+        initDrops();
+        
+        // Function to draw the matrix rain with optimizations
         function drawMatrix() {
+            // Check if canvas is visible (tab in focus, element in viewport)
+            if (document.hidden) return;
+            
             // Set semi-transparent black background to create trail effect
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Set text color and font
-            ctx.fillStyle = '#00ff8c';
+            ctx.fillStyle = '#00ff00';
             ctx.font = fontSize + 'px monospace';
             
             // Draw characters
@@ -111,8 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Get random character
                 const text = characters.charAt(Math.floor(Math.random() * characters.length));
                 
-                // Draw the character
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                // Only draw if within canvas bounds
+                if (drops[i] * fontSize > 0 && drops[i] * fontSize < canvas.height) {
+                    // Draw the character
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                }
                 
                 // Move to next position or reset to top
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -121,19 +147,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 drops[i]++;
             }
+            
+            // Request next frame with throttling for better performance
+            matrixAnimationId = requestAnimationFrame(drawMatrix);
         }
         
-        // Resize canvas when window is resized
+        // Resize canvas when window is resized with debounce
+        let resizeTimeout;
         window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                setCanvasDimensions();
+                columns = Math.floor(canvas.width / fontSize);
+                initDrops();
+            }, 200);
+        });
+        
+        // Start/stop animation based on visibility
+        let matrixAnimationId;
+        
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(matrixAnimationId);
+            } else {
+                matrixAnimationId = requestAnimationFrame(drawMatrix);
+            }
         });
         
         // Start the animation
-        setInterval(drawMatrix, 50);
+        matrixAnimationId = requestAnimationFrame(drawMatrix);
     }
 
-    // Terminal typing effect
+    // Terminal typing effect with error handling
     const typedTextElement = document.getElementById('typed-text');
     if (typedTextElement) {
         const texts = [
@@ -149,34 +194,45 @@ document.addEventListener('DOMContentLoaded', function() {
         let typingSpeed = 100;
         
         function typeEffect() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                // Deleting text
-                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50;
-            } else {
-                // Typing text
-                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 100;
+            try {
+                const currentText = texts[textIndex];
+                
+                if (isDeleting) {
+                    // Deleting text
+                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    // Typing text
+                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+                
+                // If finished typing
+                if (!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Pause before deleting
+                }
+                
+                // If finished deleting
+                if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typingSpeed = 500; // Pause before typing next text
+                }
+                
+                setTimeout(typeEffect, typingSpeed);
+            } catch (error) {
+                console.error("Error in typing effect:", error);
+                // Restart the effect if there was an error
+                setTimeout(() => {
+                    charIndex = 0;
+                    isDeleting = false;
+                    textIndex = 0;
+                    typeEffect();
+                }, 1000);
             }
-            
-            // If finished typing
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                typingSpeed = 1500; // Pause before deleting
-            }
-            
-            // If finished deleting
-            if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                typingSpeed = 500; // Pause before typing next text
-            }
-            
-            setTimeout(typeEffect, typingSpeed);
         }
         
         // Start typing effect
@@ -194,4 +250,20 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.remove('glitch-effect');
         });
     });
+    
+    // Add cursor after headings
+    const addCursorToHeadings = () => {
+        const headings = document.querySelectorAll('h2:not(.section-title)');
+        headings.forEach(heading => {
+            if (!heading.querySelector('.cursor-blink')) {
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor-blink';
+                cursor.innerHTML = '|';
+                heading.appendChild(cursor);
+            }
+        });
+    };
+    
+    // Call once on load
+    addCursorToHeadings();
 }); 
