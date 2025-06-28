@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Harshad Sadashiv Kadam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-indigo-600">Harshad Sadashiv Kadam</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="../index.html#about" class="hover:text-indigo-600 transition">About</a></li>
+                    <li><a href="../index.html#resume" class="hover:text-indigo-600 transition">Resume</a></li>
+                    <li><a href="../index.html#projects" class="hover:text-indigo-600 transition">Projects</a></li>
+                    <li><a href="../index.html#blog" class="hover:text-indigo-600 transition text-indigo-600">Blog</a></li>
+                    <li><a href="../index.html#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-gray-500 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <ul class="flex flex-col px-4 py-2">
+                <li class="py-2"><a href="../index.html#about" class="block hover:text-indigo-600 transition">About</a></li>
+                <li class="py-2"><a href="../index.html#resume" class="block hover:text-indigo-600 transition">Resume</a></li>
+                <li class="py-2"><a href="../index.html#projects" class="block hover:text-indigo-600 transition">Projects</a></li>
+                <li class="py-2"><a href="../index.html#blog" class="block hover:text-indigo-600 transition text-indigo-600">Blog</a></li>
+                <li class="py-2"><a href="../index.html#contact" class="block hover:text-indigo-600 transition">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-20">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex items-center justify-between mb-12">
+                    <h1 class="text-4xl font-bold">Blog</h1>
+                    <a href="../index.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-newspaper"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog1.jpg" alt="Blog Post 1" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">June 15, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Modern Web Development Practices</h3>
+                            <p class="text-gray-600 mb-4">
+                                Exploring the latest trends and best practices in modern web development including component-based architecture, utility-first CSS, and more...
+                            </p>
+                            <a href="post1.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-cloud"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog2.jpg" alt="Blog Post 2" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">May 28, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Getting Started with Cloud Computing</h3>
+                            <p class="text-gray-600 mb-4">
+                                A beginner's guide to understanding and using cloud services for your applications and websites...
+                            </p>
+                            <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-mobile-alt"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog3.jpg" alt="Blog Post 3" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">April 10, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Responsive Design Techniques</h3>
+                            <p class="text-gray-600 mb-4">
+                                Tips and tricks for creating truly responsive web applications that work on all devices...
+                            </p>
+                            <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 4 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-code"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog4.jpg" alt="Blog Post 4" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">March 22, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">JavaScript Best Practices for 2023</h3>
+                            <p class="text-gray-600 mb-4">
+                                Updated coding standards and patterns for writing clean, maintainable JavaScript code...
+                            </p>
+                            <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 5 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-shield-alt"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog5.jpg" alt="Blog Post 5" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">February 15, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Web Security Fundamentals</h3>
+                            <p class="text-gray-600 mb-4">
+                                Essential security practices every web developer should know to protect their applications...
+                            </p>
+                            <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 6 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-database"></i>
+                            <!-- Replace with blog image: <img src="../assets/blog6.jpg" alt="Blog Post 6" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">January 8, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Database Design Patterns</h3>
+                            <p class="text-gray-600 mb-4">
+                                Exploring effective database design strategies for scalable and efficient applications...
+                            </p>
+                            <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="mt-12 flex justify-center">
+                    <nav class="inline-flex">
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-l-md hover:bg-gray-50">Previous</a>
+                        <a href="#" class="px-4 py-2 bg-indigo-600 border border-indigo-600 text-white">1</a>
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">2</a>
+                        <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-r-md hover:bg-gray-50">Next</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Harshad Sadashiv Kadam</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 Harshad Sadashiv Kadam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 

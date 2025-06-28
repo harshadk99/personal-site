@@ -1,5 +1,28 @@
 /* Custom styles to complement Tailwind CSS */
 
+/* Dark theme variables */
+:root {
+  --primary-color: #00ff8c;
+  --primary-hover: #00cc70;
+  --dark-bg: #0a0e17;
+  --darker-bg: #060a12;
+  --card-bg: #111827;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --border-color: #1e293b;
+  --accent-color: #00ff8c;
+  --danger-color: #ff3e3e;
+  --warning-color: #ffb700;
+  --info-color: #3b82f6;
+}
+
+/* Base styles */
+body {
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
@@ -13,22 +36,88 @@ html {
 /* Custom hover effect for project cards */
 .project-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 255, 140, 0.15);
+}
+
+/* Header styles */
+header {
+  background-color: var(--darker-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Navigation styles */
+nav a {
+  color: var(--text-primary);
+}
+
+nav a:hover, nav a.active {
+  color: var(--primary-color) !important;
+}
+
+/* Section backgrounds */
+section {
+  background-color: var(--dark-bg);
+}
+
+section:nth-child(even) {
+  background-color: var(--darker-bg);
+}
+
+/* Card styles */
+.card, .bg-white {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--darker-bg);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-outline {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 255, 140, 0.1);
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-accent {
+  color: var(--primary-color) !important;
 }
 
 /* Custom styles for code blocks in blog posts */
 pre {
-  background-color: #f1f5f9;
+  background-color: var(--darker-bg);
   border-radius: 0.375rem;
   padding: 1rem;
   overflow-x: auto;
+  border: 1px solid var(--border-color);
 }
 
 /* Custom styles for blockquotes in blog posts */
 blockquote {
-  border-left: 4px solid #818cf8;
+  border-left: 4px solid var(--primary-color);
   padding-left: 1rem;
   font-style: italic;
   margin: 1.5rem 0;
+  color: var(--text-secondary);
 }
 
 /* Custom scrollbar */
@@ -37,16 +126,92 @@ blockquote {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--darker-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
+  background: var(--border-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #818cf8;
+  background: var(--primary-color);
+}
+
+/* Footer styles */
+footer {
+  background-color: var(--darker-bg) !important;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Cybersecurity-themed elements */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 140, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.cyber-border {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 255, 140, 0.7);
+}
+
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="30" font-family="monospace" font-size="20" fill="rgba(0,255,140,0.1)">10</text><text x="50" y="50" font-family="monospace" font-size="20" fill="rgba(0,255,140,0.1)">01</text><text x="30" y="70" font-family="monospace" font-size="20" fill="rgba(0,255,140,0.1)">01</text><text x="70" y="90" font-family="monospace" font-size="20" fill="rgba(0,255,140,0.1)">10</text></svg>');
+  opacity: 0.05;
+  z-index: 0;
+}
+
+/* Terminal-like text */
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  color: var(--primary-color);
+  background-color: var(--darker-bg);
+  padding: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-color);
+}
+
+.terminal-text::before {
+  content: "$ ";
+  color: var(--primary-color);
+}
+
+/* Typing effect */
+.typing-effect {
+  overflow: hidden;
+  border-right: 0.15em solid var(--primary-color);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--primary-color) }
 }
 
 /* Additional responsive adjustments */

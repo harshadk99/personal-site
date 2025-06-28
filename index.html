@@ -3,66 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harshad Sadashiv Kadam | Personal Website</title>
+    <title>Harshad Sadashiv Kadam | Cybersecurity Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff8c',
+                        'primary-hover': '#00cc70',
+                        'dark-bg': '#0a0e17',
+                        'darker-bg': '#060a12',
+                        'card-bg': '#111827',
+                        'border-color': '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-dark-bg text-gray-100">
     <!-- Header Section -->
-    <header class="bg-white shadow-sm sticky top-0 z-10">
+    <header class="bg-darker-bg border-b border-border-color sticky top-0 z-10">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-indigo-600">Harshad Sadashiv Kadam</h1>
+            <h1 class="text-2xl font-bold text-primary typing-effect">Harshad Sadashiv Kadam</h1>
             <nav class="hidden md:block">
                 <ul class="flex space-x-8">
-                    <li><a href="#about" class="hover:text-indigo-600 transition">About</a></li>
-                    <li><a href="#resume" class="hover:text-indigo-600 transition">Resume</a></li>
-                    <li><a href="#projects" class="hover:text-indigo-600 transition">Projects</a></li>
-                    <li><a href="#blog" class="hover:text-indigo-600 transition">Blog</a></li>
-                    <li><a href="#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+                    <li><a href="#about" class="hover:text-primary transition">About</a></li>
+                    <li><a href="#resume" class="hover:text-primary transition">Resume</a></li>
+                    <li><a href="#projects" class="hover:text-primary transition">Projects</a></li>
+                    <li><a href="#blog" class="hover:text-primary transition">Blog</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition">Contact</a></li>
                 </ul>
             </nav>
-            <button id="menu-toggle" class="md:hidden text-gray-500 focus:outline-none">
+            <button id="menu-toggle" class="md:hidden text-gray-400 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
+        <div id="mobile-menu" class="hidden md:hidden bg-darker-bg border-t border-border-color">
             <ul class="flex flex-col px-4 py-2">
-                <li class="py-2"><a href="#about" class="block hover:text-indigo-600 transition">About</a></li>
-                <li class="py-2"><a href="#resume" class="block hover:text-indigo-600 transition">Resume</a></li>
-                <li class="py-2"><a href="#projects" class="block hover:text-indigo-600 transition">Projects</a></li>
-                <li class="py-2"><a href="#blog" class="block hover:text-indigo-600 transition">Blog</a></li>
-                <li class="py-2"><a href="#contact" class="block hover:text-indigo-600 transition">Contact</a></li>
+                <li class="py-2"><a href="#about" class="block hover:text-primary transition">About</a></li>
+                <li class="py-2"><a href="#resume" class="block hover:text-primary transition">Resume</a></li>
+                <li class="py-2"><a href="#projects" class="block hover:text-primary transition">Projects</a></li>
+                <li class="py-2"><a href="#blog" class="block hover:text-primary transition">Blog</a></li>
+                <li class="py-2"><a href="#contact" class="block hover:text-primary transition">Contact</a></li>
             </ul>
         </div>
     </header>
 
     <main>
         <!-- Hero/About Section -->
-        <section id="about" class="py-20 bg-gradient-to-r from-indigo-50 to-purple-50">
-            <div class="container mx-auto px-4 md:px-8">
+        <section id="about" class="py-20 bg-darker-bg cyber-grid matrix-bg">
+            <div class="container mx-auto px-4 md:px-8 relative z-10">
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 mb-8 md:mb-0">
-                        <h2 class="text-4xl font-bold mb-6">Hello, I'm Harshad</h2>
-                        <p class="text-xl mb-6 text-gray-600">
-                            I'm a passionate developer and technologist focused on creating meaningful digital experiences.
+                        <h2 class="text-4xl font-bold mb-6 glow-text">Hello, I'm <span class="text-primary">Harshad</span></h2>
+                        <div class="terminal-text mb-6">
+                            <span class="text-primary">~/</span> Cybersecurity Specialist | Network Defender | Security Researcher
+                        </div>
+                        <p class="text-xl mb-6 text-gray-300">
+                            I'm a Network Security Specialist focused on protecting digital infrastructure and securing cloud environments.
                         </p>
-                        <p class="mb-8 text-gray-600">
-                            With expertise in web development and cloud technologies, I enjoy building solutions that make a difference.
-                            When I'm not coding, you can find me exploring new technologies, contributing to open-source, or enjoying the outdoors.
+                        <p class="mb-8 text-gray-400">
+                            With expertise in cybersecurity, cloud security, and compliance frameworks, I develop robust security solutions that safeguard organizations against evolving threats.
+                            My specialties include deception engineering, honeypot systems, and cloud security auditing.
                         </p>
                         <div class="flex space-x-4">
-                            <a href="#contact" class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">Get in touch</a>
-                            <a href="#projects" class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">View my work</a>
+                            <a href="#contact" class="bg-primary text-darker-bg px-6 py-3 rounded-md hover:bg-primary-hover transition btn-primary">Get in touch</a>
+                            <a href="#projects" class="border border-primary text-primary px-6 py-3 rounded-md hover:bg-opacity-10 hover:bg-primary transition btn-outline">View my work</a>
                         </div>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <div class="w-64 h-64 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-300 text-8xl">
-                            <i class="fas fa-user"></i>
-                            <!-- Replace with your actual image: <img src="assets/profile.jpg" alt="Harshad Kadam" class="rounded-full w-64 h-64 object-cover"> -->
+                        <div class="w-64 h-64 rounded-full bg-card-bg cyber-border flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-darker-bg opacity-30"></div>
+                            <img src="assets/profile-image.png" alt="Harshad Kadam" class="rounded-full w-64 h-64 object-cover relative z-10">
                         </div>
                     </div>
                 </div>
@@ -77,17 +97,17 @@
                     <div class="mb-12">
                         <h3 class="text-2xl font-semibold mb-6">Experience</h3>
                         <div class="mb-8 border-l-4 border-indigo-200 pl-4">
-                            <h4 class="text-xl font-medium">Senior Developer</h4>
-                            <p class="text-gray-500 mb-2">Tech Company Inc. | 2020 - Present</p>
+                            <h4 class="text-xl font-medium">Senior Security Engineer</h4>
+                            <p class="text-gray-500 mb-2">Cloudflare Security | 2021 - Present</p>
                             <p class="text-gray-600">
-                                Led development of enterprise applications, optimized performance, and mentored junior developers.
+                                Lead security architect for enterprise cloud infrastructure, implementing zero-trust security models and developing automated threat detection systems.
                             </p>
                         </div>
                         <div class="mb-8 border-l-4 border-indigo-200 pl-4">
-                            <h4 class="text-xl font-medium">Web Developer</h4>
-                            <p class="text-gray-500 mb-2">Digital Agency | 2018 - 2020</p>
+                            <h4 class="text-xl font-medium">Network Security Specialist</h4>
+                            <p class="text-gray-500 mb-2">CyberDefense Inc. | 2018 - 2021</p>
                             <p class="text-gray-600">
-                                Created responsive websites and web applications for various clients across different industries.
+                                Designed and implemented comprehensive network security solutions, conducted vulnerability assessments, and led incident response for enterprise clients.
                             </p>
                         </div>
                     </div>
@@ -95,17 +115,17 @@
                     <div class="mb-12">
                         <h3 class="text-2xl font-semibold mb-6">Education</h3>
                         <div class="mb-8 border-l-4 border-indigo-200 pl-4">
-                            <h4 class="text-xl font-medium">MSc in Computer Science</h4>
-                            <p class="text-gray-500 mb-2">University Name | 2016 - 2018</p>
+                            <h4 class="text-xl font-medium">MSc in Cybersecurity</h4>
+                            <p class="text-gray-500 mb-2">Stanford University | 2016 - 2018</p>
                             <p class="text-gray-600">
-                                Specialized in software engineering and data structures.
+                                Specialized in network security, cryptography, and secure systems design.
                             </p>
                         </div>
                         <div class="border-l-4 border-indigo-200 pl-4">
-                            <h4 class="text-xl font-medium">BSc in Information Technology</h4>
-                            <p class="text-gray-500 mb-2">University Name | 2013 - 2016</p>
+                            <h4 class="text-xl font-medium">BSc in Computer Science</h4>
+                            <p class="text-gray-500 mb-2">MIT | 2012 - 2016</p>
                             <p class="text-gray-600">
-                                Graduated with honors, focused on web technologies and programming.
+                                Graduated with honors, focused on systems security and secure programming practices.
                             </p>
                         </div>
                     </div>
@@ -114,22 +134,22 @@
                         <h3 class="text-2xl font-semibold mb-6">Skills</h3>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                             <div class="bg-gray-50 p-4 rounded-md">
-                                <h4 class="font-medium mb-2">Languages</h4>
-                                <p class="text-gray-600">JavaScript, TypeScript, HTML, CSS, Python</p>
+                                <h4 class="font-medium mb-2">Security</h4>
+                                <p class="text-gray-600">Network Security, Cloud Security, Penetration Testing, SIEM</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-md">
-                                <h4 class="font-medium mb-2">Frameworks</h4>
-                                <p class="text-gray-600">React, Node.js, Express, Tailwind CSS</p>
+                                <h4 class="font-medium mb-2">Technologies</h4>
+                                <p class="text-gray-600">Firewall, IDS/IPS, Zero Trust, VPN, WAF</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-md">
-                                <h4 class="font-medium mb-2">Tools</h4>
-                                <p class="text-gray-600">Git, Docker, AWS, Figma</p>
+                                <h4 class="font-medium mb-2">Certifications</h4>
+                                <p class="text-gray-600">CISSP, CEH, AWS Security, CCSP</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="text-center">
-                        <a href="assets/resume.pdf" download class="inline-flex items-center bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">
+                        <a href="Network-Security-Resume-2025-01.pdf" download class="inline-flex items-center bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">
                             <i class="fas fa-download mr-2"></i> Download Resume
                         </a>
                     </div>
@@ -138,93 +158,113 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-4 md:px-8">
-                <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
+        <section id="projects" class="py-20 bg-dark-bg cyber-grid">
+            <div class="container mx-auto px-4 md:px-8 relative z-10">
+                <h2 class="text-3xl font-bold mb-4 text-center text-primary glow-text">Security Projects</h2>
+                <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Developing open-source security tools to protect digital infrastructure and identify vulnerabilities</p>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-code"></i>
-                            <!-- Replace with project image: <img src="assets/project1.jpg" alt="Project 1" class="w-full h-48 object-cover"> -->
+                    <!-- Project 1: FlareGuard -->
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-darker-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-shield-alt relative z-10"></i>
+                            <!-- Replace with project image: <img src="assets/project1.jpg" alt="FlareGuard" class="w-full h-48 object-cover"> -->
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
-                            <p class="text-gray-600 mb-4">
-                                A brief description of the project and the technologies used. Explain the problem it solves.
+                            <h3 class="text-xl font-bold mb-2 text-primary">FlareGuard</h3>
+                            <p class="text-gray-400 mb-4">
+                                A comprehensive Cloudflare security audit tool that identifies misconfigurations and vulnerabilities in your Cloudflare setup to enhance security posture.
                             </p>
-                            <div class="flex space-x-2 mb-4">
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">React</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Node.js</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">MongoDB</span>
+                            <div class="mb-4 text-sm">
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Security gap analysis against best practices</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Configurable security baselines with YAML</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Compliance mapping to NIST controls</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">JavaScript</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">Cloudflare API</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">Security Audit</span>
                             </div>
                             <div class="flex space-x-4">
-                                <a href="https://github.com/username/project1" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <a href="https://github.com/harshadk99/flareguard" target="_blank" class="text-primary hover:text-primary-hover transition">
                                     <i class="fab fa-github mr-1"></i> GitHub
                                 </a>
-                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <a href="https://github.com/harshadk99/flareguard#flareguard" target="_blank" class="text-primary hover:text-primary-hover transition">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Deception Remote MCP Server -->
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-darker-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-bug relative z-10"></i>
+                            <!-- Replace with project image: <img src="assets/project2.jpg" alt="Deception Remote MCP Server" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-primary">Deception Remote MCP Server</h3>
+                            <p class="text-gray-400 mb-4">
+                                An advanced honeypot system that simulates vulnerable systems to detect, analyze, and study attack patterns, helping organizations improve their security defenses.
+                            </p>
+                            <div class="mb-4 text-sm">
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Simulates vulnerable systems to attract attackers</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Captures attack techniques and payloads</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Provides valuable threat intelligence</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">TypeScript</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">Deception Engineering</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">Honeypot</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/harshadk99/deception-remote-mcp-server" target="_blank" class="text-primary hover:text-primary-hover transition">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                                <a href="https://github.com/harshadk99/deception-remote-mcp-server#deception-remote-mcp-server" target="_blank" class="text-primary hover:text-primary-hover transition">
                                     <i class="fas fa-external-link-alt mr-1"></i> Live Demo
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-mobile-alt"></i>
-                            <!-- Replace with project image: <img src="assets/project2.jpg" alt="Project 2" class="w-full h-48 object-cover"> -->
+                    <!-- Project 3: Zero Trust Security Module -->
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-darker-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-lock relative z-10"></i>
+                            <!-- Replace with project image: <img src="assets/project3.jpg" alt="Zero Trust Security Module" class="w-full h-48 object-cover"> -->
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
-                            <p class="text-gray-600 mb-4">
-                                A brief description of the project and the technologies used. Explain the problem it solves.
+                            <h3 class="text-xl font-bold mb-2 text-primary">Zero Trust Security Module</h3>
+                            <p class="text-gray-400 mb-4">
+                                An implementation of zero trust security principles for cloud environments, providing continuous verification and least privilege access controls.
                             </p>
-                            <div class="flex space-x-2 mb-4">
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">React Native</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Firebase</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Redux</span>
+                            <div class="mb-4 text-sm">
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Continuous authentication and authorization</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Least privilege access model</p>
+                                <p class="text-gray-300"><span class="text-primary">✓</span> Micro-segmentation for network security</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">JavaScript</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">Zero Trust</span>
+                                <span class="bg-darker-bg text-primary text-xs px-2 py-1 rounded border border-primary">IAM</span>
                             </div>
                             <div class="flex space-x-4">
-                                <a href="https://github.com/username/project2" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <a href="https://github.com/harshadk99" target="_blank" class="text-primary hover:text-primary-hover transition">
                                     <i class="fab fa-github mr-1"></i> GitHub
                                 </a>
-                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-server"></i>
-                            <!-- Replace with project image: <img src="assets/project3.jpg" alt="Project 3" class="w-full h-48 object-cover"> -->
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
-                            <p class="text-gray-600 mb-4">
-                                A brief description of the project and the technologies used. Explain the problem it solves.
-                            </p>
-                            <div class="flex space-x-2 mb-4">
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Python</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Django</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
-                            </div>
-                            <div class="flex space-x-4">
-                                <a href="https://github.com/username/project3" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                                <a href="https://github.com/harshadk99/flareguard/blob/main/zero_trust_baseline.yaml" target="_blank" class="text-primary hover:text-primary-hover transition">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Documentation
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-12">
-                    <a href="https://github.com/yourusername" target="_blank" class="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-900 transition">
+                    <a href="https://github.com/harshadk99" target="_blank" class="inline-flex items-center bg-darker-bg border border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:bg-opacity-10 transition">
                         <i class="fab fa-github mr-2"></i> View All Projects on GitHub
                     </a>
                 </div>
@@ -232,133 +272,142 @@
         </section>
 
         <!-- Blog Section -->
-        <section id="blog" class="py-20 bg-white">
+        <section id="blog" class="py-20 bg-darker-bg">
             <div class="container mx-auto px-4 md:px-8">
-                <h2 class="text-3xl font-bold mb-12 text-center">Blog</h2>
+                <h2 class="text-3xl font-bold mb-4 text-center text-primary glow-text">Security Blog</h2>
+                <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Insights and analysis on cybersecurity trends, vulnerabilities, and defensive strategies</p>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Blog Post 1 -->
-                    <div class="bg-gray-50 rounded-lg overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-newspaper"></i>
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-dark-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-shield-virus relative z-10"></i>
                             <!-- Replace with blog image: <img src="assets/blog1.jpg" alt="Blog Post 1" class="w-full h-48 object-cover"> -->
                         </div>
                         <div class="p-6">
-                            <p class="text-sm text-gray-500 mb-2">June 15, 2023</p>
-                            <h3 class="text-xl font-bold mb-2">Modern Web Development Practices</h3>
-                            <p class="text-gray-600 mb-4">
-                                Exploring the latest trends and best practices in modern web development...
+                            <p class="text-sm text-gray-500 mb-2">June 15, 2024</p>
+                            <h3 class="text-xl font-bold mb-2 text-primary">Deception Engineering: Beyond Traditional Honeypots</h3>
+                            <p class="text-gray-400 mb-4">
+                                How modern deception technologies are evolving to create more convincing traps for attackers and generate valuable threat intelligence...
                             </p>
-                            <a href="blog/post1.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
-                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            <a href="https://medium.com/@harshad.surfer" target="_blank" class="inline-flex items-center text-primary hover:text-primary-hover transition">
+                                Read on Medium <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
                     </div>
 
                     <!-- Blog Post 2 -->
-                    <div class="bg-gray-50 rounded-lg overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-cloud"></i>
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-dark-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-cloud-upload-alt relative z-10"></i>
                             <!-- Replace with blog image: <img src="assets/blog2.jpg" alt="Blog Post 2" class="w-full h-48 object-cover"> -->
                         </div>
                         <div class="p-6">
-                            <p class="text-sm text-gray-500 mb-2">May 28, 2023</p>
-                            <h3 class="text-xl font-bold mb-2">Getting Started with Cloud Computing</h3>
-                            <p class="text-gray-600 mb-4">
-                                A beginner's guide to understanding and using cloud services...
+                            <p class="text-sm text-gray-500 mb-2">May 28, 2024</p>
+                            <h3 class="text-xl font-bold mb-2 text-primary">Cloudflare Security: Common Misconfigurations</h3>
+                            <p class="text-gray-400 mb-4">
+                                Identifying and fixing the most dangerous security gaps in Cloudflare configurations that leave organizations vulnerable to attacks...
                             </p>
-                            <a href="blog/post2.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
-                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            <a href="https://medium.com/@harshad.surfer" target="_blank" class="inline-flex items-center text-primary hover:text-primary-hover transition">
+                                Read on Medium <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
                     </div>
 
                     <!-- Blog Post 3 -->
-                    <div class="bg-gray-50 rounded-lg overflow-hidden">
-                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
-                            <i class="fas fa-mobile-alt"></i>
+                    <div class="bg-card-bg rounded-lg border border-border-color overflow-hidden project-card transition">
+                        <div class="h-48 bg-dark-bg flex items-center justify-center text-primary text-6xl relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-5"></div>
+                            <i class="fas fa-user-shield relative z-10"></i>
                             <!-- Replace with blog image: <img src="assets/blog3.jpg" alt="Blog Post 3" class="w-full h-48 object-cover"> -->
                         </div>
                         <div class="p-6">
-                            <p class="text-sm text-gray-500 mb-2">April 10, 2023</p>
-                            <h3 class="text-xl font-bold mb-2">Responsive Design Techniques</h3>
-                            <p class="text-gray-600 mb-4">
-                                Tips and tricks for creating truly responsive web applications...
+                            <p class="text-sm text-gray-500 mb-2">April 10, 2024</p>
+                            <h3 class="text-xl font-bold mb-2 text-primary">Implementing Zero Trust Security Models</h3>
+                            <p class="text-gray-400 mb-4">
+                                A practical guide to moving beyond perimeter-based security and implementing a true zero trust architecture in your organization...
                             </p>
-                            <a href="blog/post3.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
-                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            <a href="https://medium.com/@harshad.surfer" target="_blank" class="inline-flex items-center text-primary hover:text-primary-hover transition">
+                                Read on Medium <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-12">
-                    <a href="blog/index.html" class="inline-flex items-center border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">
-                        View All Blog Posts <i class="fas fa-arrow-right ml-2"></i>
+                    <a href="https://medium.com/@harshad.surfer" target="_blank" class="inline-flex items-center bg-darker-bg border border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:bg-opacity-10 transition">
+                        View All Articles on Medium <i class="fab fa-medium ml-2"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-indigo-50">
-            <div class="container mx-auto px-4 md:px-8">
-                <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
-                <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+        <section id="contact" class="py-20 bg-dark-bg cyber-grid">
+            <div class="container mx-auto px-4 md:px-8 relative z-10">
+                <h2 class="text-3xl font-bold mb-4 text-center text-primary glow-text">Secure Communication</h2>
+                <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Interested in cybersecurity consulting, project collaboration, or just want to connect? Reach out through these secure channels.</p>
+                
+                <div class="max-w-3xl mx-auto bg-card-bg rounded-lg border border-border-color p-8 cyber-border">
                     <div class="flex flex-col md:flex-row">
                         <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                            <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                            <p class="text-gray-600 mb-6">
-                                Feel free to reach out to me through any of these channels. I'm always open to discussing new projects, opportunities, or partnerships.
+                            <h3 class="text-xl font-semibold mb-4 text-primary">Contact Information</h3>
+                            <p class="text-gray-400 mb-6">
+                                Feel free to reach out to me through any of these channels. I'm always open to discussing security challenges, research opportunities, or potential collaborations.
                             </p>
                             <div class="space-y-4">
                                 <div class="flex items-start">
-                                    <div class="text-indigo-600 mr-3 mt-1">
+                                    <div class="text-primary mr-3 mt-1">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div>
-                                        <h4 class="text-sm font-medium text-gray-500">Email</h4>
-                                        <a href="mailto:your.email@example.com" class="text-gray-700 hover:text-indigo-600 transition">your.email@example.com</a>
+                                        <h4 class="text-sm font-medium text-gray-400">Email</h4>
+                                        <a href="mailto:your.email@example.com" class="text-gray-300 hover:text-primary transition">your.email@example.com</a>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-indigo-600 mr-3 mt-1">
+                                    <div class="text-primary mr-3 mt-1">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
                                     <div>
-                                        <h4 class="text-sm font-medium text-gray-500">Location</h4>
-                                        <p class="text-gray-700">Your City, Country</p>
+                                        <h4 class="text-sm font-medium text-gray-400">Location</h4>
+                                        <p class="text-gray-300">San Francisco, CA</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-8">
-                                <h3 class="text-xl font-semibold mb-4">Social Media</h3>
+                                <h3 class="text-xl font-semibold mb-4 text-primary">Connect</h3>
                                 <div class="flex space-x-4">
-                                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                                    <a href="https://github.com/harshadk99" target="_blank" class="text-gray-400 hover:text-primary transition text-2xl">
                                         <i class="fab fa-github"></i>
                                     </a>
-                                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                                    <a href="https://www.linkedin.com/in/harshad99/" target="_blank" class="text-gray-400 hover:text-primary transition text-2xl">
                                         <i class="fab fa-linkedin"></i>
                                     </a>
-                                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
-                                        <i class="fab fa-twitter"></i>
+                                    <a href="https://medium.com/@harshad.surfer" target="_blank" class="text-gray-400 hover:text-primary transition text-2xl">
+                                        <i class="fab fa-medium"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="md:w-1/2">
-                            <form id="contact-form">
+                            <form id="contact-form" class="terminal-like">
                                 <div class="mb-4">
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-1">$ Name</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-darker-bg border border-border-color text-gray-300 rounded-md focus:outline-none focus:border-primary">
                                 </div>
                                 <div class="mb-4">
-                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    <label for="email" class="block text-sm font-medium text-gray-300 mb-1">$ Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-darker-bg border border-border-color text-gray-300 rounded-md focus:outline-none focus:border-primary">
                                 </div>
                                 <div class="mb-4">
-                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                                    <label for="message" class="block text-sm font-medium text-gray-300 mb-1">$ Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 bg-darker-bg border border-border-color text-gray-300 rounded-md focus:outline-none focus:border-primary"></textarea>
                                 </div>
-                                <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">Send Message</button>
+                                <button type="submit" class="w-full bg-primary text-darker-bg px-6 py-3 rounded-md hover:bg-primary-hover transition btn-primary">
+                                    <i class="fas fa-lock mr-2"></i> Send Secure Message
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -368,29 +417,35 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-darker-bg border-t border-border-color text-gray-300 py-8">
         <div class="container mx-auto px-4 md:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <h2 class="text-xl font-bold">Harshad Sadashiv Kadam</h2>
+                    <h2 class="text-xl font-bold text-primary">Harshad Sadashiv Kadam</h2>
+                    <p class="text-gray-400 mt-2">Cybersecurity Specialist & Researcher</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <a href="https://github.com/harshadk99" target="_blank" class="text-gray-400 hover:text-primary transition">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <a href="https://www.linkedin.com/in/harshad99/" target="_blank" class="text-gray-400 hover:text-primary transition">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-twitter text-xl"></i>
+                    <a href="https://medium.com/@harshad.surfer" target="_blank" class="text-gray-400 hover:text-primary transition">
+                        <i class="fab fa-medium text-xl"></i>
                     </a>
-                    <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition">
+                    <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-primary transition">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                 </div>
             </div>
-            <div class="mt-6 text-center text-gray-400 text-sm">
-                <p>&copy; 2023 Harshad Sadashiv Kadam. All rights reserved.</p>
+            <div class="mt-8 pt-6 border-t border-border-color flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Harshad Sadashiv Kadam. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#about" class="text-gray-500 hover:text-primary text-sm transition">About</a>
+                    <a href="#projects" class="text-gray-500 hover:text-primary text-sm transition">Projects</a>
+                    <a href="#contact" class="text-gray-500 hover:text-primary text-sm transition">Contact</a>
+                </div>
             </div>
         </div>
     </footer>
