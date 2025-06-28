@@ -19,6 +19,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
+/* Force Dark Theme */
+html, body {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -32,8 +38,6 @@ html {
 body {
     font-family: var(--terminal-font);
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
     position: relative;
     overflow-x: hidden;
 }
@@ -1153,4 +1157,35 @@ img {
     .terminal-output {
         font-size: 1rem;
     }
+}
+
+/* Section Backgrounds */
+section.about {
+    background-color: var(--light-background) !important;
+}
+
+section.experience, 
+section.projects,
+section.contact {
+    background-color: var(--background-color) !important;
+}
+
+section.skills,
+section.blog,
+section.education {
+    background-color: var(--light-background) !important;
+}
+
+/* Ensure all text is light colored */
+p, h1, h2, h3, h4, h5, h6, span, li {
+    color: var(--text-color);
+}
+
+/* Ensure all links have correct color */
+a:not(.btn) {
+    color: var(--primary-color);
+}
+
+a:not(.btn):hover {
+    color: var(--secondary-color);
 } 
