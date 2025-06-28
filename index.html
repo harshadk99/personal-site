@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshad Sadashiv Kadam | Personal Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-indigo-600">Harshad Sadashiv Kadam</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#about" class="hover:text-indigo-600 transition">About</a></li>
+                    <li><a href="#resume" class="hover:text-indigo-600 transition">Resume</a></li>
+                    <li><a href="#projects" class="hover:text-indigo-600 transition">Projects</a></li>
+                    <li><a href="#blog" class="hover:text-indigo-600 transition">Blog</a></li>
+                    <li><a href="#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-gray-500 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <ul class="flex flex-col px-4 py-2">
+                <li class="py-2"><a href="#about" class="block hover:text-indigo-600 transition">About</a></li>
+                <li class="py-2"><a href="#resume" class="block hover:text-indigo-600 transition">Resume</a></li>
+                <li class="py-2"><a href="#projects" class="block hover:text-indigo-600 transition">Projects</a></li>
+                <li class="py-2"><a href="#blog" class="block hover:text-indigo-600 transition">Blog</a></li>
+                <li class="py-2"><a href="#contact" class="block hover:text-indigo-600 transition">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero/About Section -->
+        <section id="about" class="py-20 bg-gradient-to-r from-indigo-50 to-purple-50">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <h2 class="text-4xl font-bold mb-6">Hello, I'm Harshad</h2>
+                        <p class="text-xl mb-6 text-gray-600">
+                            I'm a passionate developer and technologist focused on creating meaningful digital experiences.
+                        </p>
+                        <p class="mb-8 text-gray-600">
+                            With expertise in web development and cloud technologies, I enjoy building solutions that make a difference.
+                            When I'm not coding, you can find me exploring new technologies, contributing to open-source, or enjoying the outdoors.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#contact" class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">Get in touch</a>
+                            <a href="#projects" class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">View my work</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="w-64 h-64 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-300 text-8xl">
+                            <i class="fas fa-user"></i>
+                            <!-- Replace with your actual image: <img src="assets/profile.jpg" alt="Harshad Kadam" class="rounded-full w-64 h-64 object-cover"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="py-20 bg-white">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Resume</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-semibold mb-6">Experience</h3>
+                        <div class="mb-8 border-l-4 border-indigo-200 pl-4">
+                            <h4 class="text-xl font-medium">Senior Developer</h4>
+                            <p class="text-gray-500 mb-2">Tech Company Inc. | 2020 - Present</p>
+                            <p class="text-gray-600">
+                                Led development of enterprise applications, optimized performance, and mentored junior developers.
+                            </p>
+                        </div>
+                        <div class="mb-8 border-l-4 border-indigo-200 pl-4">
+                            <h4 class="text-xl font-medium">Web Developer</h4>
+                            <p class="text-gray-500 mb-2">Digital Agency | 2018 - 2020</p>
+                            <p class="text-gray-600">
+                                Created responsive websites and web applications for various clients across different industries.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-semibold mb-6">Education</h3>
+                        <div class="mb-8 border-l-4 border-indigo-200 pl-4">
+                            <h4 class="text-xl font-medium">MSc in Computer Science</h4>
+                            <p class="text-gray-500 mb-2">University Name | 2016 - 2018</p>
+                            <p class="text-gray-600">
+                                Specialized in software engineering and data structures.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-indigo-200 pl-4">
+                            <h4 class="text-xl font-medium">BSc in Information Technology</h4>
+                            <p class="text-gray-500 mb-2">University Name | 2013 - 2016</p>
+                            <p class="text-gray-600">
+                                Graduated with honors, focused on web technologies and programming.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-semibold mb-6">Skills</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-md">
+                                <h4 class="font-medium mb-2">Languages</h4>
+                                <p class="text-gray-600">JavaScript, TypeScript, HTML, CSS, Python</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-md">
+                                <h4 class="font-medium mb-2">Frameworks</h4>
+                                <p class="text-gray-600">React, Node.js, Express, Tailwind CSS</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-md">
+                                <h4 class="font-medium mb-2">Tools</h4>
+                                <p class="text-gray-600">Git, Docker, AWS, Figma</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="assets/resume.pdf" download class="inline-flex items-center bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">
+                            <i class="fas fa-download mr-2"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-code"></i>
+                            <!-- Replace with project image: <img src="assets/project1.jpg" alt="Project 1" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
+                            <p class="text-gray-600 mb-4">
+                                A brief description of the project and the technologies used. Explain the problem it solves.
+                            </p>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">React</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Node.js</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">MongoDB</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/username/project1" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-mobile-alt"></i>
+                            <!-- Replace with project image: <img src="assets/project2.jpg" alt="Project 2" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
+                            <p class="text-gray-600 mb-4">
+                                A brief description of the project and the technologies used. Explain the problem it solves.
+                            </p>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">React Native</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Firebase</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Redux</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/username/project2" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-server"></i>
+                            <!-- Replace with project image: <img src="assets/project3.jpg" alt="Project 3" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Project Name</h3>
+                            <p class="text-gray-600 mb-4">
+                                A brief description of the project and the technologies used. Explain the problem it solves.
+                            </p>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Django</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">PostgreSQL</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/username/project3" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                                <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-800 transition">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="https://github.com/yourusername" target="_blank" class="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-900 transition">
+                        <i class="fab fa-github mr-2"></i> View All Projects on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-20 bg-white">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Blog</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-gray-50 rounded-lg overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-newspaper"></i>
+                            <!-- Replace with blog image: <img src="assets/blog1.jpg" alt="Blog Post 1" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">June 15, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Modern Web Development Practices</h3>
+                            <p class="text-gray-600 mb-4">
+                                Exploring the latest trends and best practices in modern web development...
+                            </p>
+                            <a href="blog/post1.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="bg-gray-50 rounded-lg overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-cloud"></i>
+                            <!-- Replace with blog image: <img src="assets/blog2.jpg" alt="Blog Post 2" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">May 28, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Getting Started with Cloud Computing</h3>
+                            <p class="text-gray-600 mb-4">
+                                A beginner's guide to understanding and using cloud services...
+                            </p>
+                            <a href="blog/post2.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="bg-gray-50 rounded-lg overflow-hidden">
+                        <div class="h-48 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl">
+                            <i class="fas fa-mobile-alt"></i>
+                            <!-- Replace with blog image: <img src="assets/blog3.jpg" alt="Blog Post 3" class="w-full h-48 object-cover"> -->
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">April 10, 2023</p>
+                            <h3 class="text-xl font-bold mb-2">Responsive Design Techniques</h3>
+                            <p class="text-gray-600 mb-4">
+                                Tips and tricks for creating truly responsive web applications...
+                            </p>
+                            <a href="blog/post3.html" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 transition">
+                                Read More <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="blog/index.html" class="inline-flex items-center border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">
+                        View All Blog Posts <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-indigo-50">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+                <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                            <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                            <p class="text-gray-600 mb-6">
+                                Feel free to reach out to me through any of these channels. I'm always open to discussing new projects, opportunities, or partnerships.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="text-indigo-600 mr-3 mt-1">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500">Email</h4>
+                                        <a href="mailto:your.email@example.com" class="text-gray-700 hover:text-indigo-600 transition">your.email@example.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="text-indigo-600 mr-3 mt-1">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500">Location</h4>
+                                        <p class="text-gray-700">Your City, Country</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <h3 class="text-xl font-semibold mb-4">Social Media</h3>
+                                <div class="flex space-x-4">
+                                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <form id="contact-form">
+                                <div class="mb-4">
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Harshad Sadashiv Kadam</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 Harshad Sadashiv Kadam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

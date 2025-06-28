@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web Development Practices | Harshad Sadashiv Kadam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-indigo-600">Harshad Sadashiv Kadam</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="../index.html#about" class="hover:text-indigo-600 transition">About</a></li>
+                    <li><a href="../index.html#resume" class="hover:text-indigo-600 transition">Resume</a></li>
+                    <li><a href="../index.html#projects" class="hover:text-indigo-600 transition">Projects</a></li>
+                    <li><a href="../index.html#blog" class="hover:text-indigo-600 transition text-indigo-600">Blog</a></li>
+                    <li><a href="../index.html#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-gray-500 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <ul class="flex flex-col px-4 py-2">
+                <li class="py-2"><a href="../index.html#about" class="block hover:text-indigo-600 transition">About</a></li>
+                <li class="py-2"><a href="../index.html#resume" class="block hover:text-indigo-600 transition">Resume</a></li>
+                <li class="py-2"><a href="../index.html#projects" class="block hover:text-indigo-600 transition">Projects</a></li>
+                <li class="py-2"><a href="../index.html#blog" class="block hover:text-indigo-600 transition text-indigo-600">Blog</a></li>
+                <li class="py-2"><a href="../index.html#contact" class="block hover:text-indigo-600 transition">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <article class="container mx-auto px-4 py-12 max-w-3xl">
+            <div class="mb-8">
+                <a href="../index.html#blog" class="inline-flex items-center text-indigo-600 mb-4 hover:text-indigo-800 transition">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to All Posts
+                </a>
+                <h1 class="text-4xl font-bold mb-4">Modern Web Development Practices</h1>
+                <div class="flex items-center text-gray-500 mb-8">
+                    <span class="mr-4"><i class="far fa-calendar-alt mr-2"></i> June 15, 2023</span>
+                    <span><i class="fas fa-tag mr-2"></i> Web Development</span>
+                </div>
+                <div class="h-64 bg-indigo-100 flex items-center justify-center text-indigo-300 text-6xl mb-8 rounded-lg">
+                    <i class="fas fa-newspaper"></i>
+                    <!-- Replace with blog image: <img src="../assets/blog1-full.jpg" alt="Modern Web Development" class="w-full h-64 object-cover rounded-lg"> -->
+                </div>
+            </div>
+            
+            <div class="prose max-w-none">
+                <p>
+                    The landscape of web development is constantly evolving, with new frameworks, libraries, and methodologies emerging regularly. Staying current with these changes is crucial for developers who want to build efficient, scalable, and maintainable applications. In this post, we'll explore some of the latest trends and best practices in modern web development.
+                </p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Component-Based Architecture</h2>
+                <p>
+                    One of the most significant shifts in web development has been the move toward component-based architecture. Frameworks like React, Vue, and Angular have popularized this approach, where UIs are broken down into reusable, self-contained components.
+                </p>
+                <p>
+                    This methodology offers several advantages:
+                </p>
+                <ul class="list-disc pl-6 my-4">
+                    <li>Improved maintainability through encapsulation</li>
+                    <li>Better code reusability across projects</li>
+                    <li>Easier testing of isolated components</li>
+                    <li>More efficient updates through virtual DOM</li>
+                </ul>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Utility-First CSS</h2>
+                <p>
+                    Traditional CSS methodologies like BEM and SMACSS have given way to utility-first approaches, with Tailwind CSS leading the charge. Instead of writing custom CSS for each component, developers use pre-defined utility classes to style elements directly in HTML.
+                </p>
+                <pre><code class="language-html">&lt;button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"&gt;
+  Click me
+&lt;/button&gt;</code></pre>
+                <p>
+                    While this approach initially faced criticism for "cluttering" HTML, its benefits have won over many developers:
+                </p>
+                <ul class="list-disc pl-6 my-4">
+                    <li>No need to create and name custom CSS classes</li>
+                    <li>Reduced context switching between files</li>
+                    <li>Smaller CSS bundle sizes (when properly purged)</li>
+                    <li>Consistent design system constraints</li>
+                </ul>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Static Site Generation and JAMstack</h2>
+                <p>
+                    The JAMstack architecture (JavaScript, APIs, and Markup) has gained significant traction. This approach decouples the frontend and backend, with static site generators like Next.js, Gatsby, and Astro producing pre-rendered HTML at build time.
+                </p>
+                <p>
+                    The benefits include:
+                </p>
+                <ul class="list-disc pl-6 my-4">
+                    <li>Improved performance with pre-rendered content</li>
+                    <li>Better security with fewer server-side processes</li>
+                    <li>Reduced server costs through CDN distribution</li>
+                    <li>Improved developer experience with hot reloading</li>
+                </ul>
+                
+                <blockquote>
+                    "The future of web development isn't about choosing between static or dynamic - it's about making the right technical choices that deliver the best user experience."
+                </blockquote>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">API-First Development</h2>
+                <p>
+                    Modern web applications often adopt an API-first approach, where backend APIs are designed and built before the frontend implementation. This methodology facilitates:
+                </p>
+                <ul class="list-disc pl-6 my-4">
+                    <li>Parallel development of frontend and backend teams</li>
+                    <li>Easier integration with multiple clients (web, mobile, etc.)</li>
+                    <li>Better documentation through tools like Swagger/OpenAPI</li>
+                    <li>More testable interfaces</li>
+                </ul>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Performance Optimization</h2>
+                <p>
+                    With Core Web Vitals becoming SEO ranking factors, performance optimization is more critical than ever. Modern practices include:
+                </p>
+                <ul class="list-disc pl-6 my-4">
+                    <li>Code splitting and lazy loading</li>
+                    <li>Image optimization with next-gen formats (WebP, AVIF)</li>
+                    <li>Font optimization with variable fonts and font-display</li>
+                    <li>Tree-shaking unused code</li>
+                </ul>
+                <p>
+                    These techniques help ensure that users receive only the code they need, when they need it.
+                </p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Conclusion</h2>
+                <p>
+                    Modern web development is increasingly focused on delivering fast, accessible, and maintainable applications. By adopting component-based architecture, utility-first CSS, static site generation, API-first development, and performance optimization techniques, developers can create better experiences for both users and fellow developers.
+                </p>
+                <p>
+                    As the web continues to evolve, staying adaptable and willing to learn new approaches will remain key to success in this dynamic field.
+                </p>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-xl font-bold mb-4">Share this post</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Harshad Sadashiv Kadam</h2>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 Harshad Sadashiv Kadam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
