@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Harshad Sadashiv Kadam - Network Security, Cloud Security, Zero Trust Specialist">
-    <meta name="keywords" content="Network Security, Cloud Security, Zero Trust, Cybersecurity">
+    <meta name="description" content="Harshad Sadashiv Kadam - Network Security, Cloud Security, Zero Trust Specialist with 10+ years of experience">
+    <meta name="keywords" content="Network Security, Cloud Security, Zero Trust, Cybersecurity, Platform Security, Multi-Cloud Infrastructure, AI Security">
     <meta name="author" content="Harshad Sadashiv Kadam">
-    <title>Harshad Sadashiv Kadam | Security Specialist</title>
+    <title>Harshad Sadashiv Kadam | Senior Security Infrastructure Engineer</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Matrix Background -->
+    <canvas id="matrix-bg" class="matrix-bg"></canvas>
+
     <!-- Header & Navigation -->
     <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">HSK</div>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about"><i class="fas fa-user-shield"></i> About</a></li>
+                    <li><a href="#resume"><i class="fas fa-file-code"></i> Resume</a></li>
+                    <li><a href="#projects"><i class="fas fa-code-branch"></i> Projects</a></li>
+                    <li><a href="#blog"><i class="fas fa-rss"></i> Blog</a></li>
+                    <li><a href="#contact"><i class="fas fa-terminal"></i> Contact</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -36,17 +39,29 @@
     <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="ascii-art">
+                    <pre>
+ _   _                _               _   _  __           _                 
+| | | | __ _ _ __ ___| |__   __ _  __| | | |/ /__ _  __ _| | __ _ _ __ ___  
+| |_| |/ _` | '__/ __| '_ \ / _` |/ _` | | ' // _` |/ _` | |/ _` | '_ ` _ \ 
+|  _  | (_| | |  \__ \ | | | (_| | (_| | | . \ (_| | (_| | | (_| | | | | | |
+|_| |_|\__,_|_|  |___/_| |_|\__,_|\__,_| |_|\_\__,_|\__,_|_|\__,_|_| |_| |_|
+                    </pre>
+                </div>
                 <h1>Harshad Sadashiv Kadam</h1>
-                <h2>Security Specialist</h2>
-                <p class="location"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+                <h2>Senior Security Infrastructure Engineer</h2>
+                <div id="terminal-output" class="terminal-output">
+                    <span class="prompt">$ </span><span id="typed-text"></span><span class="cursor">|</span>
+                </div>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Austin, Texas</p>
                 <div class="hero-buttons">
                     <a href="https://www.linkedin.com/in/harshad99/" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                        <i class="fab fa-linkedin"></i> Connect
                     </a>
-                    <a href="mailto:contact@example.com" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Email
+                    <a href="mailto:harshad.surfer@gmail.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Message
                     </a>
-                    <a href="tel:+1234567890" class="btn btn-secondary">
+                    <a href="tel:+15856941674" class="btn btn-secondary">
                         <i class="fas fa-phone"></i> Call
                     </a>
                 </div>
@@ -61,40 +76,67 @@
             <div class="about-content">
                 <div class="professional-summary">
                     <h3>Professional Summary</h3>
-                    <p>Experienced security specialist with expertise in network security, cloud security, and zero trust architecture. Dedicated to implementing robust security solutions that protect organizational assets while enabling business objectives.</p>
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-title">profile.sh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="command">$ cat profile.txt</span></p>
+                            <p>Information Security Professional with over 10+ years of expertise in Platform Security, Multi-Cloud Infrastructure, and managing large-scale Production Datacenters. Thought leader and AI-Champion for AI Security.</p>
+                            <p>Demonstrated ability to lead cross-functional teams, implement Zero-trust security models, and manage hybrid environments.</p>
+                            <p>Proven record of driving innovation, delivering scalable solutions, and mentoring high-performing teams.</p>
+                            <p><span class="command">$ _</span></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="leadership-competencies">
                     <h3>Leadership Competencies</h3>
-                    <ul>
-                        <li>Strategic Security Planning</li>
-                        <li>Team Leadership & Mentoring</li>
-                        <li>Risk Assessment & Management</li>
-                        <li>Security Architecture Design</li>
-                        <li>Cross-functional Collaboration</li>
-                    </ul>
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-title">skills.sh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="command">$ ls -la leadership/</span></p>
+                            <ul>
+                                <li>Strategic Security Planning</li>
+                                <li>Cross-functional Team Leadership</li>
+                                <li>Zero Trust Implementation</li>
+                                <li>Cloud Security Architecture</li>
+                                <li>Hybrid Environment Management</li>
+                                <li>Innovation & Scalable Solutions</li>
+                            </ul>
+                            <p><span class="command">$ _</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience section">
+    <!-- Resume Section -->
+    <section id="resume" class="experience section">
         <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
+            <h2 class="section-title">Resume</h2>
             <div class="timeline">
                 <!-- Job 1 -->
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span>2021 - Present</span>
+                        <span>Current</span>
                     </div>
                     <div class="timeline-content">
-                        <h3>Senior Security Engineer</h3>
-                        <h4>Company Name</h4>
+                        <h3>Senior Security Infrastructure Engineer</h3>
+                        <h4>Indeed Inc - Platform Security</h4>
                         <ul>
-                            <li>Led implementation of zero-trust security architecture</li>
-                            <li>Developed and maintained security policies and procedures</li>
-                            <li>Conducted regular security assessments and penetration testing</li>
-                            <li>Managed security incident response team</li>
+                            <li>Lead implementation of Zero Trust security architecture across cloud environments</li>
+                            <li>Develop deception engineering strategies and honeypot systems to detect unauthorized access</li>
+                            <li>Architect and deploy Zero Trust Desktop-as-a-Service solutions using AWS WorkSpaces, Okta SAML, and Cloudflare Access</li>
+                            <li>Build and test browser isolation, RBI, and segmentation policies for securing cloud workloads</li>
                         </ul>
                     </div>
                 </div>
@@ -102,16 +144,16 @@
                 <!-- Job 2 -->
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span>2018 - 2021</span>
+                        <span>Previous</span>
                     </div>
                     <div class="timeline-content">
-                        <h3>Network Security Specialist</h3>
-                        <h4>Company Name</h4>
+                        <h3>Cloud Engineering Team</h3>
+                        <h4>Indeed Inc</h4>
                         <ul>
-                            <li>Implemented and maintained network security infrastructure</li>
-                            <li>Conducted security audits and vulnerability assessments</li>
-                            <li>Developed security monitoring and alerting systems</li>
-                            <li>Collaborated with IT teams to ensure secure network design</li>
+                            <li>Designed and led a 50PB+ migration from on-prem Hadoop to Amazon S3</li>
+                            <li>Optimized Direct Connect and implemented selective bandwidth strategies to minimize costs</li>
+                            <li>Automated security audits and compliance checks across cloud environments</li>
+                            <li>Built tools to map configurations against NIST/CIS standards and generate compliance dashboards</li>
                         </ul>
                     </div>
                 </div>
@@ -119,99 +161,253 @@
                 <!-- Job 3 -->
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span>2016 - 2018</span>
+                        <span>Earlier</span>
                     </div>
                     <div class="timeline-content">
-                        <h3>Security Analyst</h3>
-                        <h4>Company Name</h4>
+                        <h3>Network Engineering Team</h3>
+                        <h4>Indeed Inc</h4>
                         <ul>
-                            <li>Monitored security systems for potential threats</li>
-                            <li>Investigated security incidents and breaches</li>
-                            <li>Assisted in developing security policies and procedures</li>
-                            <li>Conducted security awareness training for employees</li>
+                            <li>Managed network infrastructure for large-scale production datacenters</li>
+                            <li>Implemented secure networking protocols and configurations</li>
+                            <li>Collaborated with cross-functional teams to ensure network security and reliability</li>
+                            <li>Supported hybrid environment management and optimization</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            
+            <div class="resume-sections">
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Cloud Security & Zero Trust</h3>
+                        <div class="tags">
+                            <span class="tag">AWS Security</span>
+                            <span class="tag">Cloudflare Zero Trust</span>
+                            <span class="tag">Okta</span>
+                            <span class="tag">Amazon WorkSpaces</span>
+                            <span class="tag">SAML</span>
+                            <span class="tag">Certificate-based Auth</span>
+                            <span class="tag">Browser Isolation</span>
+                            <span class="tag">RBI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>Deception Engineering & Threat Detection</h3>
+                        <div class="tags">
+                            <span class="tag">Honeypots</span>
+                            <span class="tag">Deception MCP Servers</span>
+                            <span class="tag">Cloudflare Workers</span>
+                            <span class="tag">Canary Tokens</span>
+                            <span class="tag">Threat Dashboards</span>
+                            <span class="tag">Zero Trust Enforcement</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>Automation & Development</h3>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Infrastructure Automation</span>
+                            <span class="tag">Security Audits</span>
+                            <span class="tag">Compliance Checks</span>
+                            <span class="tag">FlareGuard</span>
+                            <span class="tag">NIST/CIS Mapping</span>
+                            <span class="tag">Terraform</span>
+                        </div>
+                    </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
-        <div class="container">
-            <h2 class="section-title">Skills & Tools</h2>
-            <div class="skills-container">
-                <div class="skills-category">
-                    <h3>Security</h3>
-                    <div class="tags">
-                        <span class="tag">Network Security</span>
-                        <span class="tag">Cloud Security</span>
-                        <span class="tag">Zero Trust</span>
-                        <span class="tag">Threat Detection</span>
-                        <span class="tag">Incident Response</span>
-                        <span class="tag">Vulnerability Assessment</span>
-                        <span class="tag">Penetration Testing</span>
+                    <div class="skills-category">
+                        <h3>Infrastructure & Networking</h3>
+                        <div class="tags">
+                            <span class="tag">Data Migration</span>
+                            <span class="tag">Hadoop</span>
+                            <span class="tag">Amazon S3</span>
+                            <span class="tag">Direct Connect</span>
+                            <span class="tag">Bandwidth Optimization</span>
+                            <span class="tag">Scalable Networking</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="skills-category">
-                    <h3>Technologies</h3>
-                    <div class="tags">
-                        <span class="tag">Firewalls</span>
-                        <span class="tag">IDS/IPS</span>
-                        <span class="tag">SIEM</span>
-                        <span class="tag">VPN</span>
-                        <span class="tag">AWS Security</span>
-                        <span class="tag">Azure Security</span>
-                        <span class="tag">GCP Security</span>
+                <div class="education-container">
+                    <div class="education-item">
+                        <h3>Master of Science in Networking Security and System Administration</h3>
+                        <h4>Rochester Institute of Technology, Rochester, New York</h4>
+                        <p>Graduated: December 2016</p>
+                        <p>GPA: 3.96/4.0</p>
+                        <div class="achievements">
+                            <h5>Achievements:</h5>
+                            <ul>
+                                <li>Graduate Merit Scholarship</li>
+                                <li>Organizational Leadership</li>
+                                <li>Teaching Assistant</li>
+                                <li>Intern: Kodak Alaris & Frontier Communications</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="skills-category">
-                    <h3>Tools</h3>
+                <div class="certifications-container">
+                    <h3>Active Certifications</h3>
                     <div class="tags">
-                        <span class="tag">Wireshark</span>
-                        <span class="tag">Nmap</span>
-                        <span class="tag">Metasploit</span>
-                        <span class="tag">Burp Suite</span>
-                        <span class="tag">Splunk</span>
-                        <span class="tag">ELK Stack</span>
-                        <span class="tag">Terraform</span>
+                        <span class="tag cert">CISM</span>
+                    </div>
+                    
+                    <h3>Previous Certifications</h3>
+                    <div class="tags">
+                        <span class="tag cert-previous">AWS Solutions Architect Associate</span>
+                        <span class="tag cert-previous">Terraform Certified</span>
+                        <span class="tag cert-previous">Aviatrix Certified Engineer</span>
+                        <span class="tag cert-previous">CCNA</span>
+                        <span class="tag cert-previous">CCNA Security</span>
+                        <span class="tag cert-previous">CCNP</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education & Certifications Section -->
-    <section id="education" class="education section">
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
         <div class="container">
-            <h2 class="section-title">Education & Certifications</h2>
-            
-            <div class="education-container">
-                <div class="education-item">
-                    <h3>Master of Science in Cybersecurity</h3>
-                    <h4>University Name</h4>
-                    <p>Graduated: 2016</p>
-                    <p>GPA: 3.8/4.0</p>
+            <h2 class="section-title">GitHub Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>FlareGuard</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>A comprehensive Cloudflare security audit tool that identifies misconfigurations and vulnerabilities in your Cloudflare setup.</p>
+                        <div class="project-features">
+                            <span><i class="fas fa-check"></i> Security gap analysis</span>
+                            <span><i class="fas fa-check"></i> YAML-based baselines</span>
+                            <span><i class="fas fa-check"></i> NIST compliance mapping</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Cloudflare API</span>
+                            <span class="tag">Security Audit</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/harshadk99/flareguard" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="education-item">
-                    <h3>Bachelor of Science in Computer Science</h3>
-                    <h4>University Name</h4>
-                    <p>Graduated: 2014</p>
-                    <p>GPA: 3.7/4.0</p>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-bug"></i>
+                        <h3>Deception MCP Server</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>An advanced honeypot system that simulates vulnerable systems to detect, analyze, and study attack patterns.</p>
+                        <div class="project-features">
+                            <span><i class="fas fa-check"></i> Simulates vulnerable systems</span>
+                            <span><i class="fas fa-check"></i> Captures attack techniques</span>
+                            <span><i class="fas fa-check"></i> Threat intelligence</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Deception Engineering</span>
+                            <span class="tag">Honeypot</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/harshadk99/deception-remote-mcp-server" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-lock"></i>
+                        <h3>Zero Trust Module</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Implementation of zero trust security principles for cloud environments with continuous verification and least privilege access.</p>
+                        <div class="project-features">
+                            <span><i class="fas fa-check"></i> Continuous authentication</span>
+                            <span><i class="fas fa-check"></i> Least privilege model</span>
+                            <span><i class="fas fa-check"></i> Network micro-segmentation</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Zero Trust</span>
+                            <span class="tag">IAM</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/harshadk99" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="certifications-container">
-                <h3>Certifications</h3>
-                <div class="tags">
-                    <span class="tag cert">CISSP</span>
-                    <span class="tag cert">CEH</span>
-                    <span class="tag cert">AWS Security Specialty</span>
-                    <span class="tag cert">CCSP</span>
-                    <span class="tag cert">Security+</span>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog section">
+        <div class="container">
+            <h2 class="section-title">Blog Posts</h2>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <div class="blog-body">
+                        <span class="blog-date">June 15, 2024</span>
+                        <h3>Deception Engineering: Beyond Traditional Honeypots</h3>
+                        <p>How modern deception technologies are evolving to create more convincing traps for attackers and generate valuable threat intelligence...</p>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="https://medium.com/@harshad.surfer" target="_blank" class="blog-link">
+                            Read on Medium <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="blog-body">
+                        <span class="blog-date">May 28, 2024</span>
+                        <h3>Cloudflare Security: Common Misconfigurations</h3>
+                        <p>Identifying and fixing the most dangerous security gaps in Cloudflare configurations that leave organizations vulnerable to attacks...</p>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="https://medium.com/@harshad.surfer" target="_blank" class="blog-link">
+                            Read on Medium <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="blog-body">
+                        <span class="blog-date">April 10, 2024</span>
+                        <h3>Implementing Zero Trust Security Models</h3>
+                        <p>A practical guide to moving beyond perimeter-based security and implementing a true zero trust architecture in your organization...</p>
+                    </div>
+                    <div class="blog-footer">
+                        <a href="https://medium.com/@harshad.surfer" target="_blank" class="blog-link">
+                            Read on Medium <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,18 +418,38 @@
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
             <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:contact@example.com">contact@example.com</a>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-title">contact.sh</span>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+1234567890">+1 (234) 567-890</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <a href="https://www.linkedin.com/in/harshad99/" target="_blank">linkedin.com/in/harshad99</a>
+                    <div class="terminal-body">
+                        <p><span class="command">$ cat contact_info.txt</span></p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+15856941674">+1 (585) 694-1674</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Austin, Texas</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <a href="https://www.linkedin.com/in/harshad99/" target="_blank">linkedin.com/in/harshad99</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <a href="https://github.com/harshadk99" target="_blank">github.com/harshadk99</a>
+                            </div>
+                        </div>
+                        <p><span class="command">$ _</span></p>
                     </div>
                 </div>
             </div>
@@ -245,9 +461,10 @@
         <div class="container">
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/harshad99/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:contact@example.com"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:harshad.surfer@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="https://github.com/harshadk99" target="_blank"><i class="fab fa-github"></i></a>
             </div>
+            <p class="tagline">// DIGITAL FORTRESS //</p>
             <p>&copy; 2023 Harshad Sadashiv Kadam. All rights reserved.</p>
         </div>
     </footer>
