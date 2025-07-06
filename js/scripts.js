@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Check for saved theme preference or use the system preference
+    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    
+    // Set initial theme
+    if (currentTheme === 'light') {
+        document.body.setAttribute('data-theme', 'light');
+    } else {
+        document.body.removeAttribute('data-theme');
+    }
+    
+    // Toggle theme when button is clicked
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            if (document.body.getAttribute('data-theme') === 'light') {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+
     // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -86,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Matrix rain animation with performance optimizations
+    // Matrix rain animation with performance optimizations and theme awareness
     const canvas = document.getElementById('matrix-bg');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -125,8 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Set text color and font
-            ctx.fillStyle = '#00ff00';
+            // Set text color based on theme
+            const isDark = document.body.getAttribute('data-theme') !== 'light';
+            ctx.fillStyle = isDark ? '#00ff00' : 'rgba(0, 102, 204, 0.5)';
             ctx.font = fontSize + 'px monospace';
             
             // Draw characters
@@ -251,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add cursor after headings
+    // Add cursor to headings
     const addCursorToHeadings = () => {
         const headings = document.querySelectorAll('h2:not(.section-title)');
         headings.forEach(heading => {
