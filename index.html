@@ -74,8 +74,295 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Loading Animation */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        .loading-content {
+            text-align: center;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+        }
+        .loading-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+            animation: glitch 1s infinite alternate;
+        }
+        .loading-text {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+        .loading-bar {
+            width: 280px;
+            height: 8px;
+            background-color: rgba(0, 255, 65, 0.2);
+            border-radius: 4px;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background-color: #00ff41;
+            border-radius: 4px;
+            animation: progress 2s ease-in-out forwards;
+        }
+        .loading-status {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: blink 1s infinite;
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            10% { width: 10%; }
+            30% { width: 40%; }
+            50% { width: 60%; }
+            70% { width: 75%; }
+            90% { width: 90%; }
+            100% { width: 100%; }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 65, 0.7); }
+            25% { text-shadow: 2px 0 10px rgba(0, 255, 65, 0.7), -2px 0 5px rgba(0, 255, 65, 0.4); }
+            50% { text-shadow: -2px 0 10px rgba(0, 255, 65, 0.7), 2px 0 5px rgba(0, 255, 65, 0.4); }
+            75% { text-shadow: 0 2px 10px rgba(0, 255, 65, 0.7), 0 -2px 5px rgba(0, 255, 65, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(0, 255, 65, 0.7); }
+        }
+        
+        /* Enhanced project cards */
+        .featured-projects .project-card {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        .featured-projects .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+        .featured-projects .project-header {
+            padding: 1.5rem 1.5rem 1rem;
+        }
+        .featured-projects .project-header i {
+            font-size: 2rem;
+        }
+        .featured-projects .project-header h3 {
+            font-size: 1.4rem;
+            margin-top: 0.8rem;
+        }
+        .professional-background .skills-category {
+            margin-bottom: 2rem;
+        }
+        .professional-background .skills-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact section with profile image */
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .contact-profile {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color, #00ff41);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 255, 65, 0.3);
+        }
+        
+        @media (min-width: 768px) {
+            .contact-content {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .contact-profile {
+                margin-bottom: 0;
+                margin-right: 2rem;
+            }
+        }
+        
+        /* Interactive Timeline */
+        .interactive-timeline {
+            margin: 2rem 0;
+        }
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .timeline-control {
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+        .timeline-control.active, .timeline-control:hover {
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+        .timeline-item {
+            display: none;
+        }
+        .timeline-item.active {
+            display: flex;
+        }
+        .timeline-date-detail {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.3rem;
+        }
+        .timeline-header {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .timeline-expand-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: #00ff41;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .timeline-expand-btn.active {
+            transform: rotate(180deg);
+        }
+        .timeline-summary {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .timeline-full-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .timeline-full-content.active {
+            display: block;
+        }
+        .timeline-tech-stack {
+            margin-top: 1.5rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .tech-tag {
+            background: rgba(0, 255, 65, 0.1);
+            color: #00ff41;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+        }
+        .timeline-achievement {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            justify-content: flex-start;
+        }
+        .achievement-metric {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 5px;
+            min-width: 100px;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+        }
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff41;
+            margin-bottom: 0.3rem;
+        }
+        .metric-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Terminal styling improvements */
+        .terminal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .terminal-list {
+            margin: 0.5rem 0 1rem;
+            padding-left: 1.5rem;
+        }
+        .terminal-list li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            position: relative;
+            list-style-type: none;
+        }
+        .terminal-list li::before {
+            content: ">";
+            position: absolute;
+            left: -1rem;
+            color: #00ff41;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">HSK</div>
+            <div class="loading-text">INITIALIZING SECURITY PROTOCOLS</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-status">Establishing secure connection...</div>
+        </div>
+    </div>
+    
     <!-- Matrix Background -->
     <canvas id="matrix-bg" class="matrix-bg"></canvas>
 
@@ -86,9 +373,10 @@
                 <div class="logo">HSK</div>
                 <ul class="nav-links">
                     <li><a href="#about"><i class="fas fa-user-shield"></i> About</a></li>
-                    <li><a href="#resume"><i class="fas fa-file-code"></i> Resume</a></li>
+                    <li><a href="#resume"><i class="fas fa-file-code"></i> Experience</a></li>
                     <li><a href="#projects"><i class="fas fa-code-branch"></i> Projects</a></li>
                     <li><a href="#blog"><i class="fas fa-rss"></i> Blog</a></li>
+                    <li><a href="#professional-background"><i class="fas fa-graduation-cap"></i> Background</a></li>
                     <li><a href="#contact"><i class="fas fa-terminal"></i> Contact</a></li>
                 </ul>
                 <div class="hamburger">
@@ -156,7 +444,7 @@
                         </div>
                         <div class="terminal-body">
                             <p><span class="command">$ ls -la leadership/</span></p>
-                            <ul>
+                            <ul class="terminal-list">
                                 <li>Strategic Security Planning</li>
                                 <li>Cross-functional Team Leadership</li>
                                 <li>Zero Trust Implementation</li>
@@ -176,130 +464,103 @@
     <section id="resume" class="experience section">
         <div class="container">
             <h2 class="section-title">Resume</h2>
-            <div class="timeline">
-                <!-- Job 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span>Current</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Senior Security Infrastructure Engineer</h3>
-                        <h4>Indeed Inc - Platform Security</h4>
-                        <ul>
-                            <li>Lead the strategic design and implementation of Zero Trust and SASE architectures across global cloud environments, enhancing security posture and influencing organizational security standards.</li>
-                            <li>Develop pioneering deception engineering frameworks, including MCP-based honeypots on Cloudflare Workers, to proactively detect unauthorized access and AI-driven threats, establishing new approaches within the Zero Trust domain.</li>
-                            <li>Architect and deploy secure Desktop-as-a-Service platforms leveraging AWS WorkSpaces, Okta SAML, and Cloudflare Access, enabling scalable, posture-aware remote access critical to business continuity and compliance.</li>
-                            <li>Build and enforce browser isolation (RBI) and microsegmentation policies that safeguard multi-cloud workloads, setting new benchmarks for secure cloud workload governance.</li>
-                        </ul>
-                    </div>
+            <div class="interactive-timeline">
+                <div class="timeline-controls">
+                    <button class="timeline-control active" data-role="current">Current Role</button>
+                    <button class="timeline-control" data-role="previous">Previous Roles</button>
                 </div>
                 
-                <!-- Leadership Experience -->
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span>Previous</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Leadership Experience: Platform Security & Cloud Infrastructure</h3>
-                        <h4>Indeed Inc</h4>
-                        <ul>
-                            <li>Directed enterprise-scale 50PB+ migration from on-premise Hadoop to Amazon S3 across 7 AWS regions, establishing global cloud infrastructure while achieving ~$4M in cost savings</li>
-                            <li>Pioneered Zero Trust strategy implementation utilizing ZTNA, RBI, CASB, and advanced boundary defenses with Cloudflare and CrowdStrike technologies</li>
-                            <li>Developed original compliance automation frameworks mapping cloud configurations against NIST/CIS standards, streamlining security audits and regulatory adherence</li>
-                            <li>Built self-service platforms that reduced deployment times to under 10 minutes, significantly enhancing operational efficiency across global teams</li>
-                            <li>Led strategic product roadmaps, defined OKRs, and created service catalogs that measurably matured organizational security posture</li>
-                            <li>Championed diversity initiatives as Asian Network Ambassador while mentoring high-performing technical teams across multiple disciplines</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="resume-sections">
-                <div class="skills-container">
-                    <div class="skills-category">
-                        <h3>Cloud Security & Zero Trust</h3>
-                        <div class="tags">
-                            <span class="tag">AWS Security</span>
-                            <span class="tag">Cloudflare Zero Trust</span>
-                            <span class="tag">Okta</span>
-                            <span class="tag">Amazon WorkSpaces</span>
-                            <span class="tag">SAML</span>
-                            <span class="tag">Certificate-based Auth</span>
-                            <span class="tag">Browser Isolation</span>
-                            <span class="tag">RBI</span>
+                <div class="timeline">
+                    <!-- Job 1 -->
+                    <div class="timeline-item active" data-role="current">
+                        <div class="timeline-date">
+                            <span>Current</span>
+                            <div class="timeline-date-detail">Nov 2023 - Present</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Senior Security Infrastructure Engineer</h3>
+                                <h4>Indeed Inc - Platform Security</h4>
+                                <button class="timeline-expand-btn"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-summary">
+                                    <p>Leading Zero Trust implementation and security architecture across global cloud environments.</p>
+                                </div>
+                                <div class="timeline-full-content">
+                                    <ul>
+                                        <li>Lead the strategic design and implementation of Zero Trust and SASE architectures across global cloud environments, enhancing security posture and influencing organizational security standards.</li>
+                                        <li>Develop pioneering deception engineering frameworks, including MCP-based honeypots on Cloudflare Workers, to proactively detect unauthorized access and AI-driven threats, establishing new approaches within the Zero Trust domain.</li>
+                                        <li>Architect and deploy secure Desktop-as-a-Service platforms leveraging AWS WorkSpaces, Okta SAML, and Cloudflare Access, enabling scalable, posture-aware remote access critical to business continuity and compliance.</li>
+                                        <li>Build and enforce browser isolation (RBI) and microsegmentation policies that safeguard multi-cloud workloads, setting new benchmarks for secure cloud workload governance.</li>
+                                    </ul>
+                                    <div class="timeline-tech-stack">
+                                        <h5>Technologies</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Cloudflare Zero Trust</span>
+                                            <span class="tech-tag">AWS</span>
+                                            <span class="tech-tag">Okta</span>
+                                            <span class="tech-tag">SASE</span>
+                                            <span class="tech-tag">RBI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="skills-category">
-                        <h3>Deception Engineering & Threat Detection</h3>
-                        <div class="tags">
-                            <span class="tag">Honeypots</span>
-                            <span class="tag">Deception MCP Servers</span>
-                            <span class="tag">Cloudflare Workers</span>
-                            <span class="tag">Canary Tokens</span>
-                            <span class="tag">Threat Dashboards</span>
-                            <span class="tag">Zero Trust Enforcement</span>
+                    <!-- Leadership Experience -->
+                    <div class="timeline-item" data-role="previous">
+                        <div class="timeline-date">
+                            <span>Previous</span>
+                            <div class="timeline-date-detail">Jun 2021 - Nov 2023</div>
                         </div>
-                    </div>
-                    
-                    <div class="skills-category">
-                        <h3>Automation & Development</h3>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Infrastructure Automation</span>
-                            <span class="tag">Security Audits</span>
-                            <span class="tag">Compliance Checks</span>
-                            <span class="tag">FlareGuard</span>
-                            <span class="tag">NIST/CIS Mapping</span>
-                            <span class="tag">Terraform</span>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Leadership Experience: Platform Security & Cloud Infrastructure</h3>
+                                <h4>Indeed Inc</h4>
+                                <button class="timeline-expand-btn"><i class="fas fa-chevron-down"></i></button>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-summary">
+                                    <p>Led cloud infrastructure teams and major migration projects with significant cost savings.</p>
+                                </div>
+                                <div class="timeline-full-content">
+                                    <ul>
+                                        <li>Directed enterprise-scale 50PB+ migration from on-premise Hadoop to Amazon S3 across 7 AWS regions, establishing global cloud infrastructure while achieving ~$4M in cost savings</li>
+                                        <li>Pioneered Zero Trust strategy implementation utilizing ZTNA, RBI, CASB, and advanced boundary defenses with Cloudflare and CrowdStrike technologies</li>
+                                        <li>Developed original compliance automation frameworks mapping cloud configurations against NIST/CIS standards, streamlining security audits and regulatory adherence</li>
+                                        <li>Built self-service platforms that reduced deployment times to under 10 minutes, significantly enhancing operational efficiency across global teams</li>
+                                        <li>Led strategic product roadmaps, defined OKRs, and created service catalogs that measurably matured organizational security posture</li>
+                                        <li>Championed diversity initiatives as Asian Network Ambassador while mentoring high-performing technical teams across multiple disciplines</li>
+                                    </ul>
+                                    <div class="timeline-tech-stack">
+                                        <h5>Technologies</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">AWS S3</span>
+                                            <span class="tech-tag">Hadoop</span>
+                                            <span class="tech-tag">Direct Connect</span>
+                                            <span class="tech-tag">NIST/CIS</span>
+                                            <span class="tech-tag">Cloud Security</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-achievement">
+                                        <div class="achievement-metric">
+                                            <div class="metric-value">~$4M</div>
+                                            <div class="metric-label">Cost Savings</div>
+                                        </div>
+                                        <div class="achievement-metric">
+                                            <div class="metric-value">50PB+</div>
+                                            <div class="metric-label">Data Migration</div>
+                                        </div>
+                                        <div class="achievement-metric">
+                                            <div class="metric-value">&lt;10min</div>
+                                            <div class="metric-label">Deployment Time</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="skills-category">
-                        <h3>Infrastructure & Networking</h3>
-                        <div class="tags">
-                            <span class="tag">Data Migration</span>
-                            <span class="tag">Hadoop</span>
-                            <span class="tag">Amazon S3</span>
-                            <span class="tag">Direct Connect</span>
-                            <span class="tag">Bandwidth Optimization</span>
-                            <span class="tag">Scalable Networking</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="education-container">
-                    <div class="education-item">
-                        <h3>Master of Science in Networking Security and System Administration</h3>
-                        <h4>Rochester Institute of Technology, Rochester, New York</h4>
-                        <p>Graduated: December 2016</p>
-                        <p>GPA: 3.96/4.0</p>
-                        <div class="achievements">
-                            <h5>Achievements:</h5>
-                            <ul>
-                                <li>Graduate Merit Scholarship</li>
-                                <li>Organizational Leadership</li>
-                                <li>Teaching Assistant</li>
-                                <li>Intern: Kodak Alaris & Frontier Communications</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="certifications-container">
-                    <h3>Active Certifications</h3>
-                    <div class="tags">
-                        <span class="tag cert">CISM</span>
-                    </div>
-                    
-                    <h3>Previous Certifications</h3>
-                    <div class="tags">
-                        <span class="tag cert-previous">AWS Solutions Architect Associate</span>
-                        <span class="tag cert-previous">Terraform Certified</span>
-                        <span class="tag cert-previous">Aviatrix Certified Engineer</span>
-                        <span class="tag cert-previous">CCNA</span>
-                        <span class="tag cert-previous">CCNA Security</span>
-                        <span class="tag cert-previous">CCNP</span>
                     </div>
                 </div>
             </div>
@@ -309,8 +570,8 @@
     <!-- Projects Section -->
     <section id="projects" class="projects section">
         <div class="container">
-            <h2 class="section-title">GitHub Projects</h2>
-            <div class="projects-grid">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid featured-projects">
                 <!-- Project 1 -->
                 <div class="project-card">
                     <div class="project-header">
@@ -362,8 +623,6 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -393,6 +652,102 @@
         </div>
     </section>
 
+    <!-- Professional Background Section -->
+    <section id="professional-background" class="professional-background section">
+        <div class="container">
+            <h2 class="section-title">Professional Background</h2>
+            <div class="resume-sections">
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Zero Trust & Cloud Security</h3>
+                        <div class="tags">
+                            <span class="tag">Zero Trust Architecture</span>
+                            <span class="tag">SASE Implementation</span>
+                            <span class="tag">Cloudflare Zero Trust</span>
+                            <span class="tag">AWS Security</span>
+                            <span class="tag">Multi-Cloud Security</span>
+                            <span class="tag">SAML</span>
+                            <span class="tag">Certificate-based Auth</span>
+                            <span class="tag">Browser Isolation (RBI)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>Deception Engineering & AI Security</h3>
+                        <div class="tags">
+                            <span class="tag">AI-driven Threat Detection</span>
+                            <span class="tag">MCP-based Honeypots</span>
+                            <span class="tag">Cloudflare Workers</span>
+                            <span class="tag">Canary Tokens</span>
+                            <span class="tag">Threat Intelligence</span>
+                            <span class="tag">Zero Trust Enforcement</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>Strategic Leadership & Automation</h3>
+                        <div class="tags">
+                            <span class="tag">Security Roadmaps</span>
+                            <span class="tag">Infrastructure Automation</span>
+                            <span class="tag">Compliance Frameworks</span>
+                            <span class="tag">NIST/CIS Mapping</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">Cross-functional Leadership</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3>Enterprise Infrastructure</h3>
+                        <div class="tags">
+                            <span class="tag">Large-scale Data Migration</span>
+                            <span class="tag">Global Production Networks</span>
+                            <span class="tag">Hybrid Cloud Environments</span>
+                            <span class="tag">Direct Connect Optimization</span>
+                            <span class="tag">Scalable Architecture</span>
+                            <span class="tag">Cost Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="education-container">
+                    <div class="education-item">
+                        <h3>Master of Science in Networking Security and System Administration</h3>
+                        <h4>Rochester Institute of Technology, Rochester, New York</h4>
+                        <p>Graduated: December 2016</p>
+                        <p>GPA: 3.96/4.0</p>
+                        <div class="achievements">
+                            <h5>Achievements:</h5>
+                            <ul>
+                                <li>Graduate Merit Scholarship</li>
+                                <li>Organizational Leadership</li>
+                                <li>Teaching Assistant</li>
+                                <li>Intern: Kodak Alaris & Frontier Communications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certifications-container">
+                    <h3>Active Certifications</h3>
+                    <div class="tags">
+                        <span class="tag cert">CISM</span>
+                    </div>
+                    
+                    <h3>Previous Certifications</h3>
+                    <div class="tags">
+                        <span class="tag cert-previous">AWS Solutions Architect Associate</span>
+                        <span class="tag cert-previous">Terraform Certified</span>
+                        <span class="tag cert-previous">Aviatrix Certified Engineer</span>
+                        <span class="tag cert-previous">CCNA</span>
+                        <span class="tag cert-previous">CCNA Security</span>
+                        <span class="tag cert-previous">CCNP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
         <div class="container">
@@ -404,38 +759,43 @@
                         <i class="fas fa-terminal"></i>
                         <h3>Contact Information</h3>
                     </div>
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <span class="terminal-button"></span>
-                            <span class="terminal-button"></span>
-                            <span class="terminal-button"></span>
-                            <span class="terminal-title">contact.sh</span>
+                    <div class="contact-content">
+                        <div class="contact-profile">
+                            <img src="assets/Profile-Picture.jpeg" alt="Harshad Sadashiv Kadam" class="profile-image">
                         </div>
-                        <div class="terminal-body">
-                            <p><span class="command">$ cat contact_info.txt</span></p>
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <i class="fas fa-envelope"></i>
-                                    <a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-phone"></i>
-                                    <a href="tel:+15856941674">+1 (585) 694-1674</a>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <a href="https://maps.app.goo.gl/cFtcgzCWHvbEjxuW8" target="_blank">Austin, Texas</a>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fab fa-linkedin"></i>
-                                    <a href="https://www.linkedin.com/in/harshad99/" target="_blank">linkedin.com/in/harshad99</a>
-                                </div>
-                                <div class="contact-item">
-                                    <i class="fab fa-github"></i>
-                                    <a href="https://github.com/harshadk99" target="_blank">github.com/harshadk99</a>
-                                </div>
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="terminal-button"></span>
+                                <span class="terminal-button"></span>
+                                <span class="terminal-button"></span>
+                                <span class="terminal-title">contact.sh</span>
                             </div>
-                            <p><span class="command">$ _</span></p>
+                            <div class="terminal-body">
+                                <p><span class="command">$ cat contact_info.txt</span></p>
+                                <div class="contact-info">
+                                    <div class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-phone"></i>
+                                        <a href="tel:+15856941674">+1 (585) 694-1674</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <a href="https://maps.app.goo.gl/cFtcgzCWHvbEjxuW8" target="_blank">Austin, Texas</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fab fa-linkedin"></i>
+                                        <a href="https://www.linkedin.com/in/harshad99/" target="_blank">linkedin.com/in/harshad99</a>
+                                    </div>
+                                    <div class="contact-item">
+                                        <i class="fab fa-github"></i>
+                                        <a href="https://github.com/harshadk99" target="_blank">github.com/harshadk99</a>
+                                    </div>
+                                </div>
+                                <p><span class="command">$ _</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -457,5 +817,71 @@
     </footer>
 
     <script src="js/scripts.js"></script>
+    <script>
+        // Loading Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(function() {
+                    loadingScreen.style.visibility = 'hidden';
+                }, 500);
+            }, 2500); // Show loading screen for 2.5 seconds
+            
+            // Interactive Timeline
+            initializeTimeline();
+        });
+        
+        function initializeTimeline() {
+            // Timeline tab controls
+            const timelineControls = document.querySelectorAll('.timeline-control');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineControls.forEach(control => {
+                control.addEventListener('click', function() {
+                    const role = this.getAttribute('data-role');
+                    
+                    // Update active control
+                    timelineControls.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show relevant timeline items
+                    timelineItems.forEach(item => {
+                        if (item.getAttribute('data-role') === role) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Timeline expand/collapse functionality
+            const expandButtons = document.querySelectorAll('.timeline-expand-btn');
+            
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const timelineContent = this.closest('.timeline-content');
+                    const fullContent = timelineContent.querySelector('.timeline-full-content');
+                    
+                    this.classList.toggle('active');
+                    fullContent.classList.toggle('active');
+                    
+                    // Change icon based on state
+                    if (fullContent.classList.contains('active')) {
+                        this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                    } else {
+                        this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                    }
+                });
+            });
+            
+            // Auto-expand the first timeline item
+            const firstExpandBtn = document.querySelector('.timeline-item.active .timeline-expand-btn');
+            if (firstExpandBtn) {
+                firstExpandBtn.click();
+            }
+        }
+    </script>
 </body>
 </html> 
