@@ -906,6 +906,11 @@
                         .skills-terminal {
                             max-width: 900px;
                             margin: 0 auto 2rem;
+                            height: 350px; /* Fixed height for both terminals */
+                        }
+                        .skills-terminal .terminal-body {
+                            height: calc(100% - 30px); /* Adjust for header height */
+                            overflow-y: auto;
                         }
                         .skills-table h4, .bash-output h4 {
                             color: #00ff41;
@@ -974,6 +979,9 @@
                         }
                         
                         @media (max-width: 768px) {
+                            .skills-terminal {
+                                height: auto;
+                            }
                             .core-skills-table {
                                 display: block;
                                 overflow-x: auto;
