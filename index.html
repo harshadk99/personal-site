@@ -838,15 +838,16 @@
                 </div>
                 
                 <div class="skills-container">
+                    <!-- Core Technical Competencies -->
                     <div class="terminal-window skills-terminal">
                         <div class="terminal-header">
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
-                            <span class="terminal-title">core_competencies.sh</span>
+                            <span class="terminal-title">technical_skills.sh</span>
                         </div>
                         <div class="terminal-body">
-                            <p><span class="command">$ cat core_skills.txt</span></p>
+                            <p><span class="command">$ cat core_technical_competencies.txt</span></p>
                             
                             <div class="core-skills-grid">
                                 <div class="core-skill-category">
@@ -855,17 +856,15 @@
                                         <li>Zero Trust Architecture</li>
                                         <li>SASE Implementation</li>
                                         <li>Deception Engineering</li>
-                                        <li>Cloud Security (AWS, Cloudflare)</li>
                                     </ul>
                                 </div>
                                 
                                 <div class="core-skill-category">
-                                    <h4><i class="fas fa-robot"></i> Technology</h4>
+                                    <h4><i class="fas fa-code-branch"></i> Engineering</h4>
                                     <ul class="skill-list">
-                                        <li>AI-driven Threat Detection</li>
-                                        <li>MCP-based Honeypots</li>
+                                        <li>Cloud Security</li>
                                         <li>Multi-Cloud Infrastructure</li>
-                                        <li>Terraform, Python, Automation</li>
+                                        <li>Automation Pipeline</li>
                                     </ul>
                                 </div>
                                 
@@ -875,9 +874,33 @@
                                         <li>Strategic Planning</li>
                                         <li>Team Development</li>
                                         <li>Cost Optimization</li>
-                                        <li>Compliance Frameworks</li>
                                     </ul>
                                 </div>
+                            </div>
+                            
+                            <p><span class="command">$ _</span></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Inclusive Leadership & Advocacy -->
+                    <div class="terminal-window skills-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-button"></span>
+                            <span class="terminal-title">advocacy_impact.sh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="command">$ cat inclusive_leadership.txt</span></p>
+                            
+                            <div class="advocacy-container">
+                                <h4><i class="fas fa-handshake"></i> Inclusive Leadership & Advocacy</h4>
+                                <ul class="skill-list">
+                                    <li>Asian Network Ambassador</li>
+                                    <li>BOOST Mentorship Lead</li>
+                                    <li>Brand Ambassador Program</li>
+                                    <li>Hackathon Organizer</li>
+                                </ul>
                             </div>
                             
                             <p><span class="command">$ _</span></p>
@@ -887,7 +910,7 @@
                     <style>
                         .skills-terminal {
                             max-width: 900px;
-                            margin: 0 auto 3rem;
+                            margin: 0 auto 2rem;
                         }
                         .core-skills-grid {
                             display: grid;
@@ -895,7 +918,7 @@
                             gap: 2rem;
                             margin: 1.5rem 0;
                         }
-                        .core-skill-category h4 {
+                        .core-skill-category h4, .advocacy-container h4 {
                             color: #00ff41;
                             margin-bottom: 1rem;
                             font-size: 1.1rem;
@@ -905,15 +928,28 @@
                             border-bottom: 1px solid rgba(0, 255, 65, 0.3);
                             padding-bottom: 0.5rem;
                         }
+                        .advocacy-container {
+                            margin: 1.5rem 0;
+                        }
                         .skill-list {
                             list-style: none;
                             padding: 0;
                             margin: 0;
+                            display: grid;
+                        }
+                        .core-skill-category .skill-list {
+                            grid-template-rows: repeat(3, auto);
+                        }
+                        .advocacy-container .skill-list {
+                            grid-template-columns: repeat(2, 1fr);
+                            grid-gap: 0.7rem 2rem;
                         }
                         .skill-list li {
-                            margin-bottom: 0.7rem;
                             position: relative;
                             padding-left: 1rem;
+                            white-space: nowrap;
+                            font-size: 0.95rem;
+                            letter-spacing: 0.02rem;
                         }
                         .skill-list li:before {
                             content: ">";
@@ -927,6 +963,9 @@
                             .core-skills-grid {
                                 grid-template-columns: 1fr;
                                 gap: 1.5rem;
+                            }
+                            .advocacy-container .skill-list {
+                                grid-template-columns: 1fr;
                             }
                         }
                     </style>
