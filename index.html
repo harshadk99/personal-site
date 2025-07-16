@@ -838,69 +838,66 @@
                 </div>
                 
                 <div class="skills-container">
-                    <!-- Core Technical Competencies -->
+                    <!-- Technical Core Competencies -->
                     <div class="terminal-window skills-terminal">
                         <div class="terminal-header">
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
-                            <span class="terminal-title">technical_skills.sh</span>
+                            <span class="terminal-title">core_skills.txt</span>
                         </div>
                         <div class="terminal-body">
-                            <p><span class="command">$ cat core_technical_competencies.txt</span></p>
+                            <p><span class="command">$ cat technical_core_competencies.txt</span></p>
                             
-                            <div class="core-skills-grid">
-                                <div class="core-skill-category">
-                                    <h4><i class="fas fa-shield-alt"></i> Security</h4>
-                                    <ul class="skill-list">
-                                        <li>Zero Trust Architecture</li>
-                                        <li>SASE Implementation</li>
-                                        <li>Deception Engineering</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="core-skill-category">
-                                    <h4><i class="fas fa-code-branch"></i> Engineering</h4>
-                                    <ul class="skill-list">
-                                        <li>Cloud Security</li>
-                                        <li>Multi-Cloud Infrastructure</li>
-                                        <li>Automation Pipeline</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="core-skill-category">
-                                    <h4><i class="fas fa-users-cog"></i> Leadership</h4>
-                                    <ul class="skill-list">
-                                        <li>Strategic Planning</li>
-                                        <li>Team Development</li>
-                                        <li>Cost Optimization</li>
-                                    </ul>
-                                </div>
+                            <div class="skills-table">
+                                <h4>Technical Core Competencies</h4>
+                                <table class="core-skills-table">
+                                    <tr>
+                                        <th><i class="fas fa-shield-alt"></i> Security</th>
+                                        <th><i class="fas fa-code-branch"></i> Engineering</th>
+                                        <th><i class="fas fa-users-cog"></i> Leadership</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Zero Trust</td>
+                                        <td>Cloud Security</td>
+                                        <td>Strategic Planning</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SASE Framework</td>
+                                        <td>Multi-Cloud</td>
+                                        <td>Team Development</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deception Tech</td>
+                                        <td>Automation</td>
+                                        <td>Cost Optimization</td>
+                                    </tr>
+                                </table>
                             </div>
                             
                             <p><span class="command">$ _</span></p>
                         </div>
                     </div>
                     
-                    <!-- Inclusive Leadership & Advocacy -->
+                    <!-- Inclusion & Impact Highlights -->
                     <div class="terminal-window skills-terminal">
                         <div class="terminal-header">
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
                             <span class="terminal-button"></span>
-                            <span class="terminal-title">advocacy_impact.sh</span>
+                            <span class="terminal-title">ibrg_initiatives.sh</span>
                         </div>
                         <div class="terminal-body">
-                            <p><span class="command">$ cat inclusive_leadership.txt</span></p>
+                            <p><span class="command">$ ./show_impact_highlights.sh</span></p>
                             
-                            <div class="advocacy-container">
-                                <h4><i class="fas fa-handshake"></i> Inclusive Leadership & Advocacy</h4>
-                                <ul class="skill-list">
-                                    <li>Asian Network Ambassador</li>
-                                    <li>BOOST Mentorship Lead</li>
-                                    <li>Brand Ambassador Program</li>
-                                    <li>Hackathon Organizer</li>
-                                </ul>
+                            <div class="bash-output">
+                                <h4><i class="fas fa-handshake"></i> Inclusion & Impact Highlights</h4>
+                                <pre class="bash-content">
+<span class="bash-prompt">$</span> <span class="bash-command">lead</span> <span class="bash-arg">--initiative</span> <span class="bash-string">"Asian Network Ambassador"</span> <span class="bash-arg">--impact</span> <span class="bash-string">"Cultural visibility"</span>
+<span class="bash-prompt">$</span> <span class="bash-command">mentor</span> <span class="bash-arg">--program</span> <span class="bash-string">"BOOST Cohort"</span> <span class="bash-arg">--participants</span> <span class="bash-number">25</span>
+<span class="bash-prompt">$</span> <span class="bash-command">represent</span> <span class="bash-arg">--role</span> <span class="bash-string">"Brand Ambassador"</span> <span class="bash-arg">--region</span> <span class="bash-string">"Austin"</span>
+<span class="bash-prompt">$</span> <span class="bash-command">organize</span> <span class="bash-arg">--event</span> <span class="bash-string">"Hackathon"</span> <span class="bash-arg">--teams</span> <span class="bash-number">12</span>
+                                </pre>
                             </div>
                             
                             <p><span class="command">$ _</span></p>
@@ -912,13 +909,7 @@
                             max-width: 900px;
                             margin: 0 auto 2rem;
                         }
-                        .core-skills-grid {
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            gap: 2rem;
-                            margin: 1.5rem 0;
-                        }
-                        .core-skill-category h4, .advocacy-container h4 {
+                        .skills-table h4, .bash-output h4 {
                             color: #00ff41;
                             margin-bottom: 1rem;
                             font-size: 1.1rem;
@@ -928,44 +919,69 @@
                             border-bottom: 1px solid rgba(0, 255, 65, 0.3);
                             padding-bottom: 0.5rem;
                         }
-                        .advocacy-container {
-                            margin: 1.5rem 0;
+                        .core-skills-table {
+                            width: 100%;
+                            border-collapse: separate;
+                            border-spacing: 0;
+                            margin: 1rem 0 1.5rem;
+                            font-family: 'Courier New', monospace;
                         }
-                        .skill-list {
-                            list-style: none;
-                            padding: 0;
-                            margin: 0;
-                            display: grid;
-                        }
-                        .core-skill-category .skill-list {
-                            grid-template-rows: repeat(3, auto);
-                        }
-                        .advocacy-container .skill-list {
-                            grid-template-columns: repeat(2, 1fr);
-                            grid-gap: 0.7rem 2rem;
-                        }
-                        .skill-list li {
-                            position: relative;
-                            padding-left: 1rem;
-                            white-space: nowrap;
+                        .core-skills-table th {
+                            text-align: left;
+                            padding: 0.5rem 1rem 0.5rem 0;
+                            color: #00ff41;
                             font-size: 0.95rem;
+                            font-weight: bold;
+                            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+                        }
+                        .core-skills-table td {
+                            padding: 0.5rem 1rem 0.5rem 0;
+                            white-space: nowrap;
+                            font-size: 0.9rem;
                             letter-spacing: 0.02rem;
                         }
-                        .skill-list li:before {
-                            content: ">";
-                            position: absolute;
-                            left: 0;
+                        .core-skills-table tr:nth-child(odd) {
+                            background-color: rgba(0, 255, 65, 0.03);
+                        }
+                        .bash-output {
+                            margin: 1rem 0 1.5rem;
+                        }
+                        .bash-content {
+                            background-color: rgba(0, 0, 0, 0.3);
+                            border: 1px solid rgba(0, 255, 65, 0.2);
+                            border-radius: 4px;
+                            padding: 1rem;
+                            margin: 0;
+                            font-family: 'Courier New', monospace;
+                            font-size: 0.9rem;
+                            line-height: 1.6;
+                            overflow-x: auto;
+                        }
+                        .bash-prompt {
                             color: #00ff41;
-                            opacity: 0.7;
+                            margin-right: 0.5rem;
+                        }
+                        .bash-command {
+                            color: #00ff41;
+                            font-weight: bold;
+                        }
+                        .bash-arg {
+                            color: #00aaff;
+                        }
+                        .bash-string {
+                            color: #ffaa00;
+                        }
+                        .bash-number {
+                            color: #ff5500;
                         }
                         
                         @media (max-width: 768px) {
-                            .core-skills-grid {
-                                grid-template-columns: 1fr;
-                                gap: 1.5rem;
+                            .core-skills-table {
+                                display: block;
+                                overflow-x: auto;
                             }
-                            .advocacy-container .skill-list {
-                                grid-template-columns: 1fr;
+                            .bash-content {
+                                font-size: 0.8rem;
                             }
                         }
                     </style>
