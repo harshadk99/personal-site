@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://harshadkadam.com/sitemap.xml
+Sitemap: https://harshadsadashivkadam.com/sitemap.xml
