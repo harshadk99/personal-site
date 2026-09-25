@@ -9,8 +9,7 @@
     Argues that the MCP registry, not the single decoy token, should be the
     unit of deception: real and decoy MCP servers side by side behind one
     gateway portal, with a two-stage boundary that separates an agent finding
-    a credential from an agent using it. Demonstrated live at the OWASP 25th
-    Anniversary Conference in February 2026.
+    a credential from an agent using it.
   # SOURCE: agentic-deception-white-paper/paper.md, commit 33fbedf
   source: "agentic-deception-white-paper/paper.md"
   links:

@@ -18,10 +18,8 @@ actions:
   - label: "See the talks"
     href: "/talks"
 
-# One line under the intro, linking to the About page's Recognition section.
-cited_by:
-  lead: "Cited by"
-  names: ["Thinkst", "Lenny Zeltser", "Nick Gray"]
+# No "Cited by" line here by design: citations are listed plainly on each
+# project page and in About > Recognition, never used as a boast.
 
 sections:
   research:

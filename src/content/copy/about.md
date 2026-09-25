@@ -61,6 +61,12 @@ community:
   # Ambassador, Austin". If these are Indeed employee programs, they may fit
   # better on your resume than on a research site. Keep or drop?]
 
+# Section listing independent citations (from data/recognition.yaml).
+# Plain listing: who wrote it, where, when, and their words. No commentary.
+recognition:
+  eyebrow: "Elsewhere"
+  title: "Where others have written about this work."
+
 speaker_kit:
   short: >-
     Harshad Sadashiv Kadam is a security researcher in Austin, Texas, working
@@ -81,9 +87,7 @@ doing its job from one mapping everything it can reach? My answer has been
 deception. In May 2025 I released MCP Threat Trap, an open-source honeypot for
 Model Context Protocol environments. Since then I've turned it into a larger
 idea, deception at the registry layer, where real and decoy MCP servers sit
-side by side and an agent can't tell which ones are bait. I demonstrated it
-live at the OWASP 25th Anniversary Conference, and Thinkst and Lenny Zeltser
-have both cited the work.
+side by side and an agent can't tell which ones are bait.
 
 I write about this for SC Media, speak at security conferences, and founded
 the Austin chapter of AI Security Engineers. If you're working on the same

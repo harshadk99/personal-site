@@ -49,7 +49,7 @@
     - { label: "Speaker page", url: "https://www.intelliguards.com/intellic0n-speakers" }
 
 - id: cloudflare-webinar-2026
-  title: "How Indeed Customizes Security Services to Meet Unique Needs"   # [TBC: see the Indeed question — keep, reword, or drop?]
+  title: "How Indeed Customizes Security Services to Meet Unique Needs"   # day-job talk; listed as given
   event: "Cloudflare webinar"
   location: "Online"
   date: 2026-03-24
@@ -64,7 +64,7 @@
   location: "Virtual"
   date: 2026-02
   kind: conference
-  summary: "The first live demonstration of real and decoy MCP servers side by side in one portal."
+  summary: "Real and decoy MCP servers side by side in one portal, demonstrated live."
   links:
     - { label: "Recording", url: "https://youtu.be/amS0icidxOs", video: true, host: "OWASP Foundation" }
     - { label: "Session page", url: "https://owasp25thanniversaryvirtual.sched.com/event/2Djni/mcp-deception-incubator-honeytraps-as-a-framework-for-zero-trust-ai-environments-track-2" }
