@@ -1,0 +1,20 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  more?: { href: string; label?: string };
+  level?: 1 | 2;
+}
+const { eyebrow, title, more, level = 2 } = Astro.props;
+const Tag = level === 1 ? 'h1' : 'h2';
+// Statements end with an accent full stop; strip a typed one so it isn't doubled.
+const text = title.replace(/[.]$/, '');
+const ends = /[?!]$/.test(text);
+---
+<div class="section-head">
+  <div>
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <Tag class="statement">{text}{!ends && <span class="stop">.</span>}</Tag>
+  </div>
+  {more && <a class="more" href={more.href}>{more.label ?? 'See everything'} →</a>}
+</div>

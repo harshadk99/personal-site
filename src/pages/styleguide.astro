@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+---
+<Base title="Style guide" noindex>
+  <section class="wrap section">
+    <span class="eyebrow">Style guide · step 1</span>
+    <h1 class="display">I research deception engineering for autonomous AI agents<span class="stop">.</span></h1>
+    <p class="lede" style="margin-top:1.25rem">
+      AI agents look exactly like legitimate automation. I build the decoys that reveal what
+      they came to do, and I write and speak about what they catch.
+    </p>
+    <div class="actions" style="margin-top:2rem">
+      <a class="btn btn-primary" href="/research">Read the research</a>
+      <a class="btn" href="/talks">See the talks</a>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead eyebrow="Research" title="Selected research." more={{ href: '/research' }} />
+    <ol class="dated">
+      <li>
+        <time datetime="2026-09">Sep 2026</time>
+        <div>
+          <h3><a href="/research/registry-layer-deception">Deception at the Registry Layer</a></h3>
+          <p>
+            Why the MCP registry, not the single decoy token, should be the unit of deception,
+            and a two-stage boundary that separates an agent finding a credential from using it.
+          </p>
+          <div class="links"><a href="#">HTML</a><a href="#">PDF</a><a href="#">DOI</a><a href="#">GitHub</a></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead eyebrow="Projects" title="Tools I've built." more={{ href: '/projects' }} />
+    <ol class="index">
+      <li>
+        <div>
+          <h3>MCP Threat Trap</h3>
+          <span class="status">Open source</span>
+          <p>A serverless MCP honeypot on Cloudflare Workers that fires a canary when a decoy admin tool is called.</p>
+          <ul class="tags" style="margin-top:0.9rem"><li class="tag">TypeScript</li><li class="tag">Cloudflare Workers</li><li class="tag">Canarytokens</li></ul>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Kubernetes deception trap</h3>
+          <span class="status">Open source · cited by Thinkst</span>
+          <p>A decoy Kubernetes access portal exposed over MCP, with tiered tools and a two-stage canary.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>FlareGuard</h3>
+          <span class="status">Open source</span>
+          <p>Continuous posture validation for Cloudflare configurations against YAML baselines.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead eyebrow="Talks" title="Next up: OWASP LASCON." more={{ href: '/talks', label: 'All talks' }} />
+    <ol class="dated">
+      <li>
+        <span class="when">Oct 2026</span>
+        <div>
+          <span class="status is-live">Upcoming</span>
+          <h3 style="margin-top:0.5rem">[Talk title to confirm]</h3>
+          <p>OWASP LASCON 2026 · Austin, TX</p>
+        </div>
+      </li>
+      <li>
+        <time datetime="2026-02">Feb 2026</time>
+        <div>
+          <h3><a href="https://youtu.be/amS0icidxOs">MCP Deception Incubator: Honeytraps as a Framework for Zero Trust AI Environments</a></h3>
+          <p>OWASP 25th Anniversary · Global virtual</p>
+          <div class="links"><a href="https://youtu.be/amS0icidxOs">▶ Recording · OWASP Foundation</a><a href="#">Session page</a></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead eyebrow="About" title="Hello, I'm Harshad." />
+    <div class="prose">
+      <p>
+        Body copy sits in Fira Sans at a comfortable reading size, with <a href="#">inline links</a>
+        underlined quietly until hovered, and <code>inline code</code> in Fira Code.
+      </p>
+    </div>
+    <dl class="facts" style="margin-top:1.5rem">
+      <dt>Location</dt><dd>Austin, Texas</dd>
+      <dt>Focus</dt><dd>Deception engineering for AI agents</dd>
+      <dt>Contact</dt><dd><a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a></dd>
+    </dl>
+  </section>
+</Base>
