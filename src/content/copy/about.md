@@ -1,6 +1,7 @@
 ---
-# Pattern (harshil.dev/about): label, greeting, a few short first-person
-# paragraphs, a four-row facts list, then the closing call to action.
+# Bio: Harshad's own bio (Sept 24, 2026), in first person, with the
+# "globally" / "independent citation" claims dropped at his request.
+# Earlier "by day / by night" version is in git history (commit 68f20d0).
 # Career detail, certifications, education and competencies live in the
 # resume PDF, linked below. The full verbatim version of the old About,
 # Experience and Background sections is in git history (commit b0bc6d8).
@@ -27,17 +28,12 @@ resume:
   note: "Full experience, certifications and education."
 ---
 
-Based in Austin, Texas. By day I'm a Senior Infrastructure Security Engineer
-at Indeed, working on Zero Trust and SASE. By night I build and explore
-whatever has my curiosity: a jack of all trades, and a master of a few.
+I'm a Senior Infrastructure Security Engineer at Indeed, where I architect
+Zero Trust, SASE, edge-native security, and multi-cloud infrastructure at
+enterprise scale.
 
-I currently build [MCP Threat Trap](/projects/mcp-threat-trap),
-[KubeTrap](/projects/kubetrap) and [FlareGuard](/projects/flareguard):
-open-source tools for deception engineering and edge security.
-
-Outside of that, I'm the founding chapter lead of AI Security Engineers Austin and
-take part in two ISACA groups, Emerging Trends and Academic & Workforce
-Development.
-
-You can see what I'm working on in my [writing](/writing) and
-[talks](/talks).
+I'm a CISM-certified practitioner and a member of the ISACA Emerging Trends
+Working Group. My open-source research focuses on AI agent detection and edge
+infrastructure security. I'm the founding chapter lead of AI Security
+Engineers Austin, and I speak at security conferences on AI security,
+deception engineering, and edge infrastructure.
