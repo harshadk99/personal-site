@@ -1,50 +1,58 @@
-# Independent citations and coverage, newest first. Quotes are verbatim from
-# the live page on the date in `checked`. Do not paraphrase them.
+# VERBATIM from the current site's "External Coverage" section, Sept 24, 2026.
+# Heading on the current site: "External Coverage".
+# `description` is the current site's text.
 
 - id: thinkst
-  who: "Thinkst"
-  context: "Makers of Canary and Canarytokens"
-  title: "One for all the models out there!"
-  author: "Jacob Torrey"
+  heading: "Thinkst — \"One for all the models out there!\""
   date: 2026-06-22
   url: "https://blog.thinkst.com/2026/06/one-for-all-the-models-out-there.html"
-  quote: >-
-    Using a similar alerting model, Harshad Sadashiv Kadam used our Kubernetes,
-    DNS and Web Bug tokens to create an AI honeypot that would alert only after
-    a client started using the results from tool calls (check it out!).
+  description: >-
+    Thinkst — creators of Canarytokens, the deception technology underlying the
+    modern honeytoken ecosystem — published this official announcement of their
+    new MCP server Canarytoken and credited Harshad by name: "Harshad Sadashiv
+    Kadam used our Kubernetes, DNS and Web Bug tokens to create an AI honeypot
+    that would alert only after a client started using the results from tool
+    calls (check it out!)."
+  link_label: "Read on blog.thinkst.com"
   about_project: kubetrap
-  checked: 2026-09-24
 
 - id: zeltser
-  who: "Lenny Zeltser"
-  context: "SANS Institute Faculty Fellow; creator of REMnux"   # [TBC: confirm this is still how Zeltser's own bio reads]
-  title: "Build a Decoy MCP Server to Catch AI Agent Attackers"
+  heading: "Lenny Zeltser — \"Build a Decoy MCP Server to Catch AI Agent Attackers\""
   date: 2026-05-03
   url: "https://zeltser.com/decoy-mcp-server-honeypot"
-  quote: >-
-    Harshad Sadashiv Kadam's Deception Remote MCP Server takes that approach
-    for a public-facing honeypot any MCP client can discover and connect to.
+  description: >-
+    Independent citation by Lenny Zeltser — SANS Institute Faculty Fellow and
+    creator of REMnux — who cited Harshad's Deception Remote MCP Server by name
+    as the reference implementation for a public-facing MCP honeypot.
+  # [TBC: ACCURACY — the article does not say "reference implementation". Its
+  # actual words: "Harshad Sadashiv Kadam's Deception Remote MCP Server takes
+  # that approach for a public-facing honeypot any MCP client can discover and
+  # connect to." Fix before launch.]
+  link_label: "Read on zeltser.com"
   about_project: mcp-threat-trap
-  checked: 2026-09-24
-  # NOTE: the old site said Zeltser cited it "as the reference implementation".
-  # The article doesn't say that; the quote above is what it says.
+
+- id: ai-sec-eng-show-tell
+  heading: "Show and Tell — What are you building with AI & how are you securing it using MCP Threat Trap"
+  date: 2026-01
+  url: "https://www.youtube.com/live/DEAI84LkngQ"
+  description: >-
+    Live Show & Tell session for the AI Security Engineers Community
+    demonstrating Prompt Injector and MCP Threat Trap — deception engineering
+    techniques for AI-native threat detection in Zero Trust environments.
+  link_label: "Watch on YouTube"
 
 - id: nickgray
-  who: "Nick Gray"
-  context: "Write-up of Austin's Cloudflare Workers Tech Talks"
-  title: "Cloudflare Workers Tech Talks"
+  heading: "Cloudflare Workers Tech Talks — FlareGuard: Automating Security Posture at the Edge"
   date: 2025-12-04
   url: "https://nickgray.net/cloudflare-workers-tech-talks/"
-  quote: >-
-    Harshad presented FlareGuard, a tool designed to solve the visibility gap
-    in serverless security.
+  description: >-
+    Independent writeup by Nick Gray from Austin's first Cloudflare Workers
+    Tech Talks, where Harshad presented FlareGuard alongside Cloudflare's own
+    engineers — including Kenton Varda (founder of Cloudflare Workers). Nick
+    documented three key insights from the talk: the invisible risk of edge
+    misconfigurations (exposed .env vars, outdated TLS), FlareGuard's Gold
+    Standard YAML baseline approach to auditing every Worker, and the Shadow IT
+    Fix — automatically detecting zombie workers that become attack entry
+    points.
+  link_label: "Read on nickgray.net"
   about_project: flareguard
-  checked: 2026-09-24
-
-# Coverage that isn't a quote but is still independent recognition.
-- id: owasp-recording
-  who: "OWASP Foundation"
-  context: "Published the recording of my OWASP 25th Anniversary talk on its official channel"
-  date: 2026-04-02
-  url: "https://youtu.be/amS0icidxOs"
-  checked: 2026-09-24

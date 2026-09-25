@@ -1,16 +1,7 @@
-# The /links page: each profile with one line on what's there.
-- label: "GitHub"
-  url: "https://github.com/harshadk99"
-  blurb: "Source for MCP Threat Trap, FlareGuard, and my deception research."
-- label: "LinkedIn"
-  url: "https://www.linkedin.com/in/harshad99/"
-  blurb: "Talks, articles, and professional updates."
-- label: "Sessionize"
-  url: "https://sessionize.com/harshad-sadashiv-kadam/"
-  blurb: "Speaker profile with sessions and upcoming events."
-- label: "Medium"
-  url: "https://medium.com/@harshadkadam"
-  blurb: "Earlier articles, including the FlareGuard launch post."
-- label: "AI Security Engineers, Austin"
-  url: "https://www.meetup.com/ai-security-engineers-austin-tx/"
-  blurb: "The community chapter I founded and lead."
+# Profiles linked on the current site (contact section, footer, speaking).
+# The current site has no /links page, so no descriptions yet.
+- { label: "LinkedIn", url: "https://www.linkedin.com/in/harshad99/" }
+- { label: "GitHub", url: "https://github.com/harshadk99" }
+- { label: "Sessionize", url: "https://sessionize.com/harshad-sadashiv-kadam/" }
+- { label: "Medium", url: "https://medium.com/@harshadkadam" }
+- { label: "AI Security Engineers — Austin, TX", url: "https://www.meetup.com/ai-security-engineers-austin-tx/" }

@@ -1,45 +1,41 @@
-# Tools, in display order. Each gets its own page at /projects/<slug>.
-- slug: mcp-threat-trap
-  name: "MCP Threat Trap"
-  status: "Open source"
-  summary: "Serverless MCP honeypot. A decoy admin tool fires a canary when an agent calls it."
-  detail: >-
-    A remote MCP server on Cloudflare Workers with an Okta admin password-reset
-    tool no legitimate agent needs. Calling it triggers a Canarytoken alert.
-  released: 2025-05-21   # SOURCE: paper.md Section 9 (initial public release)
-  license: "MIT"
-  tech: ["TypeScript", "Cloudflare Workers", "MCP", "Canarytokens"]
-  repo: "https://github.com/harshadk99/deception-remote-mcp-server"
-  cited_by: ["zeltser"]          # ids in recognition.yaml
-  talks: ["bsides-orlando-2025", "bsides-chicago-2025", "bsides-swfl-2025-threat-trap", "cloudflare-connect-2025", "devseccon-2025", "ai-sec-eng-show-tell-2026"]
-
-- slug: kubetrap
-  name: "KubeTrap"
-  status: "Open source"
-  summary: "Decoy Kubernetes portal over MCP. A canaried kubeconfig fires when retrieved, and again when used."
-  detail: >-
-    Safe tools (list_clusters, get_namespace_quota, request_access) sit beside
-    three traps: a kubeconfig, service endpoints, and a CI webhook, each with a
-    Thinkst canary. Calling a trap is Stage 1; using what it returns is Stage 2.
-  released: 2026-01-16   # SOURCE: first commit in mcp-deception-incubator-kubernetes
-  license: "MIT"
-  tech: ["TypeScript", "Cloudflare Workers", "MCP", "Thinkst Canary"]
-  repo: "https://github.com/harshadk99/mcp-deception-incubator-kubernetes"
-  cited_by: ["thinkst"]
-  talks: ["owasp-25th-2026", "intellicon-2026", "bsides-boulder-2026", "bsidespgh-2026-incubator"]
+# VERBATIM from the current site's "Featured Projects" section, Sept 24, 2026,
+# except the KubeTrap name (decided Sept 24). Order as on the current site.
+# Page-level fields (repo, dates, citations, talks) are data, not copy.
 
 - slug: flareguard
   name: "FlareGuard"
-  status: "Open source"
-  summary: "Security auditor for Cloudflare configurations, mapped to NIST and CIS controls."
-  detail: >-
-    Runs as a Worker with a read-only API token and returns a severity-weighted
-    score, per-finding remediation, and stale "zombie" Workers.
-  released: 2025-06-09   # SOURCE: first commit in flareguard repo
-  license: "MIT"
-  tech: ["JavaScript", "Cloudflare Workers", "Cloudflare API"]
+  description: >-
+    Comprehensive security auditing tool for Cloudflare configurations that
+    identifies misconfigurations and vulnerabilities in your setup.
+  features: ["Security gap analysis", "YAML-based baselines", "NIST compliance mapping"]
+  tags: ["JavaScript", "Cloudflare API", "Security Audit"]
   repo: "https://github.com/harshadk99/flareguard"
-  demo: "https://flareguard.harshad-surfer.workers.dev/"
+  released: 2025-06-09          # first commit
   cited_by: ["nickgray"]
   talks: ["workers-tech-talks-2025", "isaca-austin-2025", "bsides-swfl-2025-flareguard", "bsidespgh-2026-flareguard"]
-  writing: ["medium-flareguard-2025"]
+
+- slug: mcp-threat-trap
+  name: "MCP Threat Trap"
+  description: >-
+    Deception Engineering for Zero Trust AI access, an advanced honeypot system
+    that simulates vulnerable systems to detect and analyze attack patterns.
+  features: ["AI-driven threat detection", "Zero Trust integration", "Advanced threat intelligence"]
+  tags: ["TypeScript", "Deception Engineering", "Zero Trust"]
+  repo: "https://github.com/harshadk99/deception-remote-mcp-server"
+  released: 2025-05-21          # initial public release (paper.md Section 9)
+  cited_by: ["zeltser"]
+  talks: ["bsides-orlando-2025", "bsides-chicago-2025", "bsides-swfl-2025-threat-trap", "cloudflare-connect-2025", "devseccon-2025", "ai-sec-eng-show-tell-2026"]
+
+- slug: kubetrap
+  name: "KubeTrap"                # current site: "Agentic Deception Incubator"
+  description: >-
+    Serverless detection framework deployed on Cloudflare Workers that exposes
+    a realistic Kubernetes access portal via MCP, embedding credential, DNS,
+    and webhook deception surfaces to detect AI agent reconnaissance and
+    intent escalation.
+  features: ["Two-stage intent detection", "MCP agent attribution", "Thinkst Canary integration"]
+  tags: ["TypeScript", "Cloudflare Workers", "Kubernetes", "Deception Engineering"]
+  repo: "https://github.com/harshadk99/mcp-deception-incubator-kubernetes"
+  released: 2026-01-16          # first commit
+  cited_by: ["thinkst"]
+  talks: ["owasp-25th-2026", "intellicon-2026", "bsides-boulder-2026", "bsidespgh-2026-incubator"]

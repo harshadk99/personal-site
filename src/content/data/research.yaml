@@ -1,21 +1,16 @@
 # Papers, newest first. Each gets its own page at /research/<slug>.
-- slug: registry-layer-deception
-  title: "Deception at the Registry Layer"
-  subtitle: "An Architecture for Detecting Autonomous AI Agents in Model Context Protocol Environments"
-  version: "1.1"
-  date: 2026-09
-  status: "draft"          # becomes "published" once the DOI exists
-  summary: "Real and decoy MCP servers side by side in one portal, with a two-stage alert: a credential retrieved, then a credential used."
-  # SOURCE: agentic-deception-white-paper/paper.md, commit 33fbedf
-  source: "agentic-deception-white-paper/paper.md"
-  links:
-    pdf: "[TBC: generated at launch]"
-    doi: "[TBC: after Zenodo upload]"
-    github: "https://github.com/harshadk99/agentic-deception-white-paper"   # [TBC: repo not pushed yet]
-    recording: "https://youtu.be/amS0icidxOs"
-
-upcoming:
-  - summary: "Benchmark results on how frontier models behave when they find real and decoy MCP servers side by side."
-    note: "To be presented at OWASP LASCON 2026, October 29–30, Austin."
-    title: "[TBC: talk/paper title]"
-    # SOURCE: paper.md Section 13
+# Not on the current site; text is verbatim from the paper itself.
+papers:
+  - slug: registry-layer-deception
+    title: "Deception at the Registry Layer"
+    subtitle: "An Architecture for Detecting Autonomous AI Agents in Model Context Protocol Environments"
+    version: "1.1"
+    date: 2026-09
+    status: "draft"          # becomes "published" once the DOI exists
+    # VERBATIM: paper.md Abstract, paragraph 3, first sentence (commit 33fbedf)
+    summary: "This paper argues that the unit of deception should be the registry, not the individual token."
+    source: "agentic-deception-white-paper/paper.md"
+    links:
+      pdf: "[TBC: generated at launch]"
+      doi: "[TBC: after Zenodo upload]"
+      github: "https://github.com/harshadk99/agentic-deception-white-paper"   # [TBC: repo not pushed yet]

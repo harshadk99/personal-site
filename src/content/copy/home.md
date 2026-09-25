@@ -1,26 +1,28 @@
 ---
-# Straight to the point: name, one line, where, two actions.
+# VERBATIM from the current site (legacy/index.html hero), Sept 24, 2026.
 name: "Harshad Sadashiv Kadam"
-tagline: "Security engineer. I build deception for AI agents."
-tagline_options:
-  - "Security engineer. I build deception for AI agents."
-  - "Security engineer building deception for AI agents."
-  - "Senior Security Infrastructure Engineer. Deception for AI agents."
+title: "Senior Security Infrastructure Engineer"
 location: "Austin, Texas"
 
 actions:
-  - label: "Get in touch"
-    href: "mailto:harshad.surfer@gmail.com"
+  - label: "Get In Touch"
+    href: "/about#contact"
     primary: true
-  - label: "Resume"
+  - label: "Download Resume"
     href: "/Harshad_Sadashiv_Kadam_Resume.pdf"
 
-# No "Cited by" line by design: citations are listed plainly on project
-# pages and in About, never used as a boast.
+# Meta description, verbatim from the current site's <head>.
+description: >-
+  Harshad Sadashiv Kadam — Senior Security Infrastructure Engineer at Indeed
+  specializing in Zero Trust, SASE, and AI-native deception engineering.
+  Creator of MCP Threat Trap and FlareGuard. Speaker at DevSecCon, Cloudflare
+  Connect, OWASP, BSides, and IntelliC0N.
 
+# Section headings, verbatim from the current site. "Research" is the one new
+# section (the white paper isn't on the current site).
 sections:
   research: { title: "Research", more: "/research" }
-  projects: { title: "Projects", more: "/projects" }
-  talks:    { title: "Talks",    more: "/talks" }
-  writing:  { title: "Writing",  more: "/writing" }
+  projects: { title: "Featured Projects", more: "/projects" }
+  writing:  { title: "My Articles", more: "/writing" }
+  talks:    { title: "Speaking Engagements", more: "/talks" }
 ---
