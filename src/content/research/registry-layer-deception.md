@@ -6,7 +6,7 @@ version: "1.1 (draft)"
 date: "September 2026"
 license: "CC BY 4.0"
 note: "This is independent research, conducted on the author's personal infrastructure and personal Cloudflare account. It does not draw on any employer's systems, data, or internal tooling, and reflects the author's own views."
-source: "agentic-deception-white-paper/paper.md @ c7de5b6"
+source: "agentic-deception-white-paper/paper.md @ 12f85dd"
 ---
 ## Abstract
 
@@ -351,7 +351,7 @@ tripwire to that path. Where gateway-level MCP traffic detection is available,
 a direct connection to a decoy host is a second, independent signal alongside
 the decoy's own logging.
 
-*Counters: the direct-URL bypass (Section 5, under *Access*).*
+*Counters: the direct-URL bypass (Section 5, under Access).*
 
 ### 6.6 Canaries on the control plane (proposed)
 
@@ -450,9 +450,8 @@ servers side by side; within a decoy server, tools are tiered from safe to
 privileged, with a canary embedded past the detection boundary that fires in
 two stages — access and use — into a SIEM.](./diagrams/registry-layer-architecture.png)
 
-*(Source diagram: `diagrams/registry-layer-architecture.png`. ASCII precursor:
-`kubetrap-architecture.md`. OWASP demonstration recording, published by the
-OWASP Foundation: <https://youtu.be/amS0icidxOs>.)*
+*(OWASP demonstration recording, published by the OWASP Foundation:
+<https://youtu.be/amS0icidxOs>.)*
 
 ---
 
@@ -491,7 +490,7 @@ independently developed approaches in the field.
   (Section 4). The February 2026 demonstration of real and decoy servers in a
   single portal predates general availability by seven months.
 
-*(Full primary-source citations maintained in `REFERENCES.md`.)*
+*(Sources for each entry are listed under References.)*
 
 ---
 
@@ -546,7 +545,7 @@ tells you someone is there. The architecture tells you what they came to do.
 - **Benign agents can trip decoys.** A legitimate agent selects tools
   autonomously; a decoy description that overlaps with a real task will
   produce false positives. Descriptions must target capabilities outside
-  every legitimate user's scope, and the visibility policy in Section 6.1
+  every legitimate user's scope, and the visibility policy in Section 7
   should narrow exposure where that risk is highest.
 - **Decoys can be fingerprinted.** Differences in hosting, latency, tool
   count, empty resource lists, or response style can separate decoys from
@@ -616,43 +615,74 @@ the architecture presented here.
 
 ## References
 
-Numbered inline citations are tracked in full in `REFERENCES.md`, including:
+All sources are public. Links were checked on September 25, 2026.
 
-1. Thinkst, "Getting Agents to tell on themselves" (Sept. 2026) — Agent
-   Provocateur, agents tripping interrogation-style decoys.
-2. Thinkst, "One for all the models out there!" (June 2026) — the MCP
-   Canarytoken.
-3. Cloudflare, "MCP server portals," Cloudflare One documentation (updated
-   Sept. 2026) — the portal mechanics summarized in Section 4.
-4. Cloudflare, "How Cloudflare detects MCP traffic and helps secure it" (Aug.
-   2026) — Gateway MCP traffic detection referenced in Section 6.5.
-5. Microsoft, "The state of MCP security in 2026" (June 2026) — the
-   confused-deputy pattern referenced in Section 5.
+**MCP server portals (Sections 4–6, 9)**
+
+1. Cloudflare, "MCP server portals," Cloudflare One documentation, updated
+   Sept. 24, 2026.
+   <https://developers.cloudflare.com/cloudflare-one/access-controls/ai-controls/mcp-portals/>
+2. Cloudflare, "MCP server portals now generally available," changelog,
+   Sept. 24, 2026 — GA status, Code Mode, service-token authentication,
+   Logpush.
+   <https://developers.cloudflare.com/changelog/post/2026-09-24-mcp-portals-ga/>
+3. Cloudflare, "MCP portal logs," Logpush dataset reference — exported fields;
+   no call arguments (Sections 4.5, 6.3).
+   <https://developers.cloudflare.com/logs/logpush/logpush-job/datasets/account/mcp_portal_logs/>
+4. Cloudflare, "How Cloudflare detects MCP traffic and helps secure it,"
+   Aug. 18, 2026 — Gateway MCP traffic detection (Section 6.5).
+   <https://blog.cloudflare.com/mcp-security-updates/>
+
+**Threat model (Section 5)**
+
+5. Microsoft, "The state of MCP security in 2026," June 30, 2026 — the
+   confused-deputy pattern.
+   <https://techcommunity.microsoft.com/blog/microsoft-security-blog/the-state-of-mcp-security-in-2026/4531327>
 6. Cloud Security Alliance, "MCP Tool Poisoning: Adversarial Hijacking of AI
-   Agent Workflows" (July 2026) — tool poisoning and rug-pull attack classes
-   referenced in Section 5.
-7. Tracebit, "Context bombs" — guardrail-tripping decoy content, Section 10.
-8. Lenny Zeltser, decoy MCP server guide — workstation-level tripwire,
-   Section 10.
-9. HoneyMCP and Decoy Tripwire (open-source) — server- and client-level
-   decoy tooling, Section 10.
-10. Praetorian, "Knossos: Procedurally Generated Decoy Environments" —
-    registry-adjacent decoy generation for cloud accounts, Section 10.
-11. Tracebit Research, "AI Agents & Canaries: deception warns your teams at
-    the speed of an AI attacker" (v1.0, May 28, 2026) — frontier-model
-    deception benchmark, Section 2, Section 10.
-12. Cloud Security Alliance, "The 'AI Vulnerability Storm': Building a
-    'Mythos-ready' Security Program" (May 2026), and OpenAI at Black Hat USA
-    2026 (as reported by Thinkst, Sept. 2026) — deception/canaries as a
-    near-term defense against advanced AI attacks, Section 10.
-13. Cloudflare, "MCP server portals now generally available" (Sept. 24,
-    2026) — GA status, Code Mode, service-token auth, Logpush; Sections 4, 5,
-    and 9.
-14. Cloudflare, "MCP portal logs" Logpush dataset reference — exported fields,
-    no call arguments; Sections 4.5 and 6.3.
+   Agent Workflows," July 2, 2026 — tool poisoning and rug-pull attacks.
+   <https://labs.cloudsecurityalliance.org/research/csa-research-note-mcp-tool-poisoning-ai-agent-exfiltration-2/>
 
-All sources are public. Exact URLs and publication dates are listed in
-`REFERENCES.md`.
+**Field context and related work (Sections 2, 3, 10)**
+
+7. Tracebit Research, "AI Agents & Canaries: deception warns your teams at the
+   speed of an AI attacker," v1.0, May 28, 2026 — ten frontier models in a
+   controlled AWS cyber range (Sections 2, 10). <https://agentic.tracebit.com/>
+8. Cloud Security Alliance, "The 'AI Vulnerability Storm': Building a
+   'Mythos-ready' Security Program," May 1, 2026 — "Build a Deception
+   Capability."
+   <https://cloudsecurityalliance.org/artifacts/the-ai-vulnerability-storm-building-a-mythos-ready-security-program>
+9. Thinkst (Haroon Meer), "Getting Agents to tell on themselves," Sept. 4,
+   2026 — Agent Provocateur, and OpenAI's deception recommendation at Black
+   Hat USA 2026 (Sections 3, 10).
+   <https://blog.thinkst.com/2026/09/getting-agents-to-tell-on-themselves.html>
+10. OpenAI, "The 'Breaking' News: The OpenAI–Hugging Face Incident," Black
+    Hat USA 2026, published Aug. 6, 2026.
+    <https://www.youtube.com/watch?v=87DyyMV0kCY>
+11. Thinkst (Jacob Torrey), "One for all the models out there!" June 22,
+    2026 — the MCP Canarytoken (Sections 9, 10).
+    <https://blog.thinkst.com/2026/06/one-for-all-the-models-out-there.html>
+12. Tracebit Research, "Context Bombs: stopping AI attackers in their
+    tracks," July 12, 2026. <https://agentic.tracebit.com/context-bombs/>
+13. Lenny Zeltser, "Build a Decoy MCP Server to Catch AI Agent Attackers,"
+    May 2026. <https://zeltser.com/decoy-mcp-server-honeypot>
+14. HoneyMCP. <https://github.com/barvhaim/HoneyMCP>
+15. Decoy Tripwire (`decoy-tripwire`), first published Mar. 27, 2026.
+    <https://github.com/decoy-run/decoy-tripwire>
+16. Praetorian (Mario Bartolome), "Knossos: Procedurally Generated Decoy
+    Environments," July 2, 2026.
+    <https://www.praetorian.com/blog/knossos-decoy-environments>
+
+**The author's work (Sections 8, 9)**
+
+17. MCP Threat Trap, first released May 21, 2025.
+    <https://github.com/harshadk99/deception-remote-mcp-server>
+18. KubeTrap (MCP Deception Incubator, Kubernetes).
+    <https://github.com/harshadk99/mcp-deception-incubator-kubernetes>
+19. "MCP Deception Incubator — Honeytraps as a Framework for Zero Trust AI
+    Environments," OWASP 25th Anniversary Conference, Feb. 2026. Recording
+    published by the OWASP Foundation: <https://youtu.be/amS0icidxOs> ·
+    session page:
+    <https://owasp25thanniversaryvirtual.sched.com/event/2Djni/mcp-deception-incubator-honeytraps-as-a-framework-for-zero-trust-ai-environments-track-2>
 
 ---
 
