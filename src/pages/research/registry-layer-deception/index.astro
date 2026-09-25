@@ -20,7 +20,7 @@ const replay: { kind: string; text: string }[] = [
   { kind: 'dim', text: '# replay · OWASP 25th Anniversary demo, Feb 2026' },
   { kind: 'cmd', text: 'agent connect https://<portal>/mcp' },
   { kind: 'ok', text: 'authenticated · 4 servers, real and decoy, one catalog' },
-  { kind: 'out', text: '  cf-documenation-server       docs.mcp.cloudflare.com' },
+  { kind: 'out', text: '  cf-documentation-server      docs.mcp.cloudflare.com' },
   { kind: 'out', text: '  workers-binding-server       bindings.mcp.cloudflare.com' },
   { kind: 'out', text: '  mcp-threat-trap              …workers.dev' },
   { kind: 'out', text: '  kubernetes-access-portal     …workers.dev' },
@@ -164,7 +164,7 @@ const faq = [
       </div>
       <TerminalWindow title="portal · servers" wide>
         <ul class="servers" id="servers">
-          <li><span class="srv">cf-documenation-server</span><span class="host">docs.mcp.cloudflare.com</span><span class="kind">real</span></li>
+          <li><span class="srv">cf-documentation-server</span><span class="host">docs.mcp.cloudflare.com</span><span class="kind">real</span></li>
           <li class="decoy"><span class="srv">mcp-threat-trap</span><span class="host">workers.dev</span><span class="kind">decoy</span></li>
           <li><span class="srv">workers-binding-server</span><span class="host">bindings.mcp.cloudflare.com</span><span class="kind">real</span></li>
           <li class="decoy"><span class="srv">kubernetes-access-portal</span><span class="host">workers.dev</span><span class="kind">decoy</span></li>
