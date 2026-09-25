@@ -24,7 +24,7 @@ const { force = false } = Astro.props;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var seen = false;
     try { seen = sessionStorage.getItem('booted') === '1'; } catch (e) {}
-    if (reduced || (seen && !force)) return;
+    if (reduced || (seen && !force)) { el.remove(); return; }
     try { sessionStorage.setItem('booted', '1'); } catch (e) {}
 
     el.hidden = false;
@@ -53,6 +53,7 @@ const { force = false } = Astro.props;
     cursor: pointer;
     transition: opacity 0.4s ease;
   }
+  .boot[hidden] { display: none; }
   .boot.is-done { opacity: 0; pointer-events: none; }
   .boot-inner {
     width: min(20rem, 80vw);
