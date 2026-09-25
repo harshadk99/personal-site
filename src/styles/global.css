@@ -20,6 +20,8 @@
   --accent: #22f06b;        /* brand green, tuned for text on black */
   --accent-ink: #04140a;    /* text placed on an accent fill */
   --signal: #d66bff;        /* brand purple, tuned for text on black */
+  --glow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent);
+  --matrix-opacity: 0.07;
 
   --sans: 'Fira Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'Fira Code Variable', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -49,6 +51,8 @@
   --accent: #0b7a3a;
   --accent-ink: #ffffff;
   --signal: #8a00b8;
+  --glow: none;
+  --matrix-opacity: 0.06;
 }
 
 /* ------------------------------------------------------------------
@@ -154,12 +158,35 @@ code, kbd, samp {
   margin-bottom: 0.75rem;
 }
 
-/* Declarative heading. Ends with an accent full stop, the one
-   terminal-cursor echo the design keeps. */
+/* Section heading. Ends with a blinking cursor, as on the old site. */
 .statement {
   font-size: var(--step-3);
 }
 .statement .stop { color: var(--accent); }
+.caret-blink {
+  display: inline-block;
+  width: 0.08em;
+  min-width: 2px;
+  height: 0.95em;
+  margin-left: 0.18em;
+  vertical-align: -0.08em;
+  background: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Glitch on hover (old site): the heading splits into green and purple
+   slices while the pointer is over it. */
+.glitch:hover {
+  animation: glitch 0.5s linear infinite;
+}
+@keyframes glitch {
+  0%   { text-shadow: 0.05em 0 0 var(--accent), -0.05em -0.025em 0 var(--signal); clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%); }
+  25%  { text-shadow: 0.05em 0 0 var(--accent), -0.05em -0.025em 0 var(--signal); clip-path: polygon(0 25%, 100% 25%, 100% 50%, 0 50%); }
+  50%  { text-shadow: -0.05em -0.025em 0 var(--accent), 0.025em 0.025em 0 var(--signal); clip-path: polygon(0 50%, 100% 50%, 100% 75%, 0 75%); }
+  75%  { text-shadow: 0.025em 0.05em 0 var(--accent), 0.05em 0 0 var(--signal); clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%); }
+  100% { text-shadow: none; clip-path: none; }
+}
 
 .display {
   font-size: var(--step-4);

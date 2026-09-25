@@ -1,13 +1,11 @@
 ---
-// Placeholder until step 2 builds the real homepage.
+// Homepage. Step 2 fills in the sections below the hero.
 import Base from '../layouts/Base.astro';
 import BootScreen from '../components/BootScreen.astro';
+import Hero from '../components/Hero.astro';
+import { frontmatter as home } from '../content/copy/home.md';
 ---
-<Base>
+<Base description={home.description}>
   <BootScreen />
-  <section class="wrap section">
-    <span class="eyebrow">In progress</span>
-    <h1 class="display">New site under construction<span class="stop">.</span></h1>
-    <p class="lede" style="margin-top:1.25rem">See the <a href="/styleguide">style guide</a> for the design system.</p>
-  </section>
+  <Hero name={home.name} title={home.title} typed={home.typed} location={home.location} actions={home.actions} />
 </Base>

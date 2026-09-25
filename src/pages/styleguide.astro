@@ -2,24 +2,16 @@
 import Base from '../layouts/Base.astro';
 import SectionHead from '../components/SectionHead.astro';
 import BootScreen from '../components/BootScreen.astro';
+import Hero from '../components/Hero.astro';
+import TerminalWindow from '../components/TerminalWindow.astro';
+import { frontmatter as home } from '../content/copy/home.md';
 ---
 <Base title="Style guide" noindex>
   <BootScreen force />
-  <section class="wrap section">
-    <span class="eyebrow">Style guide · step 1</span>
-    <h1 class="display">I research deception engineering for autonomous AI agents<span class="stop">.</span></h1>
-    <p class="lede" style="margin-top:1.25rem">
-      AI agents look exactly like legitimate automation. I build the decoys that reveal what
-      they came to do, and I write and speak about what they catch.
-    </p>
-    <div class="actions" style="margin-top:2rem">
-      <a class="btn btn-primary" href="/research">Read the research</a>
-      <a class="btn" href="/talks">See the talks</a>
-    </div>
-  </section>
+  <Hero name={home.name} title={home.title} typed={home.typed} location={home.location} actions={home.actions} />
 
   <section class="wrap section">
-    <SectionHead eyebrow="Research" title="Selected research." more={{ href: '/research' }} />
+    <SectionHead eyebrow="Research" title="Research" more={{ href: '/research' }} />
     <ol class="dated">
       <li>
         <time datetime="2026-09">Sep 2026</time>
@@ -36,7 +28,7 @@ import BootScreen from '../components/BootScreen.astro';
   </section>
 
   <section class="wrap section">
-    <SectionHead eyebrow="Projects" title="Tools I've built." more={{ href: '/projects' }} />
+    <SectionHead eyebrow="Projects" title="Featured Projects" more={{ href: '/projects' }} />
     <ol class="index">
       <li>
         <div>
@@ -48,7 +40,7 @@ import BootScreen from '../components/BootScreen.astro';
       </li>
       <li>
         <div>
-          <h3>Kubernetes deception trap</h3>
+          <h3>KubeTrap</h3>
           <span class="status">Open source · cited by Thinkst</span>
           <p>A decoy Kubernetes access portal exposed over MCP, with tiered tools and a two-stage canary.</p>
         </div>
@@ -64,7 +56,7 @@ import BootScreen from '../components/BootScreen.astro';
   </section>
 
   <section class="wrap section">
-    <SectionHead eyebrow="Talks" title="Next up: OWASP LASCON." more={{ href: '/talks', label: 'All talks' }} />
+    <SectionHead eyebrow="Talks" title="Speaking Engagements" more={{ href: '/talks', label: 'All talks' }} />
     <ol class="dated">
       <li>
         <span class="when">Oct 2026</span>
@@ -93,10 +85,15 @@ import BootScreen from '../components/BootScreen.astro';
         underlined quietly until hovered, and <code>inline code</code> in Fira Code.
       </p>
     </div>
-    <dl class="facts" style="margin-top:1.5rem">
-      <dt>Location</dt><dd>Austin, Texas</dd>
-      <dt>Focus</dt><dd>Deception engineering for AI agents</dd>
-      <dt>Contact</dt><dd><a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a></dd>
-    </dl>
+    <div style="margin-top:1.5rem">
+      <TerminalWindow title="about.sh">
+        <dl class="facts">
+          <dt>Location</dt><dd>Austin, Texas</dd>
+          <dt>Full time</dt><dd>Senior Security Infrastructure Engineer at Indeed</dd>
+          <dt>Community</dt><dd>Founder &amp; Chapter Lead, AI Security Engineers — Austin</dd>
+          <dt>Contact</dt><dd><a href="mailto:harshad.surfer@gmail.com">harshad.surfer@gmail.com</a></dd>
+        </dl>
+      </TerminalWindow>
+    </div>
   </section>
 </Base>

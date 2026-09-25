@@ -4,6 +4,14 @@ name: "Harshad Sadashiv Kadam"
 title: "Senior Security Infrastructure Engineer"
 location: "Austin, Texas"
 
+# The typed line under the title, verbatim from the current site (js/scripts.js).
+typed:
+  - "analyzing security vulnerabilities..."
+  - "implementing zero trust architecture..."
+  - "deploying honeypot systems..."
+  - "securing cloud infrastructure..."
+  - "monitoring network traffic..."
+
 actions:
   - label: "Get In Touch"
     href: "/about#contact"

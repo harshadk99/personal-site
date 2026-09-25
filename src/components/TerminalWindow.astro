@@ -1,0 +1,40 @@
+---
+// Window chrome from the old site: three dots and a file-name title bar.
+interface Props { title: string; id?: string }
+const { title, id } = Astro.props;
+---
+<div class="term" id={id}>
+  <div class="term-bar" aria-hidden="true">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">{title}</span>
+  </div>
+  <div class="term-body"><slot /></div>
+</div>
+
+<style>
+  .term {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--surface);
+    overflow: hidden;
+    max-width: 40rem;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 0.8rem;
+    background: var(--raised);
+    border-bottom: 1px solid var(--rule);
+  }
+  .dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; }
+  .r { background: #ff5f56; }
+  .y { background: #ffbd2e; }
+  .g { background: #27c93f; }
+  .term-title {
+    margin-left: 0.5rem;
+    font: 400 0.8125rem / 1 var(--mono);
+    color: var(--muted);
+  }
+  .term-body { padding: 1.25rem 1.25rem 1.4rem; }
+</style>

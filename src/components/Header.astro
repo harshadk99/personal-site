@@ -8,7 +8,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 <header class="site-header">
   <div class="wrap bar">
     <a class="wordmark" href="/" aria-label={`${site.shortName}, home`}>
-      <span class="cursor" aria-hidden="true"></span>{site.shortName}
+      <span class="chevron" aria-hidden="true">&gt;</span>HSK
     </a>
     <nav aria-label="Main">
       <ul>
@@ -61,17 +61,17 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
   .wordmark {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font: 600 1rem / 1 var(--sans);
-    color: var(--ink);
+    gap: 0.3rem;
+    font: 700 1.5rem / 1 var(--mono);
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    text-shadow: var(--glow);
     text-decoration: none;
-    letter-spacing: -0.01em;
   }
-  .cursor {
-    width: 0.55rem;
-    height: 1.05rem;
-    background: var(--accent);
-    border-radius: 1px;
+  .wordmark:hover { color: var(--accent); }
+  .chevron {
+    opacity: 0.55;
+    animation: blink 1s step-end infinite;
   }
   nav { margin-left: auto; }
   nav ul {

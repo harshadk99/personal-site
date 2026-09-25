@@ -1,0 +1,76 @@
+---
+// Matrix rain from the old site: faint falling binary/katakana behind every
+// page. Throttled to ~20 fps, paused in hidden tabs, and not drawn at all
+// with reduced motion. Follows the theme's ground and accent colours.
+---
+<canvas id="matrix" class="matrix" aria-hidden="true"></canvas>
+
+<script>
+  const canvas = document.getElementById('matrix') as HTMLCanvasElement | null;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (canvas && !reduced) {
+    const ctx = canvas.getContext('2d')!;
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const size = 14;
+    let drops: number[] = [];
+    let ground = '', accent = '';
+
+    const readColours = () => {
+      const s = getComputedStyle(document.documentElement);
+      ground = s.getPropertyValue('--ground').trim();
+      accent = s.getPropertyValue('--accent').trim();
+      ctx.fillStyle = ground;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drops = Array.from({ length: Math.ceil(canvas.width / size) }, () => Math.floor(Math.random() * -20));
+      readColours();
+    };
+    resize();
+
+    let last = 0;
+    let frame = 0;
+    const draw = (t: number) => {
+      frame = requestAnimationFrame(draw);
+      if (t - last < 50) return;           // ~20 fps
+      last = t;
+      ctx.globalAlpha = 0.08;               // fade previous frames into the ground
+      ctx.fillStyle = ground;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = accent;
+      ctx.font = `${size}px monospace`;
+      for (let i = 0; i < drops.length; i++) {
+        const y = drops[i] * size;
+        if (y > 0) ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * size, y);
+        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    };
+    frame = requestAnimationFrame(draw);
+
+    let timer: number | undefined;
+    window.addEventListener('resize', () => { clearTimeout(timer); timer = window.setTimeout(resize, 200); });
+    document.addEventListener('visibilitychange', () => {
+      cancelAnimationFrame(frame);
+      if (!document.hidden) frame = requestAnimationFrame(draw);
+    });
+    // Theme toggle changes data-theme on <html>; pick up the new colours.
+    new MutationObserver(readColours).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+</script>
+
+<style>
+  .matrix {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: var(--matrix-opacity);
+    pointer-events: none;
+  }
+  @media print { .matrix { display: none; } }
+</style>
