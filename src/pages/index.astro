@@ -1,11 +1,70 @@
 ---
-// Homepage. Step 2 fills in the sections below the hero.
 import Base from '../layouts/Base.astro';
 import BootScreen from '../components/BootScreen.astro';
 import Hero from '../components/Hero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import TalkItem from '../components/TalkItem.astro';
 import { frontmatter as home } from '../content/copy/home.md';
+import { papers, projects, articles, talks, isPending, monthYear, isoDate } from '../data/content';
+
+const s = home.sections;
+const recentTalks = talks.filter((t) => !isPending(t.date)).slice(0, 4);
 ---
 <Base description={home.description}>
   <BootScreen />
   <Hero name={home.name} title={home.title} typed={home.typed} location={home.location} actions={home.actions} />
+
+  <section class="wrap section">
+    <SectionHead title={s.research.title} more={{ href: s.research.more }} />
+    <ol class="dated">
+      {papers.map((p) => (
+        <li>
+          <time datetime={isoDate(p.date)}>{monthYear(p.date)}</time>
+          <div>
+            <h3><a href={`/research/${p.slug}`}>{p.title}</a></h3>
+            <p>{p.summary}</p>
+            <div class="links"><span class="status">{p.status} · v{p.version}</span></div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead title={s.projects.title} more={{ href: s.projects.more }} />
+    <ol class="index">
+      {projects.map((p) => (
+        <li>
+          <div>
+            <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
+            <p>{p.description}</p>
+            <ul class="tags" style="margin-top:0.9rem">{p.tags.map((t) => <li class="tag">{t}</li>)}</ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead title={s.writing.title} more={{ href: s.writing.more }} />
+    <ol class="dated">
+      {articles.slice(0, 3).map((a) => (
+        <li>
+          <time datetime={isoDate(a.date)}>{monthYear(a.date)}</time>
+          <div>
+            <h3><a href={a.url}>{a.title}</a></h3>
+            <p>{a.summary}</p>
+            <div class="links"><a href={a.url}>{a.link_label} →</a></div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <SectionHead title={s.talks.title} more={{ href: s.talks.more }} />
+    <ol class="dated">
+      {recentTalks.map((t) => <TalkItem talk={t} />)}
+    </ol>
+  </section>
 </Base>

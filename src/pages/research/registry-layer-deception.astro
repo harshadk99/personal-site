@@ -1,0 +1,131 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Content, frontmatter as paper, getHeadings } from '../../content/research/registry-layer-deception.md';
+import { papers, isPending } from '../../data/content';
+
+const meta = papers.find((p) => p.slug === 'registry-layer-deception')!;
+const sections = getHeadings().filter((h) => h.depth === 2);
+const pdf = isPending(meta.links.pdf) ? null : meta.links.pdf;
+const doi = isPending(meta.links.doi) ? null : meta.links.doi;
+---
+<Base title={paper.title} description={meta.summary}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: paper.title,
+      alternativeHeadline: paper.subtitle,
+      author: { '@type': 'Person', name: paper.author, url: 'https://harshadsadashivkadam.com' },
+      datePublished: String(meta.date),
+      version: meta.version,
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      abstract: meta.summary,
+    })} />
+  </Fragment>
+
+  <div class="wrap paper-shell">
+    <nav class="toc" aria-label="Contents">
+      <span class="eyebrow">Contents</span>
+      <ol>{sections.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+    </nav>
+
+    <article class="paper">
+      <header class="masthead">
+        <span class="status">Draft · v{meta.version}</span>
+        <h1>{paper.title}</h1>
+        <p class="subtitle">{paper.subtitle}</p>
+        <dl class="facts">
+          <dt>Author</dt><dd>{paper.author}</dd>
+          <dt>Version</dt><dd>{paper.version} · {paper.date}</dd>
+          <dt>License</dt><dd>{paper.license}</dd>
+          {doi && (<><dt>DOI</dt><dd><a href={doi}>{doi}</a></dd></>)}
+        </dl>
+        {pdf && <div class="actions"><a class="btn" href={pdf}>Download PDF</a></div>}
+        <p class="note">{paper.note}</p>
+      </header>
+
+      <div class="body">
+        <Content />
+      </div>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .paper-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-block: var(--space-section);
+  }
+  @media (min-width: 64rem) {
+    .paper-shell { grid-template-columns: 13rem minmax(0, 1fr); }
+  }
+
+  .toc { display: none; }
+  @media (min-width: 64rem) {
+    .toc {
+      display: block;
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+      max-height: calc(100vh - 7rem);
+      overflow-y: auto;
+    }
+  }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+  .toc a {
+    display: block;
+    padding: 0.3rem 0 0.3rem 0.75rem;
+    border-left: 2px solid var(--rule);
+    font: 400 0.8125rem / 1.35 var(--sans);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .toc a:hover { color: var(--ink); border-left-color: var(--accent); }
+
+  .paper { max-width: 44rem; min-width: 0; }
+  .masthead { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1rem; }
+  .masthead h1 { font-size: var(--step-4); line-height: 1.08; letter-spacing: -0.025em; margin: 1rem 0 0.75rem; }
+  .subtitle { font-size: var(--step-1); color: var(--ink-soft); margin-bottom: 1.75rem; }
+  .masthead .actions { margin-top: 1.5rem; }
+  .note {
+    margin: 1.75rem 0 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--rule);
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  /* Paper body: rendered from Markdown, so styles reach in with :global */
+  .body :global(h2) {
+    font-size: var(--step-2);
+    margin: 3.5rem 0 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: 5.5rem;
+  }
+  .body :global(h3) { font-size: var(--step-1); margin: 2.25rem 0 0.75rem; color: var(--ink); scroll-margin-top: 5.5rem; }
+  .body :global(p), .body :global(li) { color: var(--ink-soft); }
+  .body :global(ul), .body :global(ol) { padding-left: 1.4em; margin: 0 0 1.25em; }
+  .body :global(li) { margin-bottom: 0.5rem; }
+  .body :global(li::marker) { color: var(--muted); }
+  .body :global(strong) { color: var(--ink); font-weight: 600; }
+  .body :global(hr) { display: none; }
+  .body :global(blockquote) {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
+    color: var(--muted);
+  }
+  .body :global(img) {
+    display: block;
+    width: 100%;
+    max-width: 34rem;
+    margin: 2rem auto 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: #fff;
+  }
+  .body :global(a) { overflow-wrap: anywhere; }
+</style>

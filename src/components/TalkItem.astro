@@ -1,0 +1,24 @@
+---
+import type { Talk } from '../data/content';
+import { isoDate, monthYear } from '../data/content';
+
+interface Props { talk: Talk }
+const { talk } = Astro.props;
+const date = monthYear(talk.date);
+const video = talk.links.find((l) => l.video);
+---
+<li>
+  {date ? <time datetime={isoDate(talk.date)}>{date}</time> : <span class="when">—</span>}
+  <div>
+    <h3>{video ? <a href={video.url}>{talk.title}</a> : talk.title}</h3>
+    <p>{talk.event} · {talk.location}</p>
+    {talk.summary && <p>{talk.summary}</p>}
+    {talk.links.length > 0 && (
+      <div class="links">
+        {talk.links.map((l) => (
+          <a href={l.url}>{l.video ? `▶ ${l.label}` : l.label}{l.host ? ` · ${l.host}` : ''}</a>
+        ))}
+      </div>
+    )}
+  </div>
+</li>

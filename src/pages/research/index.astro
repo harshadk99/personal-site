@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { papers, isPending, monthYear, isoDate } from '../../data/content';
+
+// Only links that exist yet; [TBC] placeholders are skipped.
+const LINK_LABELS: Record<string, string> = { pdf: 'PDF', doi: 'DOI', github: 'GitHub', recording: 'Recording' };
+const linksFor = (links: Record<string, string>) =>
+  Object.entries(links).filter(([k, v]) => LINK_LABELS[k] && !isPending(v));
+---
+<Base title="Research" description="Papers on deception engineering for autonomous AI agents.">
+  <section class="wrap section">
+    <SectionHead level={1} title="Research" />
+    <ol class="dated">
+      {papers.map((p) => (
+        <li>
+          <time datetime={isoDate(p.date)}>{monthYear(p.date)}</time>
+          <div>
+            <h3><a href={`/research/${p.slug}`}>{p.title}</a></h3>
+            <p class="subtitle">{p.subtitle}</p>
+            <p>{p.summary}</p>
+            <div class="links">
+              <span class="status">{p.status} · v{p.version}</span>
+              <a href={`/research/${p.slug}`}>Read →</a>
+              {linksFor(p.links).map(([k, v]) => <a href={v}>{LINK_LABELS[k]}</a>)}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .subtitle { color: var(--muted); font-style: italic; }
+  .links { align-items: center; }
+</style>
