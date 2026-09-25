@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import TalkItem from '../components/TalkItem.astro';
+import { talksMeta, upcomingTalks, pastTalks, byYear, talkKey } from '../data/content';
+
+const years = byYear(pastTalks, talkKey);
+---
+<Base title="Talks" description={talksMeta.intro}>
+  <section class="wrap section">
+    <SectionHead level={1} eyebrow="Talks" title={talksMeta.heading} />
+    <p class="lede">{talksMeta.intro}</p>
+    <div class="links" style="margin-top:1rem"><a href={talksMeta.sessionize.url}>{talksMeta.sessionize.label} →</a></div>
+  </section>
+
+  {upcomingTalks.length > 0 && (
+    <section class="wrap section">
+      <h2 class="eyebrow">Upcoming</h2>
+      <ol class="dated">{upcomingTalks.map((t) => <TalkItem talk={t} showKind />)}</ol>
+    </section>
+  )}
+
+  {years.map((y) => (
+    <section class="wrap section">
+      <h2 class="eyebrow">{y.year}</h2>
+      <ol class="dated">{y.items.map((t) => <TalkItem talk={t} showKind />)}</ol>
+    </section>
+  ))}
+</Base>

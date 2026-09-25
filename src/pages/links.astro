@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { profiles } from '../data/content';
+---
+<Base title="Links" description="Where to find Harshad Sadashiv Kadam online.">
+  <section class="wrap section">
+    <SectionHead level={1} eyebrow="Links" title="Profiles" />
+    <ol class="index">
+      {profiles.map((p) => (
+        <li>
+          <div>
+            <h3><a href={p.url}>{p.label}</a></h3>
+            <p class="meta">{p.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>

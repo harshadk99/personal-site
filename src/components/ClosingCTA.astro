@@ -1,31 +1,28 @@
 ---
-import { site } from '../data/site';
+// "Connect With Me" block on every page; text from src/content/copy/cta.md.
+import TerminalWindow from './TerminalWindow.astro';
+import { frontmatter as cta } from '../content/copy/cta.md';
+const tel = cta.phone ? `tel:${cta.phone.replace(/[^+\d]/g, '')}` : '';
 ---
-<section class="closing wrap" aria-labelledby="closing-title">
-  <div class="panel">
-    <h2 id="closing-title" class="statement">Building detection for AI agents?</h2>
-    <p>
-      I'm glad to compare notes on deception engineering, speak at your event, or talk
-      through a problem you're stuck on. If I'm not the right person, I'll say so.
-    </p>
-    <a class="email" href={`mailto:${site.email}`}>{site.email}</a>
-  </div>
+<section class="closing wrap" id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="statement glitch">{cta.title.replace(/[.]$/, '')}<span class="caret-blink" aria-hidden="true"></span></h2>
+  <p class="lede">{cta.body}</p>
+  <TerminalWindow title="contact.sh">
+    <dl class="facts">
+      <dt>Email</dt><dd><a href={`mailto:${cta.email}`}>{cta.email}</a></dd>
+      {cta.phone && (<><dt>Phone</dt><dd><a href={tel}>{cta.phone}</a></dd></>)}
+      <dt>Location</dt><dd>{cta.location}</dd>
+      {cta.links.map((l: { label: string; url: string }) => (<><dt>{l.url.includes('linkedin') ? 'LinkedIn' : 'GitHub'}</dt><dd><a href={l.url}>{l.label}</a></dd></>))}
+    </dl>
+  </TerminalWindow>
 </section>
 
 <style>
-  .closing { padding-block: var(--space-section); }
-  .panel {
+  .closing {
+    padding-block: var(--space-section);
     border-top: 1px solid var(--rule);
-    padding-top: 2.5rem;
-    max-width: var(--prose);
+    margin-top: var(--space-section);
   }
-  .statement { margin-bottom: 1rem; }
-  p { color: var(--ink-soft); }
-  .email {
-    font: 500 var(--step-1) / 1.3 var(--mono);
-    color: var(--accent);
-    text-decoration: none;
-    overflow-wrap: anywhere;
-  }
-  .email:hover { text-decoration: underline; }
+  .statement { margin-bottom: 0.75rem; }
+  .lede { margin-bottom: 1.75rem; }
 </style>

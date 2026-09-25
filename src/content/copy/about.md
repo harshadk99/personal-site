@@ -11,8 +11,15 @@ title: "Hello, I'm Harshad."
 facts:
   - { label: "Location", value: "Austin, Texas" }
   - { label: "Full time", value: "Senior Security Infrastructure Engineer at Indeed" }
-  - { label: "Community", value: "Founder & Chapter Lead, AI Security Engineers — Austin", href: "https://www.meetup.com/ai-security-engineers-austin-tx/" }
+  - { label: "Community", value: "Founder & Chapter Lead, AI Security Engineers — Austin", href: "https://www.aiseceng.io/chapters/aiseceng-austin/" }
   - { label: "Contact", value: "harshad.surfer@gmail.com", href: "mailto:harshad.surfer@gmail.com" }
+
+# Judging/mentoring intentionally left off the site (user, Sept 24, 2026):
+# not about the two focus areas; kept in the EB-1A evidence folder instead.
+
+# "Where others have written about this work" — listed from recognition.yaml.
+recognition:
+  heading: "Elsewhere"
 
 resume:
   label: "Download Resume"

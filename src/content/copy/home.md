@@ -14,7 +14,7 @@ typed:
 
 actions:
   - label: "Get In Touch"
-    href: "/about#contact"
+    href: "#contact"
     primary: true
   - label: "Download Resume"
     href: "/Harshad_Sadashiv_Kadam_Resume.pdf"

@@ -1,18 +1,31 @@
 ---
 import type { Talk } from '../data/content';
-import { isoDate, monthYear } from '../data/content';
+import { isPending, isoDate, monthYear, talkKey, tracks, talksMeta } from '../data/content';
 
-interface Props { talk: Talk }
-const { talk } = Astro.props;
-const date = monthYear(talk.date);
+interface Props { talk: Talk; showKind?: boolean }
+const { talk, showKind = false } = Astro.props;
+
+// Unknown month: show just the year; unknown title: lead with the event.
+const date = monthYear(talk.date) || talkKey(talk).slice(0, 4);
+const titled = !isPending(talk.title);
 const video = talk.links.find((l) => l.video);
+const upcoming = talk.status === 'upcoming';
 ---
 <li>
-  {date ? <time datetime={isoDate(talk.date)}>{date}</time> : <span class="when">—</span>}
+  <time datetime={isoDate(talk.date)}>{date}</time>
   <div>
-    <h3>{video ? <a href={video.url}>{talk.title}</a> : talk.title}</h3>
-    <p>{talk.event} · {talk.location}</p>
+    {upcoming && <span class="status is-live">Upcoming</span>}
+    <h3 class:list={{ spaced: upcoming }}>
+      {titled
+        ? (video ? <a href={video.url}>{talk.title}</a> : talk.title)
+        : talk.event}
+    </h3>
+    <p>{titled ? `${talk.event} · ${talk.location}` : talk.location}</p>
     {talk.summary && <p>{talk.summary}</p>}
+    <ul class="tags meta-tags">
+      {talk.track && <li class="tag">{tracks[talk.track]}</li>}
+      {showKind && talksMeta.kinds[talk.kind] && <li class="tag">{talksMeta.kinds[talk.kind]}</li>}
+    </ul>
     {talk.links.length > 0 && (
       <div class="links">
         {talk.links.map((l) => (
@@ -22,3 +35,9 @@ const video = talk.links.find((l) => l.video);
     )}
   </div>
 </li>
+
+<style>
+  .spaced { margin-top: 0.5rem; }
+  .meta-tags { margin-top: 0.75rem; }
+  .meta-tags:empty { display: none; }
+</style>

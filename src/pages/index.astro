@@ -4,13 +4,15 @@ import BootScreen from '../components/BootScreen.astro';
 import Hero from '../components/Hero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import TalkItem from '../components/TalkItem.astro';
+import PersonSchema from '../components/PersonSchema.astro';
 import { frontmatter as home } from '../content/copy/home.md';
-import { papers, projects, articles, talks, isPending, monthYear, isoDate } from '../data/content';
+import { papers, projectsByTrack, articles, pastTalks, upcomingTalks, monthYear, isoDate } from '../data/content';
 
 const s = home.sections;
-const recentTalks = talks.filter((t) => !isPending(t.date)).slice(0, 4);
+const recentTalks = [...upcomingTalks, ...pastTalks].slice(0, 5);
 ---
 <Base description={home.description}>
+  <PersonSchema slot="head" />
   <BootScreen />
   <Hero name={home.name} title={home.title} typed={home.typed} location={home.location} actions={home.actions} />
 
@@ -32,17 +34,22 @@ const recentTalks = talks.filter((t) => !isPending(t.date)).slice(0, 4);
 
   <section class="wrap section">
     <SectionHead title={s.projects.title} more={{ href: s.projects.more }} />
-    <ol class="index">
-      {projects.map((p) => (
-        <li>
-          <div>
-            <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
-            <p>{p.description}</p>
-            <ul class="tags" style="margin-top:0.9rem">{p.tags.map((t) => <li class="tag">{t}</li>)}</ul>
-          </div>
-        </li>
-      ))}
-    </ol>
+    {projectsByTrack.map((group) => (
+      <div class="track">
+        <h3 class="eyebrow">{group.label}</h3>
+        <ol class="index">
+          {group.items.map((p) => (
+            <li>
+              <div>
+                <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
+                <p>{p.description}</p>
+                <ul class="tags" style="margin-top:0.9rem">{p.tags.map((t) => <li class="tag">{t}</li>)}</ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
   </section>
 
   <section class="wrap section">
@@ -53,7 +60,7 @@ const recentTalks = talks.filter((t) => !isPending(t.date)).slice(0, 4);
           <time datetime={isoDate(a.date)}>{monthYear(a.date)}</time>
           <div>
             <h3><a href={a.url}>{a.title}</a></h3>
-            <p>{a.summary}</p>
+            {a.summary && <p>{a.summary}</p>}
             <div class="links"><a href={a.url}>{a.link_label} →</a></div>
           </div>
         </li>
@@ -68,3 +75,8 @@ const recentTalks = talks.filter((t) => !isPending(t.date)).slice(0, 4);
     </ol>
   </section>
 </Base>
+
+<style>
+  .track + .track { margin-top: 2.5rem; }
+  .track > .eyebrow { margin-bottom: 1rem; }
+</style>

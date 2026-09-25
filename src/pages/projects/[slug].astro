@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import TalkItem from '../../components/TalkItem.astro';
+import TerminalWindow from '../../components/TerminalWindow.astro';
+import { projects, tracks, talks, citations, monthYear, isoDate } from '../../data/content';
+import type { Project } from '../../data/content';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const projectTalks = talks.filter((t) => project.talks?.includes(t.id));
+const cited = citations.filter((c) => c.about_project === project.slug);
+const repoPath = project.repo.replace('https://github.com/', '');
+---
+<Base title={project.name} description={project.description}>
+  <section class="wrap section">
+    <span class="eyebrow">{tracks[project.track]}</span>
+    <h1 class="display glitch">{project.name}<span class="caret-blink" aria-hidden="true"></span></h1>
+    <p class="lede" style="margin-top:1.25rem">{project.description}</p>
+    <ul class="tags" style="margin-top:1.25rem">{project.features.map((f) => <li class="tag">{f}</li>)}</ul>
+
+    <div class="summary">
+      <TerminalWindow title={`${project.slug}.sh`}>
+        <dl class="facts">
+          <dt>Status</dt><dd>Open source</dd>
+          <dt>Since</dt><dd><time datetime={isoDate(project.released)}>{monthYear(project.released)}</time></dd>
+          <dt>Built with</dt><dd>{project.tags.join(' · ')}</dd>
+          <dt>Source</dt><dd><a href={project.repo}>{repoPath}</a></dd>
+        </dl>
+      </TerminalWindow>
+    </div>
+    <div class="actions" style="margin-top:1.5rem">
+      <a class="btn btn-primary" href={project.repo}>View Repository</a>
+    </div>
+  </section>
+
+  {projectTalks.length > 0 && (
+    <section class="wrap section">
+      <SectionHead title="Talks" more={{ href: '/talks', label: 'All talks' }} />
+      <ol class="dated">{projectTalks.map((t) => <TalkItem talk={t} />)}</ol>
+    </section>
+  )}
+
+  {cited.length > 0 && (
+    <section class="wrap section">
+      <SectionHead title="Elsewhere" />
+      <ol class="dated">
+        {cited.map((c) => (
+          <li>
+            <time datetime={isoDate(c.date)}>{monthYear(c.date)}</time>
+            <div>
+              <h3><a href={c.url}>{c.heading}</a></h3>
+              <p>{c.description}</p>
+              <div class="links"><a href={c.url}>{c.link_label} →</a></div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+</Base>
+
+<style>
+  .summary { margin-top: 2rem; }
+</style>

@@ -20,8 +20,11 @@ export interface Paper {
   links: Record<string, string>;
 }
 
+export type Track = 'deception' | 'edge';
+
 export interface Project {
   slug: string;
+  track: Track;
   name: string;
   description: string;
   features: string[];
@@ -39,6 +42,8 @@ export interface Talk {
   location: string;
   date: string;
   kind: string;
+  track?: Track;
+  status?: string;
   summary?: string;
   links: Link[];
 }
@@ -72,7 +77,14 @@ export const isPending = (v: unknown) => typeof v === 'string' && v.trim().start
 
 const research = load<{ papers: Paper[] }>(researchRaw);
 export const papers = research.papers;
-export const projects = load<Project[]>(projectsRaw);
+const projectsDoc = load<{ tracks: Record<Track, string>; projects: Project[] }>(projectsRaw);
+export const tracks = projectsDoc.tracks;
+export const projects = projectsDoc.projects;
+export const projectsByTrack = (Object.keys(tracks) as Track[]).map((t) => ({
+  track: t,
+  label: tracks[t],
+  items: projects.filter((p) => p.track === t),
+}));
 
 const talksDoc = load<{
   heading: string;
@@ -83,18 +95,42 @@ const talksDoc = load<{
 }>(talksRaw);
 export const talksMeta = talksDoc;
 
-/** Newest first; talks with an unknown date keep their place from the file. */
-export const talks = talksDoc.talks;
+/** Sort key: known dates as-is; pending dates fall back to the year in the
+ *  event name (e.g. "BSides Chicago 2025" -> "2025-00"), so they still land
+ *  in the right year. */
+function sortKey(date: string, fallbackText = ''): string {
+  if (!isPending(date)) return String(date);
+  const year = fallbackText.match(/20\d\d/)?.[0];
+  return year ? `${year}-00` : '0000';
+}
+const newestFirst = <T>(items: T[], key: (x: T) => string) =>
+  [...items].sort((a, b) => key(b).localeCompare(key(a)));
 
-export const articles = load<Article[]>(writingRaw);
-export const citations = load<Citation[]>(recognitionRaw);
+export const talkKey = (t: Talk) => sortKey(t.date, t.event);
+/** Newest first. */
+export const talks = newestFirst(talksDoc.talks, talkKey);
+export const upcomingTalks = talks.filter((t) => t.status === 'upcoming');
+export const pastTalks = talks.filter((t) => t.status !== 'upcoming');
+
+export const articles = newestFirst(load<Article[]>(writingRaw), (a) => sortKey(a.date));
+export const citations = newestFirst(load<Citation[]>(recognitionRaw), (c) => sortKey(c.date));
+
+/** Group items by year, newest year first. */
+export function byYear<T>(items: T[], key: (x: T) => string): { year: string; items: T[] }[] {
+  const groups = new Map<string, T[]>();
+  for (const item of items) {
+    const year = key(item).slice(0, 4);
+    groups.set(year, [...(groups.get(year) ?? []), item]);
+  }
+  return [...groups].map(([year, list]) => ({ year, items: list }));
+}
 export const profiles = load<{ label: string; url: string }[]>(profilesRaw);
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /** "2026-06-11" or "2026-06" -> "Jun 2026". Pending dates render as "". */
 export function monthYear(date: string): string {
-  if (isPending(date)) return '';
+  if (isPending(date) || !date) return '';
   const [y, m] = String(date).split('-');
   return m ? `${MONTHS[Number(m) - 1]} ${y}` : y;
 }

@@ -1,7 +1,9 @@
 # VERBATIM from the current site's "Speaking Engagements" section, Sept 24, 2026.
 # Dates are data for sorting (sources: current site, Sessionize, paper).
-# Not on the current site, so left out for now (see git commit 5302de0):
-# OWASP LASCON 2026 (upcoming) and Austin ACM/IEEE Meetup TechTalks (Jan 2026).
+# Additions beyond the current site (Sept 24, 2026): OWASP LASCON 2026
+# (Sessionize, paper Section 13) and Austin ACM/IEEE TechTalks (Sessionize).
+# Dates also from the EB-1A evidence inventory (Google Drive).
+# track: deception | edge (from the project the talk presents).
 heading: "Speaking Engagements"
 intro: "Talks, panels, and sessions where I've shared insights on Zero Trust, Cloud Security, and AI-native Defense."
 sessionize: { label: "View Full Speaker Profile on Sessionize", url: "https://sessionize.com/harshad-sadashiv-kadam/" }
@@ -10,14 +12,45 @@ kinds:
   vendor: "Vendor Flagship Conferences"
   global: "Global Security Conferences"
   community: "Tech Talks & Community Events"
+  media: "Podcasts & Interviews"
 
 talks:
+  - id: lascon-2026
+    status: upcoming
+    title: "[TBC: talk title]"
+    event: "OWASP LASCON 2026"
+    location: "Austin, TX"
+    date: 2026-10-29
+    kind: conference
+    track: deception
+    links: []
+
+  - id: acm-ieee-austin-2026
+    title: "The Edge Never Sleeps, and Neither Does Your Drift"
+    event: "ACM/IEEE Austin Tech Talks"
+    location: "Austin, TX"
+    date: 2026-08-26   # slide deck + Meetup event page (Drive)
+    kind: community
+    track: edge
+    links:
+      - { label: "Event page", url: "https://www.meetup.com/acm-austin/events/315775862/" }
+
+  - id: distilled-security-2026
+    title: "Catching Cloud Drift & Rogue AI Agents — Road to BSidesPGH 2026"
+    event: "Distilled Security Podcast"
+    location: "Interview"
+    date: 2026-07-06   # YouTube publish date
+    kind: media
+    links:
+      - { label: "Watch", url: "https://youtu.be/4xp0_TZp99w", video: true, host: "Distilled Security Podcast" }
+
   - id: bsidespgh-2026-incubator
     title: "MCP Deception Incubator — Honeytraps as a Framework for Zero Trust AI Environments"
     event: "BSidesPGH 2026"
     location: "Pittsburgh, PA"
-    date: 2026-07
+    date: 2026-07-10   # EB-1A inventory
     kind: conference
+    track: deception
     links:
       - { label: "Event Schedule", url: "https://www.bsidespgh.com/schedule" }
 
@@ -25,8 +58,9 @@ talks:
     title: "Edge Never Sleeps: FlareGuard and Continuous Cloudflare Posture Validation"
     event: "BSidesPGH 2026"
     location: "Pittsburgh, PA"
-    date: 2026-07
+    date: 2026-07-10
     kind: conference
+    track: edge
     links:
       - { label: "Event Schedule", url: "https://www.bsidespgh.com/schedule" }
 
@@ -36,6 +70,7 @@ talks:
     location: "Boulder, CO"
     date: 2026-06-13   # SOURCE: paper.md Section 9
     kind: conference
+    track: deception
     links:
       - { label: "Event Schedule", url: "https://bsidesboulder.org/schedule" }
 
@@ -43,8 +78,9 @@ talks:
     title: "MCP Deception Incubator — Honeytraps as a Framework for Zero Trust AI Environments"
     event: "IntelliC0N 2026"
     location: "Austin, TX"
-    date: "[TBC: month]"
+    date: 2026-02-06   # Eventbrite + slide deck (Drive)
     kind: conference
+    track: deception
     links:
       - { label: "Speaker Page", url: "https://www.intelliguards.com/intellic0n-speakers" }
 
@@ -54,7 +90,8 @@ talks:
     location: "Online"
     date: 2026-03-24
     kind: vendor
-    summary: "Sharing practical experiences from implementing customized SASE, MCP server security, and custom security tooling built on Cloudflare's developer platform — featured and promoted by Cloudflare (1.1M+ followers)."
+    track: edge
+    summary: "Sharing practical experiences from implementing customized SASE, MCP server security, and custom security tooling built on Cloudflare's developer platform."
     links:
       - { label: "Watch On-Demand", url: "https://cloudflare.registration.goldcast.io/webinar/0fc9b454-e9a7-4ba8-b7f5-c4f40e50972b", video: true }
 
@@ -64,6 +101,7 @@ talks:
     location: "Global Virtual"
     date: 2026-02
     kind: global
+    track: deception
     links:
       - { label: "Event Recording", url: "https://youtu.be/amS0icidxOs", video: true, host: "OWASP Foundation" }
       - { label: "Session Page", url: "https://owasp25thanniversaryvirtual.sched.com/event/2Djni/mcp-deception-incubator-honeytraps-as-a-framework-for-zero-trust-ai-environments-track-2" }
@@ -74,8 +112,10 @@ talks:
     location: "Livestream"
     date: 2026-01-29
     kind: community
+    track: deception
     links:
       - { label: "Watch Recording", url: "https://youtu.be/DEAI84LkngQ", video: true, host: "AI Security Engineers Community" }
+
 
   - id: isaca-austin-2025
     title: "Real-Time Edge Posture: Detecting Misconfigurations Before They Become Breaches"
@@ -83,6 +123,7 @@ talks:
     location: "Austin, TX"
     date: 2025-12-15
     kind: community
+    track: edge
     links:
       - { label: "ISACA Austin Chapter", url: "https://engage.isaca.org/austinchapter/home" }
 
@@ -92,6 +133,7 @@ talks:
     location: "Austin, TX"
     date: 2025-12
     kind: community
+    track: edge
     links:
       - { label: "Event Writeup", url: "https://nickgray.net/cloudflare-workers-tech-talks/" }
 
@@ -101,6 +143,7 @@ talks:
     location: "Fort Myers, FL"
     date: 2025-11
     kind: conference
+    track: edge
     links:
       - { label: "Event Schedule", url: "https://bsidesswfl.org/schedule" }
       - { label: "Speaker Page", url: "https://bsidesswfl.org/speakers" }
@@ -111,6 +154,7 @@ talks:
     location: "Fort Myers, FL"
     date: 2025-11
     kind: conference
+    track: deception
     links:
       - { label: "Event Schedule", url: "https://bsidesswfl.org/schedule" }
       - { label: "Speaker Page", url: "https://bsidesswfl.org/speakers" }
@@ -121,6 +165,7 @@ talks:
     location: "Chicago, IL"
     date: "[TBC: Sessionize says October 2025; your paper says November 2025]"
     kind: conference
+    track: deception
     links:
       - { label: "Event Schedule", url: "https://bsideschicago.org/schedule/" }
       - { label: "Speaker Page", url: "https://bsideschicago.org/speakers/" }
@@ -131,6 +176,7 @@ talks:
     location: "Global Virtual"
     date: "[TBC: month — the recording was published Oct 22, 2025]"
     kind: global
+    track: deception
     links:
       - { label: "Event Recording", url: "https://youtu.be/mXiTIMMByxE", video: true, host: "AI Security Engineers Community" }
       - { label: "Speaker Page", url: "https://snyk.io/events/devseccon/" }
@@ -141,6 +187,7 @@ talks:
     location: "Las Vegas, NV"
     date: "[TBC: month]"
     kind: vendor
+    track: deception
     links:
       - { label: "Event Schedule", url: "https://events.cloudflare.com/connect/2025/sessions/3289791" }
       - { label: "Speaker Page", url: "https://events.cloudflare.com/connect/2025/speakers/1806309" }
@@ -151,6 +198,7 @@ talks:
     location: "Orlando, FL"
     date: 2025-09
     kind: conference
+    track: deception
     links:
       - { label: "Event Recording", url: "https://youtu.be/aleUOMi73fA", video: true, host: "BSides Orlando" }
       - { label: "Event Schedule", url: "https://bsidesorlando.org/schedule/" }

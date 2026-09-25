@@ -2,6 +2,30 @@
 # Heading on the current site: "External Coverage".
 # `description` is the current site's text.
 
+- id: distilled-security
+  heading: "Distilled Security Podcast — \"Catching Cloud Drift & Rogue AI Agents\""
+  date: 2026-07-06
+  url: "https://youtu.be/4xp0_TZp99w"
+  description: >-
+    Interview ahead of BSidesPGH 2026 on cloud misconfiguration drift and
+    detecting AI agents that discover and invoke internal tools.
+  link_label: "Watch on YouTube"
+  # SOURCE: YouTube page, checked Sept 24, 2026.
+
+- id: techtarget
+  heading: "TechTarget — \"Tape's strategic role in modern data protection\""
+  date: 2026-05-01
+  url: "https://www.techtarget.com/searchdatabackup/feature/Why-tape-based-backup-is-making-a-comeback"
+  description: >-
+    Feature by Mary K. Pratt, quoting Harshad as a member of ISACA's Emerging
+    Trends Working Group: "Low-cost disk and public cloud shifted enterprise
+    backup architectures away from tape. Organizations looked at cloud
+    services not just for day-to-day computing and data processing, but also
+    for backup storage."
+  link_label: "Read on TechTarget"
+  # SOURCE: verified against the live page Sept 24, 2026; interview arranged
+  # through ISACA (EB-1A inventory).
+
 - id: thinkst
   heading: "Thinkst — \"One for all the models out there!\""
   date: 2026-06-22
@@ -22,24 +46,13 @@
   url: "https://zeltser.com/decoy-mcp-server-honeypot"
   description: >-
     Independent citation by Lenny Zeltser — SANS Institute Faculty Fellow and
-    creator of REMnux — who cited Harshad's Deception Remote MCP Server by name
-    as the reference implementation for a public-facing MCP honeypot.
-  # [TBC: ACCURACY — the article does not say "reference implementation". Its
-  # actual words: "Harshad Sadashiv Kadam's Deception Remote MCP Server takes
-  # that approach for a public-facing honeypot any MCP client can discover and
-  # connect to." Fix before launch.]
+    creator of REMnux — who cited Harshad's Deception Remote MCP Server by name:
+    "Harshad Sadashiv Kadam's Deception Remote MCP Server takes that approach
+    for a public-facing honeypot any MCP client can discover and connect to."
+  # Corrected Sept 24, 2026: the old site said "as the reference
+  # implementation", which the article does not say. Quote checked verbatim.
   link_label: "Read on zeltser.com"
   about_project: mcp-threat-trap
-
-- id: ai-sec-eng-show-tell
-  heading: "Show and Tell — What are you building with AI & how are you securing it using MCP Threat Trap"
-  date: 2026-01
-  url: "https://www.youtube.com/live/DEAI84LkngQ"
-  description: >-
-    Live Show & Tell session for the AI Security Engineers Community
-    demonstrating Prompt Injector and MCP Threat Trap — deception engineering
-    techniques for AI-native threat detection in Zero Trust environments.
-  link_label: "Watch on YouTube"
 
 - id: nickgray
   heading: "Cloudflare Workers Tech Talks — FlareGuard: Automating Security Posture at the Edge"

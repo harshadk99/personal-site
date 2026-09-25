@@ -1,6 +1,22 @@
 # VERBATIM from the current site's "My Articles" section, Sept 24, 2026.
-# The two July 2026 SC Media articles aren't on the current site, so they're
-# left out for now (URLs are in git history: commit 5302de0).
+# The two July 2026 SC Media bylines were added Sept 24, 2026 (not on the
+# current site); scworld.com blocks automated readers, so no summary yet.
+
+- id: scmedia-safety-training-2026
+  title: "The best defense against an AI attacker might be its own safety training"
+  where: "SC Media"
+  date: 2026-07-30
+  url: "https://www.scworld.com/perspective/the-best-defense-against-an-ai-attacker-might-be-its-own-safety-training"
+  summary: ""
+  link_label: "Read on SC Media"
+
+- id: scmedia-edge-witness-2026
+  title: "Your edge infrastructure has no witness"
+  where: "SC Media"
+  date: 2026-07-07
+  url: "https://www.scworld.com/perspective/your-edge-infrastructure-has-no-witness"
+  summary: ""
+  link_label: "Read on SC Media"
 
 - id: scmedia-agents-intent-2026
   title: "AI Agents are already exploring your network. How do you detect their intent?"
