@@ -5,11 +5,7 @@
   version: "1.1"
   date: 2026-09
   status: "draft"          # becomes "published" once the DOI exists
-  summary: >-
-    Argues that the MCP registry, not the single decoy token, should be the
-    unit of deception: real and decoy MCP servers side by side behind one
-    gateway portal, with a two-stage boundary that separates an agent finding
-    a credential from an agent using it.
+  summary: "Real and decoy MCP servers side by side in one portal, with a two-stage alert: a credential retrieved, then a credential used."
   # SOURCE: agentic-deception-white-paper/paper.md, commit 33fbedf
   source: "agentic-deception-white-paper/paper.md"
   links:

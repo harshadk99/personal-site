@@ -1,6 +1,6 @@
 ---
 eyebrow: "About"
-title: "Hello, I'm Harshad."
+title: "About"
 
 facts:
   - { label: "Location", value: "Austin, Texas" }
@@ -82,13 +82,5 @@ I'm a security engineer in Austin. By day I'm a Senior Security Infrastructure
 Engineer at Indeed, working on Zero Trust and SASE. By night I build and
 explore whatever has my curiosity: a jack of all trades, and a master of a few.
 
-Lately most of those nights go to one question: how do you tell an AI agent
-doing its job from one mapping everything it can reach? My answer has been
-deception. In May 2025 I released MCP Threat Trap, an open-source honeypot for
-Model Context Protocol environments. Since then I've turned it into a larger
-idea, deception at the registry layer, where real and decoy MCP servers sit
-side by side and an agent can't tell which ones are bait.
-
-I write about this for SC Media, speak at security conferences, and founded
-the Austin chapter of AI Security Engineers. If you're working on the same
-problem, I'd like to hear from you.
+Lately that's deception for AI agents: decoys no legitimate process should
+touch, so the touch itself is the alert.

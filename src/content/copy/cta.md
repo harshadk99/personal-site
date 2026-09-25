@@ -1,8 +1,5 @@
 ---
-title: "Building detection for AI agents?"
-body: >-
-  I'm glad to compare notes on deception engineering, speak at your event, or
-  talk through a problem you're stuck on. If I'm not the right person, I'll
-  say so.
+title: "Get in touch."
+body: "Questions, talks, or working together: email me."
 email: "harshad.surfer@gmail.com"
 ---
