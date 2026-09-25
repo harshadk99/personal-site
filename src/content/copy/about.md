@@ -5,27 +5,19 @@ title: "Hello, I'm Harshad."
 facts:
   - { label: "Location", value: "Austin, Texas" }
   - { label: "Research", value: "Deception engineering for AI agents" }
-  - { label: "Day job", value: "[TBC: see the Indeed note below]" }
+  - { label: "Day job", value: "Senior Security Infrastructure Engineer, Indeed" }
   - { label: "Contact", value: "harshad.surfer@gmail.com", href: "mailto:harshad.surfer@gmail.com" }
 
-# ---------------------------------------------------------------------------
-# INDEED NOTE — decide before launch.
-# The paper says the research is independent and unconnected to any employer.
-# The old site's Indeed section said you "built and scaled MCP Threat Trap"
-# and "initiated and delivered FlareGuard" in that role. The site must say one
-# consistent thing. Two drafts for the bio sentence:
-#
-#   A (recommended): "By day I'm a Senior Security Infrastructure Engineer at
-#      Indeed, working on Zero Trust and SASE. My deception research is
-#      independent: built on my own time and infrastructure, and published
-#      openly."
-#   B: Leave the employer out of the bio entirely and list it only under
-#      Experience, with no mention of MCP Threat Trap or FlareGuard there.
-#
-# Whichever you choose, the Experience entries below avoid claiming the
-# open-source tools as Indeed work until you've decided. Worth a check with
-# your attorney too.
-# ---------------------------------------------------------------------------
+# DAY / NIGHT (decided Sept 24, 2026): name the day job, say nothing about the
+# research being separate; "by night" carries that. Alternatives to the line
+# used in the bio below:
+#   B: "By day, I'm a Senior Security Infrastructure Engineer at Indeed, working
+#      on Zero Trust and SASE. By night, I build things to see how they break.
+#      Jack of all trades, master of a few."
+#   C: "By day I secure infrastructure at Indeed. By night I tinker, build and
+#      explore. Jack of all trades, master of a few."
+# Experience entries below describe Indeed work only; the open-source tools
+# live on the Projects page.
 
 experience:
   - role: "Senior Security Infrastructure Engineer"
@@ -80,19 +72,18 @@ speaker_kit:
   headshot: "/assets/avatar.png"   # [TBC: keep this photo or send a new one]
 ---
 
-I'm a security engineer in Austin. I've spent more than a decade building
-network, cloud and security infrastructure, and these days most of my
-attention goes to one question: how do you tell an AI agent doing its job
-from one mapping everything it can reach?
+I'm a security engineer in Austin. By day I'm a Senior Security Infrastructure
+Engineer at Indeed, working on Zero Trust and SASE. By night I build and
+explore whatever has my curiosity: a jack of all trades, and a master of a few.
 
-My answer has been deception. In May 2025 I released MCP Threat Trap, an
-open-source honeypot for Model Context Protocol environments. Since then I've
-turned it into a larger idea, deception at the registry layer, where real and
-decoy MCP servers sit side by side and an agent can't tell which ones are
-bait. I demonstrated it live at the OWASP 25th Anniversary Conference, and
-Thinkst and Lenny Zeltser have both cited the work.
-
-[TBC: one sentence on your day job — see the Indeed note above.]
+Lately most of those nights go to one question: how do you tell an AI agent
+doing its job from one mapping everything it can reach? My answer has been
+deception. In May 2025 I released MCP Threat Trap, an open-source honeypot for
+Model Context Protocol environments. Since then I've turned it into a larger
+idea, deception at the registry layer, where real and decoy MCP servers sit
+side by side and an agent can't tell which ones are bait. I demonstrated it
+live at the OWASP 25th Anniversary Conference, and Thinkst and Lenny Zeltser
+have both cited the work.
 
 I write about this for SC Media, speak at security conferences, and founded
 the Austin chapter of AI Security Engineers. If you're working on the same
