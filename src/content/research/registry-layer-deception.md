@@ -5,8 +5,8 @@ author: "Harshad Sadashiv Kadam"
 version: "1.1 (draft)"
 date: "September 2026"
 license: "CC BY 4.0"
-note: "This is independent research, conducted on the author's personal infrastructure and personal Cloudflare account. It is not connected to, and does not draw on, any employer's systems, data, or internal tooling. It reflects the author's own views."
-source: "agentic-deception-white-paper/paper.md @ 33fbedf"
+note: "This is independent research, conducted on the author's personal infrastructure and personal Cloudflare account. It does not draw on any employer's systems, data, or internal tooling, and reflects the author's own views."
+source: "agentic-deception-white-paper/paper.md @ c7de5b6"
 ---
 ## Abstract
 
