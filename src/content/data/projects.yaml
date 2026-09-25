@@ -18,8 +18,8 @@
   cited_by: ["zeltser"]          # ids in recognition.yaml
   talks: ["bsides-orlando-2025", "bsides-chicago-2025", "bsides-swfl-2025-threat-trap", "cloudflare-connect-2025", "devseccon-2025", "ai-sec-eng-show-tell-2026"]
 
-- slug: kubernetes-access-portal   # [TBC: slug follows the name you choose]
-  name: "[TBC: one name — options: Agentic Deception Incubator · MCP Kube Trap · KubeTrap · Kubernetes Access Portal]"
+- slug: kubetrap
+  name: "KubeTrap"
   status: "Open source"
   summary: >-
     A decoy Kubernetes access portal served over MCP. Its tools run from

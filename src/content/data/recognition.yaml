@@ -12,7 +12,7 @@
     Using a similar alerting model, Harshad Sadashiv Kadam used our Kubernetes,
     DNS and Web Bug tokens to create an AI honeypot that would alert only after
     a client started using the results from tool calls (check it out!).
-  about_project: kubernetes-access-portal
+  about_project: kubetrap
   checked: 2026-09-24
 
 - id: zeltser
