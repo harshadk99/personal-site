@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Not found" noindex closing={false}>
+  <section class="wrap section notfound">
+    <span class="eyebrow">Error 404</span>
+    <h1 class="display glitch">Access denied: page not found<span class="caret-blink" aria-hidden="true"></span></h1>
+    <p class="typed"><span class="prompt">$</span> ls ./this-page<br /><span class="meta">ls: cannot access './this-page': No such file or directory</span></p>
+    <div class="actions" style="margin-top:2rem">
+      <a class="btn btn-primary" href="/">Back to home</a>
+      <a class="btn" href="/talks">See the talks</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound { min-height: 60vh; }
+  .typed { margin-top: 1.5rem; font: 400 var(--step-0) / 1.7 var(--mono); color: var(--ink); }
+  .prompt { color: var(--signal); margin-right: 0.6rem; }
+</style>
