@@ -19,8 +19,8 @@ const repoPath = project.repo.replace('https://github.com/', '');
   <section class="wrap section">
     <span class="eyebrow">{tracks[project.track]}</span>
     <h1 class="display glitch">{project.name}<span class="caret-blink" aria-hidden="true"></span></h1>
-    <p class="lede" style="margin-top:1.25rem">{project.description}</p>
-    <ul class="tags" style="margin-top:1.25rem">{project.features.map((f) => <li class="tag">{f}</li>)}</ul>
+    <p class="lede mt-125">{project.description}</p>
+    <ul class="tags mt-125">{project.features.map((f) => <li class="tag">{f}</li>)}</ul>
 
     <div class="summary">
       <TerminalWindow title={`${project.slug}.sh`}>
@@ -32,7 +32,7 @@ const repoPath = project.repo.replace('https://github.com/', '');
         </dl>
       </TerminalWindow>
     </div>
-    <div class="actions" style="margin-top:1.5rem">
+    <div class="actions mt-15">
       <a class="btn btn-primary" href={project.repo}>View Repository</a>
     </div>
   </section>

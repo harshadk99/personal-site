@@ -43,7 +43,7 @@ const recentTalks = [...upcomingTalks, ...pastTalks].slice(0, 5);
               <div>
                 <h3><a href={`/projects/${p.slug}`}>{p.name}</a></h3>
                 <p>{p.description}</p>
-                <ul class="tags" style="margin-top:0.9rem">{p.tags.map((t) => <li class="tag">{t}</li>)}</ul>
+                <ul class="tags mt-09">{p.tags.map((t) => <li class="tag">{t}</li>)}</ul>
               </div>
             </li>
           ))}

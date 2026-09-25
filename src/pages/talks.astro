@@ -10,7 +10,7 @@ const years = byYear(pastTalks, talkKey);
   <section class="wrap section">
     <SectionHead level={1} eyebrow="Talks" title={talksMeta.heading} />
     <p class="lede">{talksMeta.intro}</p>
-    <div class="links" style="margin-top:1rem"><a href={talksMeta.sessionize.url}>{talksMeta.sessionize.label} →</a></div>
+    <div class="links mt-1"><a href={talksMeta.sessionize.url}>{talksMeta.sessionize.label} →</a></div>
   </section>
 
   {upcomingTalks.length > 0 && (

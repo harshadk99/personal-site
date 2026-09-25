@@ -361,3 +361,12 @@ code, kbd, samp {
   .facts { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
   .facts dd + dt { margin-top: 0.85rem; }
 }
+
+/* Spacing utilities, in place of inline style attributes (blocked by the CSP).
+   !important keeps the precedence the inline styles had. */
+.mt-075 { margin-top: 0.75rem !important; }
+.mt-09 { margin-top: 0.9rem !important; }
+.mt-1 { margin-top: 1rem !important; }
+.mt-125 { margin-top: 1.25rem !important; }
+.mt-15 { margin-top: 1.5rem !important; }
+.mt-2 { margin-top: 2rem !important; }

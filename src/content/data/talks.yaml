@@ -163,18 +163,21 @@ talks:
     title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
     event: "BSides Chicago 2025"
     location: "Chicago, IL"
-    date: "[TBC: Sessionize says October 2025; your paper says November 2025]"
+    # Talks were Nov 1, 2025 (workshops Oct 31): bsideschicago.org home page,
+    # Wayback snapshot of Oct 14, 2025. The schedule and speaker pages now
+    # 404 and their speaker list loaded from Sessionize, so no archived copy
+    # names the talk; the Sessionize profile lists "BSidesChicago 2025".
+    date: 2025-11
     kind: conference
     track: deception
     links:
-      - { label: "Event Schedule", url: "https://bsideschicago.org/schedule/" }
-      - { label: "Speaker Page", url: "https://bsideschicago.org/speakers/" }
+      - { label: "Speaker Profile", url: "https://sessionize.com/harshad-sadashiv-kadam/" }
 
   - id: devseccon-2025
     title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
     event: "DevSecCon 2025"
     location: "Global Virtual"
-    date: "[TBC: month — the recording was published Oct 22, 2025]"
+    date: 2025-10   # Oct 22, 2025 session (snyk.io/events/devseccon session data)
     kind: global
     track: deception
     links:
@@ -185,12 +188,14 @@ talks:
     title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
     event: "Cloudflare Connect 2025"
     location: "Las Vegas, NV"
-    date: "[TBC: month]"
+    date: 2025-10   # Oct 13–16, 2025, Aria, Las Vegas (event site, Wayback Aug 29, 2025)
     kind: vendor
     track: deception
+    # events.cloudflare.com/connect/2025/* now redirects to cloudflare.com/connect,
+    # so these are Wayback Machine snapshots of the original pages.
     links:
-      - { label: "Event Schedule", url: "https://events.cloudflare.com/connect/2025/sessions/3289791" }
-      - { label: "Speaker Page", url: "https://events.cloudflare.com/connect/2025/speakers/1806309" }
+      - { label: "Session Page (archived)", url: "https://web.archive.org/web/20260514080439/https://events.cloudflare.com/connect/2025/sessions/3289791" }
+      - { label: "Speaker Page (archived)", url: "https://web.archive.org/web/20260413173749/https://events.cloudflare.com/connect/2025/speakers/1806309" }
 
   - id: bsides-orlando-2025
     title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"

@@ -2,6 +2,30 @@
 # Heading on the current site: "External Coverage".
 # `description` is the current site's text.
 
+- id: isaca-now-state-of-cyber-2026
+  heading: "ISACA Now — \"Sizing up the State of Cyber: Industry Leaders Pinpoint Workforce Challenges and Solutions\""
+  date: 2026-09-22
+  url: "https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2026/sizing-up-the-state-of-cyber-industry-leaders-pinpoint-workforce-challenges-and-solutions"
+  description: >-
+    ISACA Now panel on the State of Cybersecurity 2026 report, with Harshad
+    among the industry leaders interviewed: "What you can verify about an
+    agent is its behavior, not its intent; its stated reasoning is just
+    another output you’d have to trust."
+  link_label: "Read on isaca.org"
+  # SOURCE: live page Sept 25, 2026; quote verbatim.
+
+- id: isaca-cpe-2026
+  heading: "@ISACA — \"Five Strategies for Utilizing CPE for Impactful Professional Development\""
+  date: 2026-07-06
+  url: "https://www.isaca.org/resources/news-and-trends/newsletters/atisaca/2026/volume-13/five-strategies-for-utilizing-cpe-for-impactful-professional-development"
+  description: >-
+    @ISACA newsletter (2026, Volume 13) quoting Harshad as a member of ISACA's
+    Emerging Trends Working Group: "When you're representing a community or
+    standing in front of peers with original work, the bar is higher — and
+    that's where the real learning happens."
+  link_label: "Read on isaca.org"
+  # SOURCE: live page Sept 25, 2026; quote verbatim.
+
 - id: distilled-security
   heading: "Distilled Security Podcast — \"Catching Cloud Drift & Rogue AI Agents\""
   date: 2026-07-06
