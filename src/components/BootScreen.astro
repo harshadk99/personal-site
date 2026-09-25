@@ -1,0 +1,103 @@
+---
+// The "initializing security protocols" intro carried over from the old site.
+// Shown once per browser session, on the homepage, for about a second.
+// Any click or key skips it. Never shown with reduced motion or without JS,
+// so crawlers and assistive tech always get the page straight away.
+interface Props {
+  /** Show on every load (style guide preview only). */
+  force?: boolean;
+}
+const { force = false } = Astro.props;
+---
+<div id="boot" class="boot" hidden aria-hidden="true">
+  <div class="boot-inner">
+    <div class="boot-logo">HSK<span class="boot-cursor"></span></div>
+    <div class="boot-text">INITIALIZING SECURITY PROTOCOLS</div>
+    <div class="boot-bar"><span></span></div>
+    <div class="boot-status">Establishing secure connection...</div>
+  </div>
+</div>
+<script is:inline define:vars={{ force }}>
+  (function () {
+    var el = document.getElementById('boot');
+    if (!el) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var seen = false;
+    try { seen = sessionStorage.getItem('booted') === '1'; } catch (e) {}
+    if (reduced || (seen && !force)) return;
+    try { sessionStorage.setItem('booted', '1'); } catch (e) {}
+
+    el.hidden = false;
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      el.classList.add('is-done');
+      setTimeout(function () { el.remove(); }, 400);
+      window.removeEventListener('keydown', finish);
+    }
+    el.addEventListener('click', finish);
+    window.addEventListener('keydown', finish);
+    setTimeout(finish, 1200);
+  })();
+</script>
+
+<style>
+  .boot {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background: var(--ground);
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+  }
+  .boot.is-done { opacity: 0; pointer-events: none; }
+  .boot-inner {
+    width: min(20rem, 80vw);
+    text-align: center;
+    font-family: var(--mono);
+    color: var(--accent);
+  }
+  .boot-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 2.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+  }
+  .boot-cursor {
+    width: 0.5em;
+    height: 0.9em;
+    background: var(--accent);
+    animation: boot-blink 0.8s steps(1) infinite;
+  }
+  .boot-text {
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .boot-bar {
+    height: 2px;
+    background: var(--rule);
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+  }
+  .boot-bar span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    animation: boot-progress 1.1s cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+  }
+  .boot-status {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  @keyframes boot-progress { to { width: 100%; } }
+  @keyframes boot-blink { 50% { opacity: 0; } }
+</style>
