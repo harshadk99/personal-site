@@ -33,10 +33,9 @@ at Indeed, where I architect Zero Trust, SASE, edge-native security, and
 multi-cloud infrastructure at enterprise scale. By night I build and explore
 whatever has my curiosity: a jack of all trades, and a master of a few.
 
-I currently build [MCP Threat Trap](/projects/mcp-threat-trap),
-[KubeTrap](/projects/kubetrap) and [FlareGuard](/projects/flareguard):
-open-source research in AI agent detection and deception, and in edge
-infrastructure security.
+I build open-source tools in two areas: deception for detecting AI agents
+([MCP Threat Trap](/projects/mcp-threat-trap), [KubeTrap](/projects/kubetrap))
+and edge infrastructure security ([FlareGuard](/projects/flareguard)).
 
 Outside of that, I'm a CISM-certified practitioner, a member of ISACA's
 Emerging Trends Working Group and Academic & Workforce Development Advisory
