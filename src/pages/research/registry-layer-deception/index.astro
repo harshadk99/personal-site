@@ -7,6 +7,7 @@
 // ./paper.
 import Base from '../../../layouts/Base.astro';
 import TerminalWindow from '../../../components/TerminalWindow.astro';
+import RegistryArchitecture from '../../../components/diagrams/RegistryArchitecture.astro';
 import { papers } from '../../../data/content';
 
 const meta = papers.find((p) => p.slug === 'registry-layer-deception')!;
@@ -211,6 +212,12 @@ const faq = [
       <li>Cloudflare Worker logs, with full arguments</li>
       <li>MCP portal records, with identity and session</li>
     </ul>
+  </section>
+
+  <!-- ─────────────────── Reference architecture ─────────────────── -->
+  <section class="wrap section" id="architecture">
+    <h2 class="statement">Reference architecture<span class="caret-blink" aria-hidden="true"></span></h2>
+    <RegistryArchitecture />
   </section>
 
   <!-- ─────────────────── Threat model cards ─────────────────── -->

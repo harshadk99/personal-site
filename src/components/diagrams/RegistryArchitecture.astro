@@ -1,0 +1,198 @@
+---
+// Reference architecture for registry-layer deception, drawn as inline SVG so
+// it follows the site theme (colours come from CSS variables) and stays sharp.
+// Layout: agent → portal (real + decoy servers, portal logs) → KubeTrap decoy
+// (three tool tiers, detection boundary) → two canaries → SIEM correlation.
+// On narrow screens the figure scrolls sideways rather than shrinking text.
+---
+<figure class="arch">
+  <div class="scroll">
+    <svg viewBox="0 0 1040 680" role="img" aria-labelledby="arch-title arch-desc">
+      <title id="arch-title">Registry-layer deception: reference architecture</title>
+      <desc id="arch-desc">
+        An AI agent connects to one MCP server portal that lists two real servers and two decoy
+        servers together. The KubeTrap decoy exposes three tiers of tools; past the detection boundary,
+        kubeconfig_get carries a canary. Retrieving the credential fires Stage 1; using it with kubectl
+        fires Stage 2. Both canaries, the decoy's worker logs and the portal's own logs go to a SIEM and
+        are correlated on session ID.
+      </desc>
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" class="arrowhead" />
+        </marker>
+        <marker id="arr-signal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" class="arrowhead-signal" />
+        </marker>
+      </defs>
+
+      <!-- Bypass path: agent goes straight to a decoy upstream URL -->
+      <path d="M110 250 V34 H850 V60" class="edge edge-dashed edge-signal" marker-end="url(#arr-signal)" />
+      <text x="470" y="26" class="label label-signal" text-anchor="middle">direct upstream URL (bypass) → breadcrumb leads to a decoy</text>
+
+      <!-- Agent -->
+      <g>
+        <rect x="20" y="250" width="180" height="84" rx="8" class="node" />
+        <text x="110" y="286" class="title" text-anchor="middle">AI agent</text>
+        <text x="110" y="308" class="sub" text-anchor="middle">MCP client</text>
+      </g>
+      <path d="M200 292 H254" class="edge" marker-end="url(#arr)" />
+      <text x="228" y="282" class="label" text-anchor="middle">calls</text>
+
+      <!-- Portal -->
+      <g>
+        <rect x="260" y="60" width="350" height="360" rx="10" class="group" />
+        <text x="280" y="90" class="title">MCP server portal</text>
+        <text x="280" y="110" class="sub">Access identity · one catalog</text>
+
+        <rect x="280" y="128" width="310" height="44" rx="6" class="node real" />
+        <text x="296" y="148" class="mono">cf-documentation</text>
+        <text x="296" y="164" class="sub">docs.mcp.cloudflare.com</text>
+        <text x="576" y="156" class="tag tag-real" text-anchor="end">REAL</text>
+
+        <rect x="280" y="180" width="310" height="44" rx="6" class="node real" />
+        <text x="296" y="200" class="mono">workers-bindings</text>
+        <text x="296" y="216" class="sub">bindings.mcp.cloudflare.com</text>
+        <text x="576" y="208" class="tag tag-real" text-anchor="end">REAL</text>
+
+        <rect x="280" y="232" width="310" height="44" rx="6" class="node decoy" />
+        <text x="296" y="252" class="mono">mcp-threat-trap</text>
+        <text x="296" y="268" class="sub">okta_admin_password_reset</text>
+        <text x="576" y="260" class="tag tag-decoy" text-anchor="end">DECOY</text>
+
+        <rect x="280" y="284" width="310" height="44" rx="6" class="node decoy" />
+        <text x="296" y="304" class="mono">kubernetes-access-portal</text>
+        <text x="296" y="320" class="sub">KubeTrap</text>
+        <text x="576" y="312" class="tag tag-decoy" text-anchor="end">DECOY</text>
+
+        <rect x="280" y="348" width="310" height="52" rx="6" class="node muted" />
+        <text x="296" y="370" class="mono">portal logs (Logpush)</text>
+        <text x="296" y="388" class="sub">identity · IP · session · tool</text>
+      </g>
+
+      <!-- Portal → KubeTrap -->
+      <path d="M590 306 H654" class="edge" marker-end="url(#arr)" />
+
+      <!-- KubeTrap decoy server -->
+      <g>
+        <rect x="660" y="60" width="360" height="330" rx="10" class="group group-decoy" />
+        <text x="680" y="90" class="title">KubeTrap decoy</text>
+        <text x="680" y="110" class="sub">Cloudflare Worker · tools in three tiers</text>
+
+        <rect x="680" y="124" width="320" height="52" rx="6" class="node tier1" />
+        <text x="696" y="145" class="mono">Tier 1 · safe</text>
+        <text x="696" y="164" class="sub">list_clusters · k8s_access_guide · +3 more</text>
+
+        <rect x="680" y="184" width="320" height="48" rx="6" class="node tier2" />
+        <text x="696" y="205" class="mono">Tier 2 · escalation</text>
+        <text x="696" y="222" class="sub">get_service_endpoints · get_ci_webhook</text>
+
+        <line x1="672" y1="254" x2="1008" y2="254" class="boundary" />
+        <text x="840" y="249" class="label label-signal" text-anchor="middle">detection boundary</text>
+
+        <rect x="680" y="262" width="320" height="52" rx="6" class="node tier3" />
+        <text x="696" y="283" class="mono">Tier 3 · privileged</text>
+        <text x="696" y="302" class="sub">kubeconfig_get · canary embedded</text>
+
+        <rect x="680" y="324" width="320" height="50" rx="6" class="node muted" />
+        <text x="696" y="345" class="mono">worker logs</text>
+        <text x="696" y="363" class="sub">full arguments · headers · source · timing</text>
+      </g>
+
+      <!-- Stage 1: retrieving the credential fires the web-bug canary -->
+      <path d="M760 390 V458" class="edge edge-stage1" marker-end="url(#arr)" />
+      <g>
+        <rect x="660" y="464" width="170" height="70" rx="8" class="node stage1" />
+        <text x="676" y="490" class="stage stage1-text">STAGE 1 · ACCESS</text>
+        <text x="676" y="512" class="sub">credential retrieved</text>
+        <text x="676" y="526" class="sub">web bug canary</text>
+      </g>
+
+      <!-- Stage 2: the agent uses the kubeconfig with kubectl -->
+      <path d="M110 334 V436 H935 V458" class="edge edge-dashed edge-stage2" marker-end="url(#arr)" />
+      <text x="580" y="453" class="label label-stage2" text-anchor="middle">kubectl --kubeconfig</text>
+      <g>
+        <rect x="850" y="464" width="170" height="70" rx="8" class="node stage2" />
+        <text x="866" y="490" class="stage stage2-text">STAGE 2 · USE</text>
+        <text x="866" y="512" class="sub">credential used</text>
+        <text x="866" y="526" class="sub">kubeconfig canary</text>
+      </g>
+
+      <!-- SIEM correlation -->
+      <path d="M745 534 V588" class="edge" marker-end="url(#arr)" />
+      <path d="M935 534 V588" class="edge" marker-end="url(#arr)" />
+      <path d="M435 420 V588" class="edge" marker-end="url(#arr)" />
+      <g>
+        <rect x="260" y="594" width="760" height="66" rx="10" class="node siem" />
+        <text x="280" y="622" class="title">SIEM / alerting</text>
+        <text x="280" y="644" class="sub">join on session ID: identity (portal) + arguments (decoy) + Stage 1 + Stage 2 = one attributed finding</text>
+      </g>
+
+      <!-- Legend -->
+      <g class="legend">
+        <rect x="20" y="594" width="12" height="12" rx="2" class="node real" />
+        <text x="40" y="604" class="sub">real server</text>
+        <rect x="20" y="616" width="12" height="12" rx="2" class="node decoy" />
+        <text x="40" y="626" class="sub">decoy server</text>
+        <line x1="20" y1="646" x2="34" y2="646" class="boundary" />
+        <text x="40" y="650" class="sub">detection boundary</text>
+      </g>
+    </svg>
+  </div>
+  <figcaption>
+    Reference architecture. Real and decoy MCP servers share one portal catalog; the decoy’s privileged
+    tier sits past the detection boundary, and the two canaries plus both log sources meet in the SIEM.
+  </figcaption>
+</figure>
+
+<style>
+  .arch { margin: 0; }
+  .scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+  svg { display: block; width: 100%; min-width: 820px; height: auto; }
+  figcaption { margin-top: 0.75rem; font: 400 var(--step--1) / 1.5 var(--mono); color: var(--muted); max-width: 52rem; }
+
+  .group { fill: var(--ground); stroke: var(--rule); stroke-width: 1.5; }
+  .group-decoy { stroke: color-mix(in srgb, var(--signal) 50%, var(--rule)); stroke-dasharray: 0; }
+  .node { fill: var(--raised); stroke: var(--rule); stroke-width: 1.25; }
+  .node.real { stroke: color-mix(in srgb, var(--accent) 65%, var(--rule)); }
+  .node.decoy { stroke: var(--signal); fill: color-mix(in srgb, var(--signal) 10%, var(--raised)); }
+  .node.muted { fill: var(--surface); stroke-dasharray: 4 3; }
+  .node.tier1 { stroke: var(--accent); }
+  .node.tier2 { stroke: #ffbd2e; }
+  .node.tier3 { stroke: #ff5f56; fill: color-mix(in srgb, #ff5f56 10%, var(--raised)); }
+  .node.stage1 { stroke: #ffbd2e; fill: color-mix(in srgb, #ffbd2e 10%, var(--raised)); }
+  .node.stage2 { stroke: #ff5f56; fill: color-mix(in srgb, #ff5f56 10%, var(--raised)); }
+  .node.siem { stroke: var(--accent); fill: color-mix(in srgb, var(--accent) 8%, var(--raised)); }
+
+  text { font-family: var(--sans); }
+  .title { font-size: 16px; font-weight: 600; fill: var(--ink); }
+  .sub { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); }
+  .mono { font-family: var(--mono); font-size: 13px; fill: var(--ink); }
+  .label { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); }
+  .label-signal { fill: var(--signal); }
+  .label-stage2 { fill: #ff5f56; }
+  :global([data-theme='light']) .label-stage2 { fill: #c4271e; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; font-weight: 600; }
+  .tag-real { fill: var(--accent); }
+  .tag-decoy { fill: var(--signal); }
+  .stage { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; }
+  .stage1-text { fill: #ffbd2e; }
+  .stage2-text { fill: #ff5f56; }
+
+  .edge { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+  .edge-dashed { stroke-dasharray: 6 5; }
+  .edge-signal { stroke: var(--signal); }
+  .edge-stage1 { stroke: #ffbd2e; }
+  .edge-stage2 { stroke: #ff5f56; }
+  .arrowhead { fill: var(--muted); }
+  .arrowhead-signal { fill: var(--signal); }
+  .boundary { stroke: var(--signal); stroke-width: 2; stroke-dasharray: 7 5; }
+
+  :global([data-theme='light']) .stage1-text { fill: #9a6700; }
+  :global([data-theme='light']) .stage2-text { fill: #c4271e; }
+  :global([data-theme='light']) .node.tier2,
+  :global([data-theme='light']) .node.stage1,
+  :global([data-theme='light']) .edge-stage1 { stroke: #9a6700; }
+  :global([data-theme='light']) .node.tier3,
+  :global([data-theme='light']) .node.stage2,
+  :global([data-theme='light']) .edge-stage2 { stroke: #c4271e; }
+</style>
