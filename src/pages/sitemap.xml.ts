@@ -5,7 +5,7 @@ import { projects, papers } from '../data/content';
 const SITE = 'https://harshadsadashivkadam.com';
 const paths = [
   '/', '/writing', '/research', '/projects', '/talks', '/about', '/links',
-  ...papers.map((p) => `/research/${p.slug}`),
+  ...papers.flatMap((p) => [`/research/${p.slug}`, `/research/${p.slug}/paper`]),
   ...projects.map((p) => `/projects/${p.slug}`),
 ];
 

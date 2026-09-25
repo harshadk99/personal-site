@@ -1,14 +1,14 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { Content, frontmatter as paper, getHeadings } from '../../content/research/registry-layer-deception.md';
-import { papers, isPending } from '../../data/content';
+import Base from '../../../layouts/Base.astro';
+import { Content, frontmatter as paper, getHeadings } from '../../../content/research/registry-layer-deception.md';
+import { papers, isPending } from '../../../data/content';
 
 const meta = papers.find((p) => p.slug === 'registry-layer-deception')!;
 const sections = getHeadings().filter((h) => h.depth === 2);
 const pdf = isPending(meta.links.pdf) ? null : meta.links.pdf;
 const doi = isPending(meta.links.doi) ? null : meta.links.doi;
 ---
-<Base title={paper.title} description={meta.summary}>
+<Base title={`${paper.title}: full paper`} description={meta.summary}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
@@ -31,12 +31,13 @@ const doi = isPending(meta.links.doi) ? null : meta.links.doi;
 
     <article class="paper">
       <header class="masthead">
-        <span class="status">Draft · v{meta.version}</span>
+        <a class="back" href="/research/registry-layer-deception">← Overview</a>
+        <span class="status">Working paper · v{meta.version}</span>
         <h1>{paper.title}</h1>
         <p class="subtitle">{paper.subtitle}</p>
         <dl class="facts">
           <dt>Author</dt><dd>{paper.author}</dd>
-          <dt>Version</dt><dd>{paper.version} · {paper.date}</dd>
+          <dt>Version</dt><dd>{meta.version} · {paper.date} · working paper</dd>
           <dt>License</dt><dd>{paper.license}</dd>
           {doi && (<><dt>DOI</dt><dd><a href={doi}>{doi}</a></dd></>)}
         </dl>
@@ -85,6 +86,8 @@ const doi = isPending(meta.links.doi) ? null : meta.links.doi;
   .toc a:hover { color: var(--ink); border-left-color: var(--accent); }
 
   .paper { max-width: 44rem; min-width: 0; }
+  .back { display: block; margin-bottom: 1rem; font: 400 var(--step--1) / 1 var(--mono); color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--accent); }
   .masthead { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1rem; }
   .masthead h1 { font-size: var(--step-4); line-height: 1.08; letter-spacing: -0.025em; margin: 1rem 0 0.75rem; }
   .subtitle { font-size: var(--step-1); color: var(--ink-soft); margin-bottom: 1.75rem; }

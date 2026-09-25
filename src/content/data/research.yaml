@@ -6,7 +6,7 @@ papers:
     subtitle: "An Architecture for Detecting Autonomous AI Agents in Model Context Protocol Environments"
     version: "1.1"
     date: 2026-09
-    status: "draft"          # becomes "published" once the DOI exists
+    status: "Working paper"  # v1.1 is public on the site; DOI to follow
     # VERBATIM: paper.md Abstract, paragraph 3, first sentence (commit 33fbedf)
     summary: "This paper argues that the unit of deception should be the registry, not the individual token."
     source: "agentic-deception-white-paper/paper.md"

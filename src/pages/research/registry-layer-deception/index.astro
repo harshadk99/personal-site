@@ -1,0 +1,565 @@
+---
+// Working-paper overview for "Deception at the Registry Layer", in the style
+// of Tracebit's working papers: statement headings, a replayed attack, short
+// cards, and the detail folded away. Every claim here comes from the paper
+// (src/content/research/registry-layer-deception.md) or Harshad's own talk
+// decks (OWASP 25th, BSides Boulder, BSidesPGH, 2026). The full text lives at
+// ./paper.
+import Base from '../../../layouts/Base.astro';
+import TerminalWindow from '../../../components/TerminalWindow.astro';
+import { papers } from '../../../data/content';
+
+const meta = papers.find((p) => p.slug === 'registry-layer-deception')!;
+const PAPER = '/research/registry-layer-deception/paper';
+const OWASP_VIDEO = 'amS0icidxOs';
+
+// Replay of the OWASP 25th Anniversary demo (reconstructed from the talk and
+// Section 8 of the paper). kind: cmd | out | ok | s1 | s2 | alert | dim
+const replay: { kind: string; text: string }[] = [
+  { kind: 'dim', text: '# replay · OWASP 25th Anniversary demo, Feb 2026' },
+  { kind: 'cmd', text: 'agent connect https://<portal>/mcp' },
+  { kind: 'ok', text: 'authenticated · 4 servers, real and decoy, one catalog' },
+  { kind: 'out', text: '  cf-documenation-server       docs.mcp.cloudflare.com' },
+  { kind: 'out', text: '  workers-binding-server       bindings.mcp.cloudflare.com' },
+  { kind: 'out', text: '  mcp-threat-trap              …workers.dev' },
+  { kind: 'out', text: '  kubernetes-access-portal     …workers.dev' },
+  { kind: 'cmd', text: 'call kubernetes-access-portal_k8s_access_guide' },
+  { kind: 'ok', text: 'request-and-approval flow returned · no alert' },
+  { kind: 'cmd', text: 'call kubernetes-access-portal_cluster_status_public' },
+  { kind: 'ok', text: 'cluster healthy · no alert' },
+  { kind: 'cmd', text: 'call kubernetes-access-portal_kubeconfig_get' },
+  { kind: 's1', text: 'STAGE 1 · ACCESS  web bug canary fired' },
+  { kind: 'out', text: '  client: mcp-deception-incubator-kubernetes/1.0 (tool=kubeconfig_get; …)' },
+  { kind: 'cmd', text: 'kubectl --kubeconfig ./kubeconfig get pods' },
+  { kind: 's2', text: 'STAGE 2 · USE  kubeconfig canary fired' },
+  { kind: 'alert', text: 'ALERT → SIEM  access + use · one session · full arguments' },
+];
+
+const attackStages = [
+  { name: 'Reconnaissance', body: 'The portal lists every server and tool in one call, and the server-ID prefix leaks naming conventions.', counter: 'Decoys come back in that same list, mixed in with the real servers.' },
+  { name: 'Access', body: 'A stolen portal session or service token carries the full view of that identity. Service tokens are built for agents.', counter: 'Decoy upstream URLs catch agents that skip the portal.' },
+  { name: 'Privilege', body: 'Servers without per-user auth share one admin credential: a confused deputy for every identity on the portal.', counter: 'Grabbing the decoy credential is Stage 1.' },
+  { name: 'Manipulation', body: 'Control-plane access can rewrite tool descriptions at the portal layer, and new tools auto-enable on sync.', counter: 'A lured agent still has to use the credential: Stage 2.' },
+  { name: 'Evasion', body: 'Portal logs record that a tool was called, not what it was called with.', counter: 'The decoy records full arguments, headers, source and timing.' },
+];
+
+const tiers = [
+  { tier: 'Tier 1', label: 'Safe', tools: ['list_clusters', 'k8s_access_guide', 'cluster_status_public', 'get_namespace_quota', 'request_access'], note: 'Genuinely useful. No detection fires; realism is what keeps the environment believable.' },
+  { tier: 'Tier 2', label: 'Escalation', tools: ['get_service_endpoints', 'get_ci_webhook'], note: 'Infrastructure no ordinary task needs. Raw topology and CI config have no place in a cluster tool.' },
+  { tier: 'Tier 3', label: 'Privileged', tools: ['kubeconfig_get'], note: 'A credential with a canary inside. An agent already authenticated has no reason to ask for another.' },
+];
+
+const faq = [
+  { q: 'Why not just drop a single canary token?', a: 'Tokens are an excellent first move and this builds on them. But a lone decoy sits beside the real environment, so a careful agent can learn to route around it, and a single touch can’t separate curiosity from intent. Putting decoys inside the registry, and alerting on access and then use, addresses both.' },
+  { q: 'Will legitimate agents trip the decoys?', a: 'They can. A legitimate agent picks tools on its own, so a decoy description that overlaps a real task will produce false positives. Decoys should target capabilities outside every legitimate user’s scope, and visibility policies should narrow exposure where that risk is highest.' },
+  { q: 'Can an attacker tell a decoy apart?', a: 'A careful one might, from hosting, latency, tool counts, empty resources or response style. Decoys should be hosted and shaped like their neighbors; realism is a recurring cost, not a one-time setup.' },
+  { q: 'What do the portal’s own logs miss?', a: 'Arguments. Portal logs and Logpush exports record who called which tool, from where and in which session, but not what the tool was called with. The decoy records the arguments; joining the two on session ID gives an attributed finding.' },
+  { q: 'Does this need servers to run?', a: 'No. The portal and the decoys run on Cloudflare Workers, with detection from Canarytokens: nothing to provision, patch or scale.' },
+];
+---
+<Base title={meta.title} description="A working paper on putting real and decoy MCP servers side by side in one registry, with a two-stage alert: credential retrieved, then credential used.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: meta.title,
+      alternativeHeadline: meta.subtitle,
+      author: { '@type': 'Person', name: 'Harshad Sadashiv Kadam', url: 'https://harshadsadashivkadam.com' },
+      datePublished: String(meta.date),
+      version: meta.version,
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      abstract: meta.summary,
+      url: 'https://harshadsadashivkadam.com/research/registry-layer-deception',
+    })} />
+  </Fragment>
+
+  <!-- ─────────────────────────── Hero ─────────────────────────── -->
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Working paper · v{meta.version} · September 2026</span>
+      <h1 class="display glitch">Deception at the Registry Layer<span class="caret-blink" aria-hidden="true"></span></h1>
+      <p class="lede">
+        Rogue agents don’t question trust. That makes them perfect bait. Put real and decoy
+        MCP servers side by side in one registry, and alert in two stages: when an agent
+        retrieves a credential, and when it tries to use it.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href={PAPER}>Read the full paper</a>
+        <a class="btn" href="#demo">Watch the demo</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <TerminalWindow title="replay.sh" wide>
+        <ol class="replay" id="replay" aria-label="Replay of the attack and detection sequence">
+          {replay.map((l) => <li class={`r-${l.kind}`}>{l.text}</li>)}
+        </ol>
+      </TerminalWindow>
+      <p class="caption">Reconstructed from the live demo at the OWASP 25th Anniversary Conference.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────── The problem ─────────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">Agents look exactly like automation<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="cols">
+      <p>
+        Through MCP, an agent discovers a catalog of tools and calls them without a human in the
+        loop. An agent mapping your infrastructure makes the same calls to the same tools as one
+        doing sanctioned work. The intent is invisible at the API layer.
+      </p>
+      <p>
+        Anomaly detection assumes attackers move selectively. Agents don’t: enumeration is their
+        baseline, and a more capable model enumerates more thoroughly. A defense that fires on
+        touch gets stronger as the attacker gets better.
+      </p>
+    </div>
+
+    <div class="threat-model" aria-label="Intent escalation threat model">
+      <div class="band band-intent">
+        <span class="band-label">High-risk invocation intent</span>
+        <span class="band-items">credential-shaped inputs · kubeconfig retrieval · kubectl execution attempt</span>
+      </div>
+      <div class="boundary"><span>deception detection boundary</span></div>
+      <div class="band">
+        <span class="band-label">Reconnaissance via legitimate tools</span>
+        <span class="band-items">tool enumeration · capability testing · parameter experimentation · schema probing</span>
+      </div>
+      <div class="band band-base">
+        <span class="band-label">MCP exposure surface</span>
+        <span class="band-items">real + decoy MCP servers · tool registry · auto-discovery</span>
+      </div>
+      <p class="caption">Below the line, activity looks like legitimate exploration and shouldn’t alert. Above it, intent is clear.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────── Why one decoy isn't enough ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">One decoy can be avoided<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="cards two">
+      <div class="card">
+        <h3>A lone decoy sits beside the environment</h3>
+        <p>A single tempting fake server is one thing for a careful agent to learn to route around. Its value depends on the agent not being able to tell it apart from the real thing.</p>
+      </div>
+      <div class="card">
+        <h3>One exchange can’t show intent</h3>
+        <p>A decoy that asks a caught agent to identify itself gets an answer that may be invented. “Something executed a privileged action” is a stronger finding than “something answered a question”.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── The registry is the trap ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">The registry is the trap<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="cols">
+      <div>
+        <p>
+          A gateway portal presents one catalog of MCP servers to every connecting agent. Behind it
+          sit real production servers and decoys, registered through the same workflow and named by
+          the same convention. There is no “the honeypot” to avoid: the decoys are interleaved with the
+          servers the agent actually wants.
+        </p>
+        <p>The reference implementation is Cloudflare’s MCP server portals, generally available since September 24, 2026.</p>
+        <button class="btn" type="button" id="reveal" aria-pressed="false">Reveal the decoys</button>
+      </div>
+      <TerminalWindow title="portal · servers" wide>
+        <ul class="servers" id="servers">
+          <li><span class="srv">cf-documenation-server</span><span class="host">docs.mcp.cloudflare.com</span><span class="kind">real</span></li>
+          <li class="decoy"><span class="srv">mcp-threat-trap</span><span class="host">workers.dev</span><span class="kind">decoy</span></li>
+          <li><span class="srv">workers-binding-server</span><span class="host">bindings.mcp.cloudflare.com</span><span class="kind">real</span></li>
+          <li class="decoy"><span class="srv">kubernetes-access-portal</span><span class="host">workers.dev</span><span class="kind">decoy</span></li>
+        </ul>
+      </TerminalWindow>
+    </div>
+  </section>
+
+  <!-- ─────────────────── Tool tiers ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">Escalation is a path, not an event<span class="caret-blink" aria-hidden="true"></span></h2>
+    <p class="lede">Inside a decoy server, tools run from genuinely useful to privileged. The tool an agent chooses is the signal. These are KubeTrap’s tools.</p>
+    <ol class="tiers">
+      {tiers.map((t, i) => (
+        <li class={`tier tier-${i + 1}`}>
+          <div class="tier-head"><span class="tier-num">{t.tier}</span><span class="tier-label">{t.label}</span></div>
+          <ul class="tags">{t.tools.map((tool) => <li class="tag"><code>{tool}</code></li>)}</ul>
+          <p>{t.note}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- ─────────────────── Two stages ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">Two stages, one explanation<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="stages">
+      <div class="stage">
+        <span class="stage-tag s1">Stage 1 · Access</span>
+        <p>The agent retrieves the credential. Meaningful, but not yet conclusive: an aggressive scanner might grab it.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="stage">
+        <span class="stage-tag s2">Stage 2 · Use</span>
+        <p>The agent tries to use it: a real execution attempt. That isn’t something the agent says; it’s something it does.</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:2rem">
+      Crossing both stages has one explanation. The finding is the chain, correlated across layers:
+    </p>
+    <ul class="chain">
+      <li>kubeconfig access alert</li>
+      <li>kubectl execution alert</li>
+      <li>MCP decoy tool invocation</li>
+      <li>Cloudflare Worker logs, with full arguments</li>
+      <li>MCP portal records, with identity and session</li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── Threat model cards ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">How an agent attacks a portal<span class="caret-blink" aria-hidden="true"></span></h2>
+    <ol class="cards five">
+      {attackStages.map((s, i) => (
+        <li class="card">
+          <span class="meta">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.name}</h3>
+          <p>{s.body}</p>
+          <p class="counter"><span>Counter</span> {s.counter}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- ─────────────────── Demo ─────────────────── -->
+  <section class="wrap section" id="demo">
+    <h2 class="statement">It ran live<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="cols">
+      <div>
+        <p>At the OWASP 25th Anniversary Conference in February 2026, the architecture ran end to end:</p>
+        <ol class="steps">
+          <li>One portal with four servers: two of Cloudflare’s own hosted MCP servers and two decoys, all ready.</li>
+          <li>A connecting MCP client offered all four together, real and decoy indistinguishable.</li>
+          <li>A real agent harness enumerating the combined catalog.</li>
+          <li>A canary firing on <code>kubeconfig_get</code>, with a real source IP and a client string naming the decoy and tool.</li>
+        </ol>
+      </div>
+      <div class="video" data-video={OWASP_VIDEO}>
+        <button type="button" class="video-play" aria-label="Play the OWASP 25th Anniversary recording">
+          <img src={`https://i.ytimg.com/vi/${OWASP_VIDEO}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+          <span class="play">▶ Play recording</span>
+        </button>
+        <p class="caption">Recording published by the OWASP Foundation.</p>
+      </div>
+    </div>
+
+    <h3 class="subhead">Field notes from the talks</h3>
+    <ul class="cards three notes">
+      <li class="card"><p>The first alert arrived within a week of exposing MCP Threat Trap publicly.</p></li>
+      <li class="card"><p>Scanning followed from multiple geographies.</p></li>
+      <li class="card"><p>Some source IPs had not been reported on AbuseIPDB or VirusTotal.</p></li>
+    </ul>
+  </section>
+
+  <!-- ─────────────────── Build it ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">A small build, not a research project<span class="caret-blink" aria-hidden="true"></span></h2>
+    <ol class="index">
+      <li><div><h3>Inventory the real portal</h3><p>Server IDs, naming, auth modes, and which servers run without per-user auth.</p></div></li>
+      <li><div><h3>Build one decoy server</h3><p>A remote MCP server on Workers is enough. Log every request, arguments included.</p></div></li>
+      <li><div><h3>Register it the normal way</h3><p>A server ID that fits the naming convention, and an access policy that matches the visibility you want.</p></div></li>
+      <li><div><h3>Write the tools in tiers</h3><p>Plain descriptions, no instructions aimed at the model. A decoy that steers an agent is tool poisoning.</p></div></li>
+      <li><div><h3>Route alerts to a human</h3><p>With identity attached. Export portal logs to the same SIEM and correlate on session ID.</p></div></li>
+      <li><div><h3>Test with your own agent, then review monthly</h3><p>Walk it through both stages. Admin tokens expire silently, for decoys as much as real servers.</p></div></li>
+    </ol>
+    <details class="more-detail">
+      <summary>Lessons from building it</summary>
+      <ul>
+        <li><strong>Keep tokens out of code.</strong> Environment variables or Workers KV make rotation and sharing safe.</li>
+        <li><strong>Put traps behind Access.</strong> If an attacker has to be inside first, every hit is higher-confidence.</li>
+        <li><strong>Tail logs are the breadcrumbs.</strong> Routes, tools, request IDs and timing, without sensitive payloads.</li>
+        <li><strong>The first trap became a framework.</strong> MCP Threat Trap led to the MCP Deception Incubator and KubeTrap.</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- ─────────────────── Limits + next ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">What it doesn’t do<span class="caret-blink" aria-hidden="true"></span></h2>
+    <ul class="limits">
+      <li><strong>Detection, not prevention.</strong> Containment and response are downstream.</li>
+      <li><strong>Depends on enumeration.</strong> A targeted adversary with prior knowledge may not explore.</li>
+      <li><strong>Realism has a running cost.</strong> Decoys must stay believable next to the servers they sit beside.</li>
+      <li><strong>Remote servers only.</strong> Local stdio MCP servers are out of scope, though the principles should transfer.</li>
+    </ul>
+    <p><a href={`${PAPER}#11-limitations-and-future-work`}>All limitations in the full paper →</a></p>
+  </section>
+
+  <section class="wrap section">
+    <h2 class="statement">Next: measuring it<span class="caret-blink" aria-hidden="true"></span></h2>
+    <p class="lede">
+      Existing benchmarks measure canaries in cloud accounts. At OWASP LASCON 2026 (October 29–30, Austin),
+      benchmark results will look at the registry itself:
+    </p>
+    <ol class="steps">
+      <li>Do agents tell decoy servers from real ones in a shared catalog, and does that grow with model capability?</li>
+      <li>How often does an agent that crosses Stage 1 go on to Stage 2, and does that vary by model?</li>
+      <li>Do more capable models trip more decoys at the registry layer, as they do in cloud accounts?</li>
+    </ol>
+  </section>
+
+  <!-- ─────────────────── FAQ ─────────────────── -->
+  <section class="wrap section">
+    <h2 class="statement">Questions<span class="caret-blink" aria-hidden="true"></span></h2>
+    <div class="faq">
+      {faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─────────────────── Read / code / cite ─────────────────── -->
+  <section class="wrap section">
+    <div class="cards three">
+      <a class="card link-card" href={PAPER}>
+        <span class="meta">Full text</span>
+        <h3>Read the paper →</h3>
+        <p>Thirteen sections: portal mechanics, threat model, architecture, deployment, validation, prior art and limitations.</p>
+      </a>
+      <a class="card link-card" href="/projects/kubetrap">
+        <span class="meta">Code</span>
+        <h3>KubeTrap →</h3>
+        <p>The Kubernetes decoy with three tool tiers and the two-stage canary. MCP Threat Trap is its predecessor.</p>
+      </a>
+      <div class="card">
+        <span class="meta">Cite</span>
+        <h3>How to cite</h3>
+        <p class="cite">Kadam, H. S. (2026). <em>Deception at the Registry Layer: An Architecture for Detecting Autonomous AI Agents in Model Context Protocol Environments</em> (Working paper v{meta.version}).</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Terminal replay: reveal lines one by one when the terminal scrolls into view.
+  const replay = document.getElementById('replay');
+  if (replay && !reduced) {
+    const lines = [...replay.children] as HTMLElement[];
+    lines.forEach((l) => l.classList.add('pending'));
+    const play = () => {
+      lines.forEach((l, i) => {
+        const delay = i * 420 + (l.className.includes('r-s') || l.className.includes('r-alert') ? 300 : 0);
+        setTimeout(() => l.classList.remove('pending'), delay);
+      });
+    };
+    new IntersectionObserver((entries, obs) => {
+      if (entries.some((e) => e.isIntersecting)) { play(); obs.disconnect(); }
+    }, { threshold: 0.3 }).observe(replay);
+  }
+
+  // Reveal which servers are decoys.
+  const reveal = document.getElementById('reveal');
+  const servers = document.getElementById('servers');
+  reveal?.addEventListener('click', () => {
+    const on = servers?.classList.toggle('revealed') ?? false;
+    reveal.setAttribute('aria-pressed', String(on));
+    reveal.textContent = on ? 'Hide the decoys' : 'Reveal the decoys';
+  });
+
+  // Load YouTube only when asked.
+  document.querySelectorAll<HTMLElement>('.video').forEach((box) => {
+    box.querySelector('button')?.addEventListener('click', () => {
+      const id = box.dataset.video;
+      box.querySelector('button')!.outerHTML =
+        `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" title="OWASP 25th Anniversary recording" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: clamp(3.5rem, 9vw, 6rem) 0;
+    align-items: center;
+  }
+  @media (min-width: 60rem) {
+    .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+  }
+  .hero .lede { margin-top: 1.25rem; }
+  .hero .actions { margin-top: 2rem; }
+  .caption { margin-top: 0.75rem; font: 400 var(--step--1) / 1.5 var(--mono); color: var(--muted); }
+
+  .replay {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font: 400 0.8125rem / 1.7 var(--mono);
+    color: var(--ink-soft);
+    min-height: 26rem;
+  }
+  .replay li { white-space: pre-wrap; overflow-wrap: anywhere; transition: opacity 0.25s ease; }
+  .replay li.pending { opacity: 0; }
+  .r-cmd::before { content: '$ '; color: var(--signal); }
+  .r-cmd { color: var(--ink); }
+  .r-ok::before { content: '✓ '; color: var(--accent); }
+  .r-dim { color: var(--muted); }
+  .r-s1, .r-s2, .r-alert { font-weight: 600; }
+  .r-s1 { color: #ffbd2e; }
+  .r-s1::before { content: '▲ '; }
+  .r-s2 { color: #ff5f56; }
+  .r-s2::before { content: '▲ '; }
+  .r-alert { color: var(--accent); }
+  .r-alert::before { content: '■ '; }
+  :global([data-theme='light']) .r-s1 { color: #9a6700; }
+  :global([data-theme='light']) .r-s2 { color: #c4271e; }
+
+  .statement { margin-bottom: 1.5rem; }
+  .cols { display: grid; gap: 1.5rem 3rem; }
+  @media (min-width: 52rem) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .cols p { max-width: 36rem; }
+
+  .threat-model { margin-top: 2.5rem; display: grid; gap: 0.5rem; max-width: 52rem; }
+  .band {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+  .band-intent { border-color: color-mix(in srgb, var(--signal) 55%, var(--rule)); }
+  .band-base { background: var(--raised); }
+  .band-label { font: 600 0.9375rem / 1.3 var(--sans); color: var(--ink); }
+  .band-items { font: 400 var(--step--1) / 1.5 var(--mono); color: var(--muted); }
+  .boundary {
+    position: relative;
+    text-align: center;
+    border-top: 2px dashed var(--signal);
+    margin-block: 0.75rem;
+  }
+  .boundary span {
+    position: relative;
+    top: -0.8em;
+    padding-inline: 0.75rem;
+    background: var(--ground);
+    font: 500 0.75rem / 1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  @media (min-width: 44rem) { .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 44rem) { .cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 44rem) { .cards.five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 70rem) { .cards.five { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .card {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--surface);
+    padding: 1.25rem;
+  }
+  .card h3 { font-size: var(--step-1); margin: 0.35rem 0 0.6rem; }
+  .card p { margin: 0 0 0.75rem; font-size: 0.9375rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .counter { color: var(--ink); }
+  .counter span {
+    display: block;
+    font: 500 0.6875rem / 1.6 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .link-card { text-decoration: none; transition: border-color 0.15s ease; }
+  .link-card:hover { border-color: var(--accent); }
+  .link-card:hover h3 { color: var(--accent); }
+  .cite { font-size: 0.875rem; }
+
+  .servers { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; font: 400 0.875rem / 1.5 var(--mono); }
+  .servers li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 1rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .srv { color: var(--ink); overflow-wrap: anywhere; }
+  .host { grid-column: 1; color: var(--muted); font-size: 0.75rem; }
+  .kind { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: transparent; }
+  .revealed .decoy { background: color-mix(in srgb, var(--signal) 14%, transparent); }
+  .revealed .decoy .kind { color: var(--signal); }
+  .revealed li:not(.decoy) .kind { color: var(--muted); }
+  #reveal { margin-top: 0.5rem; cursor: pointer; background: transparent; }
+
+  .tiers { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 1rem; }
+  @media (min-width: 52rem) { .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tier { border: 1px solid var(--rule); border-radius: 8px; padding: 1.25rem; background: var(--surface); border-top-width: 3px; }
+  .tier-1 { border-top-color: var(--accent); }
+  .tier-2 { border-top-color: #ffbd2e; }
+  .tier-3 { border-top-color: #ff5f56; }
+  .tier-head { display: flex; gap: 0.75rem; align-items: baseline; margin-bottom: 0.9rem; }
+  .tier-num { font: 500 var(--step--1) / 1 var(--mono); color: var(--muted); }
+  .tier-label { font: 600 var(--step-1) / 1 var(--sans); color: var(--ink); }
+  .tier p { margin: 0.9rem 0 0; font-size: 0.9375rem; }
+  .tier code { background: none; padding: 0; }
+
+  .stages { display: grid; gap: 1rem; align-items: center; }
+  @media (min-width: 44rem) { .stages { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
+  .stage { border: 1px solid var(--rule); border-radius: 8px; padding: 1.25rem; background: var(--surface); }
+  .stage p { margin: 0.75rem 0 0; }
+  .stage-tag { font: 600 0.8125rem / 1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+  .stage-tag.s1 { color: #ffbd2e; }
+  .stage-tag.s2 { color: #ff5f56; }
+  :global([data-theme='light']) .stage-tag.s1 { color: #9a6700; }
+  :global([data-theme='light']) .stage-tag.s2 { color: #c4271e; }
+  .arrow { font: 400 var(--step-3) / 1 var(--mono); color: var(--accent); text-align: center; }
+  @media (max-width: 43.99rem) { .arrow { transform: rotate(90deg); } }
+
+  .chain { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chain li {
+    font: 400 var(--step--1) / 1 var(--mono);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.5rem 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .steps { padding-left: 1.2em; }
+  .steps li { margin-bottom: 0.6rem; }
+  .subhead { font-size: var(--step-1); margin: 2.5rem 0 1rem; }
+  .notes .card p { font-size: 1rem; color: var(--ink); }
+
+  .video { min-width: 0; }
+  .video-play { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: #000; cursor: pointer; aspect-ratio: 16 / 9; }
+  .video-play img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+  .play { position: absolute; inset: auto 1rem 1rem auto; background: var(--accent); color: var(--accent-ink); font: 600 0.875rem / 1 var(--mono); padding: 0.6rem 0.9rem; border-radius: 6px; }
+  .video :global(iframe) { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--rule); border-radius: 8px; }
+
+  .more-detail { margin-top: 1.5rem; }
+  .limits { padding-left: 1.2em; max-width: 44rem; }
+  .limits li { margin-bottom: 0.6rem; }
+
+  details { border-bottom: 1px solid var(--rule); }
+  .faq { border-top: 1px solid var(--rule); max-width: 48rem; }
+  summary {
+    cursor: pointer;
+    padding: 1rem 0;
+    font: 500 var(--step-0) / 1.4 var(--sans);
+    color: var(--ink);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-family: var(--mono); color: var(--accent); }
+  details[open] summary::after { content: '−'; }
+  details p, details ul { margin: 0 0 1.25rem; color: var(--ink-soft); }
+  .more-detail { border-top: 1px solid var(--rule); max-width: 48rem; }
+  .more-detail ul { padding-left: 1.2em; }
+  .more-detail li { margin-bottom: 0.5rem; }
+</style>
