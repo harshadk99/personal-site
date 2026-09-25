@@ -205,6 +205,7 @@ code, kbd, samp {
 .meta {
   font: 400 var(--step--1) / 1.4 var(--mono);
   color: var(--muted);
+  overflow-wrap: anywhere;
 }
 
 /* Section heading row: statement on the left, "See everything →" on the right */
@@ -311,7 +312,7 @@ code, kbd, samp {
   gap: 0.25rem 1rem;
   font: 400 var(--step--1) / 1.5 var(--mono);
 }
-.links a { color: var(--muted); }
+.links a { color: var(--muted); overflow-wrap: anywhere; }
 .links a:hover { color: var(--accent); }
 
 @media (max-width: 36rem) {
@@ -350,7 +351,13 @@ code, kbd, samp {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
   gap: 0.6rem 2rem;
+  align-items: baseline;
   margin: 0;
 }
 .facts dt { font: 400 var(--step--1) / 1.65 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.facts dd { margin: 0; color: var(--ink); }
+.facts dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+/* Phones: label above value, so addresses get the full width. */
+@media (max-width: 30rem) {
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .facts dd + dt { margin-top: 0.85rem; }
+}

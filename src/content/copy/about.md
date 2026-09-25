@@ -10,7 +10,7 @@ title: "Hello, I'm Harshad."
 
 facts:
   - { label: "Location", value: "Austin, Texas" }
-  - { label: "Full time", value: "Senior Security Infrastructure Engineer at Indeed" }
+  - { label: "Full time", value: "Senior Infrastructure Security Engineer, Indeed Inc." }
   - { label: "Community", value: "Founder & Chapter Lead, AI Security Engineers — Austin", href: "https://www.aiseceng.io/chapters/aiseceng-austin/" }
   - { label: "Contact", value: "harshad.surfer@gmail.com", href: "mailto:harshad.surfer@gmail.com" }
 
@@ -27,7 +27,7 @@ resume:
   note: "Full experience, certifications and education."
 ---
 
-Based in Austin, Texas. By day I'm a Senior Security Infrastructure Engineer
+Based in Austin, Texas. By day I'm a Senior Infrastructure Security Engineer
 at Indeed, working on Zero Trust and SASE. By night I build and explore
 whatever has my curiosity: a jack of all trades, and a master of a few.
 

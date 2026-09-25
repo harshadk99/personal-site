@@ -1,9 +1,9 @@
 ---
 // Window chrome from the old site: three dots and a file-name title bar.
-interface Props { title: string; id?: string }
-const { title, id } = Astro.props;
+interface Props { title: string; id?: string; wide?: boolean }
+const { title, id, wide = false } = Astro.props;
 ---
-<div class="term" id={id}>
+<div class:list={["term", { wide }]} id={id}>
   <div class="term-bar" aria-hidden="true">
     <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
     <span class="term-title">{title}</span>
@@ -19,6 +19,7 @@ const { title, id } = Astro.props;
     overflow: hidden;
     max-width: 40rem;
   }
+  .term.wide { max-width: none; }
   .term-bar {
     display: flex;
     align-items: center;

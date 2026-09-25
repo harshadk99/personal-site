@@ -1,7 +1,7 @@
 ---
 # VERBATIM from the current site (legacy/index.html hero), Sept 24, 2026.
 name: "Harshad Sadashiv Kadam"
-title: "Senior Security Infrastructure Engineer"
+title: "Senior Infrastructure Security Engineer"
 location: "Austin, Texas"
 
 # The typed line under the title, verbatim from the current site (js/scripts.js).
@@ -21,7 +21,7 @@ actions:
 
 # Meta description, verbatim from the current site's <head>.
 description: >-
-  Harshad Sadashiv Kadam — Senior Security Infrastructure Engineer at Indeed
+  Harshad Sadashiv Kadam — Senior Infrastructure Security Engineer at Indeed
   specializing in Zero Trust, SASE, and AI-native deception engineering.
   Creator of MCP Threat Trap and FlareGuard. Speaker at DevSecCon, Cloudflare
   Connect, OWASP, BSides, and IntelliC0N.

@@ -5,24 +5,39 @@ import { frontmatter as cta } from '../content/copy/cta.md';
 const tel = cta.phone ? `tel:${cta.phone.replace(/[^+\d]/g, '')}` : '';
 ---
 <section class="closing wrap" id="contact" aria-labelledby="contact-title">
-  <h2 id="contact-title" class="statement glitch">{cta.title.replace(/[.]$/, '')}<span class="caret-blink" aria-hidden="true"></span></h2>
-  <p class="lede">{cta.body}</p>
-  <TerminalWindow title="contact.sh">
-    <dl class="facts">
-      <dt>Email</dt><dd><a href={`mailto:${cta.email}`}>{cta.email}</a></dd>
-      {cta.phone && (<><dt>Phone</dt><dd><a href={tel}>{cta.phone}</a></dd></>)}
-      <dt>Location</dt><dd>{cta.location}</dd>
-      {cta.links.map((l: { label: string; url: string }) => (<><dt>{l.url.includes('linkedin') ? 'LinkedIn' : 'GitHub'}</dt><dd><a href={l.url}>{l.label}</a></dd></>))}
-    </dl>
-  </TerminalWindow>
+  <div class="inner">
+    <div class="intro">
+      <h2 id="contact-title" class="statement glitch">{cta.title.replace(/[.]$/, '')}<span class="caret-blink" aria-hidden="true"></span></h2>
+      <p class="lede">{cta.body}</p>
+    </div>
+    <TerminalWindow title="contact.sh" wide>
+      <dl class="facts">
+        <dt>Email</dt><dd><a href={`mailto:${cta.email}`}>{cta.email}</a></dd>
+        {cta.phone && (<><dt>Phone</dt><dd><a href={tel}>{cta.phone}</a></dd></>)}
+        <dt>Location</dt><dd>{cta.location}</dd>
+        {cta.links.map((l: { label: string; url: string }) => (<><dt>{l.url.includes('linkedin') ? 'LinkedIn' : 'GitHub'}</dt><dd><a href={l.url}>{l.label}</a></dd></>))}
+      </dl>
+    </TerminalWindow>
+  </div>
 </section>
 
 <style>
-  .closing {
-    padding-block: var(--space-section);
+  /* The last page section already ends with section spacing, so the block
+     starts at its divider and only pads below. */
+  .closing { padding-bottom: var(--space-section); }
+  .inner {
+    display: grid;
+    gap: 2rem;
     border-top: 1px solid var(--rule);
-    margin-top: var(--space-section);
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+  }
+  @media (min-width: 56rem) {
+    .inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      gap: 4rem;
+      align-items: start;
+    }
   }
   .statement { margin-bottom: 0.75rem; }
-  .lede { margin-bottom: 1.75rem; }
+  .lede { margin: 0; }
 </style>

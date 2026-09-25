@@ -3,7 +3,6 @@
 title: "Connect With Me"
 body: "All contact methods in one place"
 email: "harshad.surfer@gmail.com"
-phone: "+1 (585) 694-1674"
 location: "Austin, Texas"
 links:
   - { label: "linkedin.com/in/harshad99", url: "https://www.linkedin.com/in/harshad99/" }
