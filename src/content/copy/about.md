@@ -35,7 +35,8 @@ whatever has my curiosity: a jack of all trades, and a master of a few.
 
 I currently build [MCP Threat Trap](/projects/mcp-threat-trap),
 [KubeTrap](/projects/kubetrap) and [FlareGuard](/projects/flareguard):
-open-source research in AI agent detection and edge infrastructure security.
+open-source research in AI agent detection and deception, and in edge
+infrastructure security.
 
 Outside of that, I'm a CISM-certified practitioner, a member of ISACA's
 Emerging Trends Working Group and Academic & Workforce Development Advisory
