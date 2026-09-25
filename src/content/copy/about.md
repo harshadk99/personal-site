@@ -11,7 +11,7 @@ title: "Hello, I'm Harshad."
 facts:
   - { label: "Location", value: "Austin, Texas" }
   - { label: "Full time", value: "Senior Infrastructure Security Engineer, Indeed Inc." }
-  - { label: "Community", value: "Founder & Chapter Lead, AI Security Engineers — Austin", href: "https://www.aiseceng.io/chapters/aiseceng-austin/" }
+  - { label: "Community", value: "Founding Chapter Lead, AI Security Engineers — Austin", href: "https://www.aiseceng.io/chapters/aiseceng-austin/" }
   - { label: "Contact", value: "harshad.surfer@gmail.com", href: "mailto:harshad.surfer@gmail.com" }
 
 # Judging/mentoring intentionally left off the site (user, Sept 24, 2026):
@@ -35,7 +35,7 @@ I currently build [MCP Threat Trap](/projects/mcp-threat-trap),
 [KubeTrap](/projects/kubetrap) and [FlareGuard](/projects/flareguard):
 open-source tools for deception engineering and edge security.
 
-Outside of that, I founded the Austin chapter of AI Security Engineers and
+Outside of that, I'm the founding chapter lead of AI Security Engineers Austin and
 take part in two ISACA groups, Emerging Trends and Academic & Workforce
 Development.
 
