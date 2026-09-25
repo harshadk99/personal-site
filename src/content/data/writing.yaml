@@ -1,0 +1,40 @@
+# Articles, newest first. `where: site` entries will live at /writing/<slug>
+# once you publish on your own domain; the rest link out.
+# SOURCE: legacy/index.html; SC Media URLs found via search Sept 24, 2026
+# (scworld.com blocks automated readers, so bylines were not opened directly).
+
+- id: scmedia-safety-training-2026
+  title: "The best defense against an AI attacker might be its own safety training"
+  where: "SC Media"
+  date: 2026-07-30
+  url: "https://www.scworld.com/perspective/the-best-defense-against-an-ai-attacker-might-be-its-own-safety-training"
+  summary: "[TBC: one-line summary in your words]"
+
+- id: scmedia-edge-witness-2026
+  title: "Your edge infrastructure has no witness"
+  where: "SC Media"
+  date: 2026-07-07
+  url: "https://www.scworld.com/perspective/your-edge-infrastructure-has-no-witness"
+  summary: "[TBC: one-line summary in your words]"
+
+- id: scmedia-agents-intent-2026
+  title: "AI agents are already exploring your network. How do you detect their intent?"
+  where: "SC Media"
+  date: 2026-06-11
+  url: "https://www.scworld.com/perspective/ai-agents-are-already-exploring-your-network-how-do-you-detect-their-intent"
+  summary: "The case for deception-based detection of autonomous AI agent reconnaissance."
+
+- id: medium-bsides-chicago-2025
+  title: "The Weekend That Belonged to Strong Women: From BSides Chicago to the ICC World Cup 2025"
+  where: "Medium"
+  date: 2025-11-06
+  url: "https://medium.com/@harshadkadam/the-weekend-that-belonged-to-strong-women-from-bsides-chicago-to-the-icc-world-cup-2025-973a755e1bdb"
+  summary: "Parallels between women's achievements in cybersecurity and cricket over one weekend."
+  keep: "[TBC: keep on the site? It's personal rather than research, which is fine on a brand site, but your call]"
+
+- id: medium-flareguard-2025
+  title: "FlareGuard Edge: An Open-Source Serverless Tool Redefining Cloud Edge Security"
+  where: "Medium"
+  date: 2025-08-05
+  url: "https://medium.com/@harshadkadam/flareguard-an-open-source-serverless-tool-redefining-cloud-edge-security-d24f3d269f72"
+  summary: "Introducing FlareGuard, an open-source serverless auditor for Cloudflare configurations."

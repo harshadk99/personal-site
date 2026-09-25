@@ -1,0 +1,165 @@
+# Talks, newest first. `date` is YYYY-MM-DD when known, else YYYY-MM.
+# kind: conference | vendor | community
+# SOURCE (unless noted): legacy/index.html speaking section; dates from
+# sessionize.com/harshad-sadashiv-kadam (checked Sept 24, 2026).
+
+- id: lascon-2026
+  status: upcoming
+  title: "[TBC: talk title — Sessionize lists 'Teaching AI Agents to Fear the Dark: Deception Engineering for Autonomous AI Systems'; is that the LASCON talk?]"
+  event: "OWASP LASCON 2026"
+  location: "Austin, TX"
+  date: 2026-10-29
+  kind: conference
+  links: []
+
+- id: bsidespgh-2026-incubator
+  title: "MCP Deception Incubator: Honeytraps as a Framework for Zero Trust AI Environments"
+  event: "BSidesPGH 2026"
+  location: "Pittsburgh, PA"
+  date: 2026-07
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://www.bsidespgh.com/schedule" }
+
+- id: bsidespgh-2026-flareguard
+  title: "Edge Never Sleeps: FlareGuard and Continuous Cloudflare Posture Validation"
+  event: "BSidesPGH 2026"
+  location: "Pittsburgh, PA"
+  date: 2026-07
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://www.bsidespgh.com/schedule" }
+
+- id: bsides-boulder-2026
+  title: "MCP Kube Trap: Agentic Deception at the Edge for Zero Trust AI Environments"
+  event: "BSides Boulder 2026"
+  location: "Boulder, CO"
+  date: 2026-06-13   # SOURCE: paper.md Section 9
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://bsidesboulder.org/schedule" }
+
+- id: intellicon-2026
+  title: "MCP Deception Incubator: Honeytraps as a Framework for Zero Trust AI Environments"
+  event: "IntelliC0N 2026"
+  location: "Austin, TX"
+  date: "[TBC: month]"
+  kind: conference
+  links:
+    - { label: "Speaker page", url: "https://www.intelliguards.com/intellic0n-speakers" }
+
+- id: cloudflare-webinar-2026
+  title: "How Indeed Customizes Security Services to Meet Unique Needs"   # [TBC: see the Indeed question — keep, reword, or drop?]
+  event: "Cloudflare webinar"
+  location: "Online"
+  date: 2026-03-24
+  kind: vendor
+  summary: "Customized SASE, MCP server security, and custom security tooling built on Cloudflare's developer platform."
+  links:
+    - { label: "Watch on demand", url: "https://cloudflare.registration.goldcast.io/webinar/0fc9b454-e9a7-4ba8-b7f5-c4f40e50972b", video: true }
+
+- id: owasp-25th-2026
+  title: "MCP Deception Incubator: Honeytraps as a Framework for Zero Trust AI Environments"
+  event: "OWASP 25th Anniversary Conference"
+  location: "Virtual"
+  date: 2026-02
+  kind: conference
+  summary: "The first live demonstration of real and decoy MCP servers side by side in one portal."
+  links:
+    - { label: "Recording", url: "https://youtu.be/amS0icidxOs", video: true, host: "OWASP Foundation" }
+    - { label: "Session page", url: "https://owasp25thanniversaryvirtual.sched.com/event/2Djni/mcp-deception-incubator-honeytraps-as-a-framework-for-zero-trust-ai-environments-track-2" }
+
+- id: ai-sec-eng-show-tell-2026
+  title: "Show and Tell: Prompt Injector & MCP Threat Trap"
+  event: "AI Security Engineers Community"
+  location: "Livestream"
+  date: 2026-01-29
+  kind: community
+  links:
+    - { label: "Recording", url: "https://youtu.be/DEAI84LkngQ", video: true, host: "AI Security Engineers Community" }
+
+- id: acm-ieee-austin-2026
+  title: "[TBC: title — listed on Sessionize as 'Austin ACM/IEEE Meetup - TechTalks', not on your current site]"
+  event: "Austin ACM/IEEE Meetup: TechTalks"
+  location: "Austin, TX"
+  date: 2026-01
+  kind: community
+  links: []
+
+- id: isaca-austin-2025
+  title: "Real-Time Edge Posture: Detecting Misconfigurations Before They Become Breaches"
+  event: "ISACA Austin Chapter Annual General Meeting"
+  location: "Austin, TX"
+  date: 2025-12-15
+  kind: community
+  links:
+    - { label: "ISACA Austin", url: "https://engage.isaca.org/austinchapter/home" }
+
+- id: workers-tech-talks-2025
+  title: "FlareGuard: Automating Security Posture at the Edge"
+  event: "Cloudflare Workers Tech Talks"
+  location: "Austin, TX"
+  date: 2025-12
+  kind: community
+  links:
+    - { label: "Write-up by Nick Gray", url: "https://nickgray.net/cloudflare-workers-tech-talks/" }
+
+- id: bsides-swfl-2025-flareguard
+  title: "FlareGuard Edge: Serverless Posture at the Edge"
+  event: "BSides SWFL 2025"
+  location: "Fort Myers, FL"
+  date: 2025-11
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://bsidesswfl.org/schedule" }
+    - { label: "Speakers", url: "https://bsidesswfl.org/speakers" }
+
+- id: bsides-swfl-2025-threat-trap
+  title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
+  event: "BSides SWFL 2025"
+  location: "Fort Myers, FL"
+  date: 2025-11
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://bsidesswfl.org/schedule" }
+    - { label: "Speakers", url: "https://bsidesswfl.org/speakers" }
+
+- id: bsides-chicago-2025
+  title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
+  event: "BSides Chicago 2025"
+  location: "Chicago, IL"
+  date: "[TBC: Sessionize says October 2025; your paper says November 2025]"
+  kind: conference
+  links:
+    - { label: "Schedule", url: "https://bsideschicago.org/schedule/" }
+    - { label: "Speakers", url: "https://bsideschicago.org/speakers/" }
+
+- id: devseccon-2025
+  title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
+  event: "DevSecCon 2025"
+  location: "Virtual"
+  date: "[TBC: month — the recording was published Oct 22, 2025]"
+  kind: conference
+  links:
+    - { label: "Recording", url: "https://youtu.be/mXiTIMMByxE", video: true, host: "AI Security Engineers Community" }
+    - { label: "Event page", url: "https://snyk.io/events/devseccon/" }
+
+- id: cloudflare-connect-2025
+  title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
+  event: "Cloudflare Connect 2025"
+  location: "Las Vegas, NV"
+  date: "[TBC: month]"
+  kind: vendor
+  links:
+    - { label: "Session", url: "https://events.cloudflare.com/connect/2025/sessions/3289791" }
+    - { label: "Speaker page", url: "https://events.cloudflare.com/connect/2025/speakers/1806309" }
+
+- id: bsides-orlando-2025
+  title: "MCP Threat Trap: Deception Engineering for Zero Trust AI Access"
+  event: "BSides Orlando 2025"
+  location: "Orlando, FL"
+  date: 2025-09
+  kind: conference
+  links:
+    - { label: "Recording", url: "https://youtu.be/aleUOMi73fA", video: true, host: "BSides Orlando" }
+    - { label: "Schedule", url: "https://bsidesorlando.org/schedule/" }

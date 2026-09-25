@@ -1,0 +1,50 @@
+# Independent citations and coverage, newest first. Quotes are verbatim from
+# the live page on the date in `checked`. Do not paraphrase them.
+
+- id: thinkst
+  who: "Thinkst"
+  context: "Makers of Canary and Canarytokens"
+  title: "One for all the models out there!"
+  author: "Jacob Torrey"
+  date: 2026-06-22
+  url: "https://blog.thinkst.com/2026/06/one-for-all-the-models-out-there.html"
+  quote: >-
+    Using a similar alerting model, Harshad Sadashiv Kadam used our Kubernetes,
+    DNS and Web Bug tokens to create an AI honeypot that would alert only after
+    a client started using the results from tool calls (check it out!).
+  about_project: kubernetes-access-portal
+  checked: 2026-09-24
+
+- id: zeltser
+  who: "Lenny Zeltser"
+  context: "SANS Institute Faculty Fellow; creator of REMnux"   # [TBC: confirm this is still how Zeltser's own bio reads]
+  title: "Build a Decoy MCP Server to Catch AI Agent Attackers"
+  date: 2026-05-03
+  url: "https://zeltser.com/decoy-mcp-server-honeypot"
+  quote: >-
+    Harshad Sadashiv Kadam's Deception Remote MCP Server takes that approach
+    for a public-facing honeypot any MCP client can discover and connect to.
+  about_project: mcp-threat-trap
+  checked: 2026-09-24
+  # NOTE: the old site said Zeltser cited it "as the reference implementation".
+  # The article doesn't say that; the quote above is what it says.
+
+- id: nickgray
+  who: "Nick Gray"
+  context: "Write-up of Austin's Cloudflare Workers Tech Talks"
+  title: "Cloudflare Workers Tech Talks"
+  date: 2025-12-04
+  url: "https://nickgray.net/cloudflare-workers-tech-talks/"
+  quote: >-
+    Harshad presented FlareGuard, a tool designed to solve the visibility gap
+    in serverless security.
+  about_project: flareguard
+  checked: 2026-09-24
+
+# Coverage that isn't a quote but is still independent recognition.
+- id: owasp-recording
+  who: "OWASP Foundation"
+  context: "Published the recording of my OWASP 25th Anniversary talk on its official channel"
+  date: 2026-04-02
+  url: "https://youtu.be/amS0icidxOs"
+  checked: 2026-09-24

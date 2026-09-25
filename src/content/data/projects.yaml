@@ -1,0 +1,62 @@
+# Tools, in display order. Each gets its own page at /projects/<slug>.
+- slug: mcp-threat-trap
+  name: "MCP Threat Trap"
+  status: "Open source"
+  summary: >-
+    A serverless MCP honeypot on Cloudflare Workers. It offers agents a decoy
+    internal admin tool and fires a Canarytoken the moment one calls it.
+  detail: >-
+    MCP Threat Trap exposes a small set of tools over the Model Context
+    Protocol, including an Okta admin password-reset tool that no legitimate
+    agent has a reason to call. Invoking it triggers a Canarytoken alert with
+    the caller's details. It was my first public deception build, and the
+    starting point for the registry-layer architecture in my research.
+  released: 2025-05-21   # SOURCE: paper.md Section 9 (initial public release)
+  license: "MIT"
+  tech: ["TypeScript", "Cloudflare Workers", "MCP", "Canarytokens"]
+  repo: "https://github.com/harshadk99/deception-remote-mcp-server"
+  cited_by: ["zeltser"]          # ids in recognition.yaml
+  talks: ["bsides-orlando-2025", "bsides-chicago-2025", "bsides-swfl-2025-threat-trap", "cloudflare-connect-2025", "devseccon-2025", "ai-sec-eng-show-tell-2026"]
+
+- slug: kubernetes-access-portal   # [TBC: slug follows the name you choose]
+  name: "[TBC: one name — options: Agentic Deception Incubator · MCP Kube Trap · KubeTrap · Kubernetes Access Portal]"
+  status: "Open source"
+  summary: >-
+    A decoy Kubernetes access portal served over MCP. Its tools run from
+    genuinely useful to privileged, and a kubeconfig with a canary inside fires
+    twice: when an agent retrieves it, and when it tries to use it.
+  detail: >-
+    The portal offers safe tools (list_clusters, get_namespace_quota,
+    request_access) alongside three trap surfaces: a kubeconfig, a list of
+    service endpoints, and a CI webhook. Each carries a Thinkst canary. Calling
+    the tool is Stage 1; using what it returned is Stage 2, which only an agent
+    acting on the result can reach. This is the two-stage boundary at the
+    center of my research.
+  released: 2026-01-16   # SOURCE: first commit in mcp-deception-incubator-kubernetes
+  license: "MIT"
+  tech: ["TypeScript", "Cloudflare Workers", "MCP", "Thinkst Canary"]
+  repo: "https://github.com/harshadk99/mcp-deception-incubator-kubernetes"
+  cited_by: ["thinkst"]
+  talks: ["owasp-25th-2026", "intellicon-2026", "bsides-boulder-2026", "bsidespgh-2026-incubator"]
+
+- slug: flareguard
+  name: "FlareGuard"
+  status: "Open source"
+  summary: >-
+    A security auditor for the Cloudflare control plane. It scores zone, WAF,
+    DNS, Zero Trust and Workers settings against a baseline, maps findings to
+    NIST and CIS controls, and flags forgotten "zombie" Workers.
+  detail: >-
+    Mainstream posture tools watch AWS, Azure and GCP, but not the Cloudflare
+    settings many organizations now run their perimeter on. FlareGuard runs as
+    a Worker, takes a read-only API token, and returns a severity-weighted
+    score with remediation guidance for each finding, mapped to NIST SP 800-53
+    Rev 5 and CIS Controls v8.
+  released: 2025-06-09   # SOURCE: first commit in flareguard repo
+  license: "MIT"
+  tech: ["JavaScript", "Cloudflare Workers", "Cloudflare API"]
+  repo: "https://github.com/harshadk99/flareguard"
+  demo: "https://flareguard.harshad-surfer.workers.dev/"
+  cited_by: ["nickgray"]
+  talks: ["workers-tech-talks-2025", "isaca-austin-2025", "bsides-swfl-2025-flareguard", "bsidespgh-2026-flareguard"]
+  writing: ["medium-flareguard-2025"]
